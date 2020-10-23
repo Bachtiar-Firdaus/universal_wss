@@ -65,7 +65,7 @@ a,span:hover{
         </a>
 
 
-        <a href="<?php echo site_url() ?>User/car" class="list-group-item list-group-item-action ahover">
+        <a href="<?php echo site_url() ?>User/Legality" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
           Legality
         </a>
