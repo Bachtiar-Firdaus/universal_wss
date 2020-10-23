@@ -1,0 +1,157 @@
+@media (max-width: 479px) {
+
+	.header{
+		    height: 214px;
+    margin-top: -377px;
+    z-index: 99999;
+    position: relative;
+    
+	}
+
+	body{
+		background: #f7f7f7;
+	}
+
+	.asdfasdf{
+		background: white;
+    	padding: 10px;
+	}
+
+	.ult{
+		background: #f7f7f7;
+    /*padding: 7px;*/
+    /*text-align: -webkit-center;*/
+    padding-bottom: 10px;
+	}
+
+	.lkjh{
+		padding-top: 10px;
+	}
+
+	.btnkomentar{
+
+	}
+
+	.imgkomentar{
+		float: left;
+    width: 52px;
+    height: 46px;
+    border-radius: 67px !important;
+	}
+
+	.listkomentar{
+		padding: 1px 0;
+	}
+
+	.imgkomentar{
+		float: left;
+    width: 52px;
+    height: 46px;
+    border-radius: 67px;
+	}
+
+
+	.komentar{
+		margin-top: 17px !important;
+		
+	}
+
+	.inputkomentar {
+		width: 60% !important;
+		height: 30px !important;
+		float: left !important;
+	}
+
+	.btnkomentar {
+		height: 30px !important;
+		width: 27% !important;
+		margin-left: 5px;
+		color: white;
+    background: #0081BA;
+    border: none;
+    border-radius: 14px;
+    font-size: 12px;
+	}
+
+	.contentdetail {
+		text-align: justify;
+		margin-top: 10px;
+	}
+
+	.img-detail {
+		display: block;
+		width: 100%;
+
+	}
+
+	.contentutama {
+		color: black;/*
+		background: white;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 100%;
+    box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.31);*/
+	}
+
+
+
+	.nav {
+		z-index: 1;
+	}
+
+	.img-content {
+		float: left;
+		width: 115px;
+		height: 86px;
+	}
+
+	.contentsub {
+		margin-left: 121px;
+		overflow-wrap: break-word;
+	}
+
+	.contentsubkomen {
+		overflow-wrap: break-word;
+	}
+
+	.img-contentkom{
+		    float: left;
+    width: 62px;
+    height: 86px;
+	}
+
+	.container {
+		width: 100%;
+	}
+
+	h5 {
+		margin-top: 0 !important;
+	}
+
+	.bungkuscontent {
+		/*border-bottom: 1px solid #b8b8b8;*/
+		padding: 10px;
+		/*margin-bottom: 7px;*/
+		border-radius: 5px;
+		background-color: white;
+
+	}
+
+
+
+	.tanggaldesain {}
+
+	.judulcontent {
+		margin-top: 0;
+		font-size: 14px;
+	}
+
+	.header_top {
+		position: static;
+	}
+
+	.judulataskecil {
+		color: #b8b8b8;
+		margin-top: 10px;
+	}
+}
