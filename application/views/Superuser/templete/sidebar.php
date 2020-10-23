@@ -59,22 +59,22 @@ a,span:hover{
 
 
       
-        <a href="<?php echo site_url() ?>welcome_admin/index" class="list-group-item list-group-item-action ahover">
+        <a href="<?php echo site_url() ?>Superuser/index" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
           Dashboard
         </a>
       
-        <a href="<?php echo site_url() ?>welcome_admin/transportir" class="list-group-item list-group-item-action ahover">
+        <a href="<?php echo site_url() ?>Superuser/transportir" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">commute</span>
           Transportir
         </a>
         
-        <a href="<?php echo site_url() ?>welcome_admin/car" class="list-group-item list-group-item-action ahover">
+        <a href="<?php echo site_url() ?>Superuser/car" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">arrow_forward</span>
           Car
         </a>
 
-        <a href="<?php echo site_url() ?>welcome_admin/realisasi" class="list-group-item list-group-item-action ahover">
+        <a href="<?php echo site_url() ?>Superuser/realisasi" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">arrow_forward</span>
           Realisasi
         </a>
@@ -92,9 +92,9 @@ margin-top: -27px;">
 </a>
 
 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #39C0CC; color: white; border: none; left: 10">
-<a class="dropdown-item ahover-d" href="<?php echo site_url() ?>welcome_admin/help_transportir" style="color: white;">Help Transportir</a>
-<a class="dropdown-item ahover-d" href="<?php echo site_url() ?>welcome_admin/help_car" style="color: white;">Help Car</a>
-<a class="dropdown-item ahover-d" href="<?php echo site_url() ?>welcome_admin/help_realisasi" style="color: white;">Help Realisasi</a>
+<a class="dropdown-item ahover-d" href="<?php echo site_url() ?>Superuser/help_transportir" style="color: white;">Help Transportir</a>
+<a class="dropdown-item ahover-d" href="<?php echo site_url() ?>Superuser/help_car" style="color: white;">Help Car</a>
+<a class="dropdown-item ahover-d" href="<?php echo site_url() ?>Superuser/help_realisasi" style="color: white;">Help Realisasi</a>
 
 
 
