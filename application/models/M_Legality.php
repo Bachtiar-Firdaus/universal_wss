@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_Legality extends CI_Model {
 
 	var $table = 'tbl_legality';
-	var $column_order = array('Id_Legality','Number','Transportir','Customer','Party','Balance','Commodity','Purpose_of_Unloading','Date','Id_User',null); 
-	var $column_search = array('Id_Legality','Number','Transportir','Customer','Party','Balance','Commodity','Purpose_of_Unloading','Date','Id_User');
+	var $column_order = array('Id_Legality','Number','Transportir','Customer','Party','Balance','Commodity','Purpose_of_Unloading','Date','Id_User','Document_Legality',null); 
+	var $column_search = array('Id_Legality','Number','Transportir','Customer','Party','Balance','Commodity','Purpose_of_Unloading','Document_Legality','Date','Id_User');
 	var $order = array('Id_Legality' => 'desc'); 
 
 	public function __construct()
@@ -26,9 +26,9 @@ class M_Legality extends CI_Model {
 			if($_POST['search']['value'])
 			{
 				
-				if($i===0)
+				if($i===0) 
 				{
-					$this->db->group_start(); 
+					$this->db->group_start();
 					$this->db->like($item, $_POST['search']['value']);
 				}
 				else
@@ -36,13 +36,13 @@ class M_Legality extends CI_Model {
 					$this->db->or_like($item, $_POST['search']['value']);
 				}
 
-				if(count($this->column_search) - 1 == $i)
-					$this->db->group_end();
+				if(count($this->column_search) - 1 == $i) 
+					$this->db->group_end(); 
 			}
 			$i++;
 		}
 		
-		if(isset($_POST['order'])) 
+		if(isset($_POST['order']))
 		{
 			$this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
 		} 
