@@ -139,6 +139,8 @@
 		$('#form')[0].reset();
 		$('.form-group').removeClass('has-error');
 		$('.help-block').empty();
+		$('#Document_STN-preview').show(); 
+		$('#Document_SIM-preview').show(); 
 		$.ajax({
 			url: "<?php echo site_url('User/ajax_edit1')?>/" + id,
 			type: "GET",
@@ -152,28 +154,24 @@
 				$('#modal_form').modal('show'); 
 				$('.modal-title').text('Edit Vehicle');
 
-				if (data.Document_STN != null) {
+				if ((data.Document_STN != null) && (data.Document_SIM != null)) {
 					$('#label-Document_STN').text('Change Document_STN');
+					$('#label-Document_SIM').text('Change Document_SIM');
+
 					$('#Document_STN-preview div').html('<img src="' + base_url + 'upload_vehicle/' + data.Document_STN +
 						'" class="img-responsive">');
-					$('#Document_STN-preview div').append('<input type="checkbox" name="remove_dokumen_Document_STN" value="' + data
-						.Document_STN + '"/> Remove Document_STN when saving');
-				}
-				 else {
-					$('#label-Document_STN').text('Upload Document_STN');
-					$('#Document_STN-preview div').text('(No Document_STN)');
-				}
-
-
-				if (data.Document_SIM != null) {
-					$('#label-Document_SIM').text('Change Document_SIM');
 					$('#Document_SIM-preview div').html('<img src="' + base_url + 'upload_vehicle/' + data.Document_SIM +
 						'" class="img-responsive">');
+
+					$('#Document_STN-preview div').append('<input type="checkbox" name="remove_dokumen_Document_STN" value="' + data
+						.Document_STN + '"/> Remove Document_STN when saving');
 					$('#Document_SIM-preview div').append('<input type="checkbox" name="remove_dokumen_Document_SIM" value="' + data
 						.Document_SIM + '"/> Remove Document_SIM when saving');
 				} else {
 					$('#label-Document_SIM').text('Upload Document_SIM');
+					$('#label-Document_STN').text('Upload Document_STN');
 					$('#Document_SIM-preview div').text('(No Document_SIM)');
+					$('#Document_STN-preview div').text('(No Document_STN)');
 				}
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
