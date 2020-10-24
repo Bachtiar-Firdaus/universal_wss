@@ -14,7 +14,7 @@
 							
     						<h2 class="text-center"><b>VEHICLE</b></h2>
 
-    						<button class="btn" onclick="add()"><i class="glyphicon glyphicon-plus"></i>Tambah</button>
+    						<button class="btn" onclick="add_legality()"><i class="glyphicon glyphicon-plus"></i>Tambah</button>
 							<button class="btn btn-custome1" id="btnn2" onclick="reload_table()"><i
 									class="glyphicon glyphicon-refresh"></i> REFRESH</button>
 						</div> <br />
@@ -31,8 +31,7 @@
 									<th>Number Sim <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Number Police <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Name <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Document STN <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Document SIM <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>Document SIM & STNK <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Id User <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th style="width:125px;">Action</th>
 								</tr>
@@ -43,7 +42,6 @@
 
 							<tfoot>
 								<tr>
-									<th></th>
 									<th></th>
 									<th></th>
 									<th></th>
@@ -68,7 +66,6 @@
 <!-- akhir content -->
 
 <script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
-<!-- <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script> -->
 <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
 <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.min.js')?>"></script>
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
@@ -120,58 +117,45 @@
 		});
 
 	});
-	function add() {
+	function add_legality() {
 		save_method = 'add';
-		$('#form')[0].reset();
-		$('.form-group').removeClass('has-error');
-		$('.help-block').empty();
-		$('#modal_form').modal('show');
-		$('.modal-title').text('Add Vehicle');
-		$('#Document_STN-preview').hide(); 
-		$('#Document_SIM-preview').hide(); 
-		$('#label-Document_STN').text('Upload Document STN'); 
-		$('#label-Document_SIM').text('Upload Document SIM'); 
+		$('#form')[0].reset(); 
+		$('.form-group').removeClass('has-error'); 
+		$('.help-block').empty(); 
+		$('#modal_form').modal('show'); 
+		$('.modal-title').text('Add Transportir'); 
+		$('#Document_SIM_STNK-preview').hide();
+		$('#label-Document_SIM_STNK').text('Upload dokumen');
 	}
-
 
 	function edit_legality(id) {
 		save_method = 'update';
 		$('#form')[0].reset();
 		$('.form-group').removeClass('has-error');
 		$('.help-block').empty();
-		$('#Document_STN-preview').show(); 
-		$('#Document_SIM-preview').show(); 
 		$.ajax({
 			url: "<?php echo site_url('User/ajax_edit1')?>/" + id,
 			type: "GET",
 			dataType: "JSON",
 			success: function (data) {
-				$('[name="Id_Legality"]').val(data.Id_Legality);
+				$('[name="Id_Car"]').val(data.Id_Car);
 				$('[name="Number_Sim"]').val(data.Number_Sim);
 				$('[name="Number_Police"]').val(data.Number_Police);
 				$('[name="Name"]').val(data.Name);
 				$('[name="Id_User"]').val(data.Id_User);
 				$('#modal_form').modal('show'); 
 				$('.modal-title').text('Edit Vehicle');
+				$('#Document_SIM_STNK-preview').show();
 
-				if ((data.Document_STN != null) && (data.Document_SIM != null)) {
-					$('#label-Document_STN').text('Change Document_STN');
-					$('#label-Document_SIM').text('Change Document_SIM');
-
-					$('#Document_STN-preview div').html('<img src="' + base_url + 'upload_vehicle/' + data.Document_STN +
+				if (data.Document_SIM_STNK) {
+					$('#label-Document_SIM_STNK').text('Change Document_SIM_STNK');
+					$('#Document_SIM_STNK-preview div').html('<img src="' + base_url + 'upload_vehicle/' + data.Document_SIM_STNK +
 						'" class="img-responsive">');
-					$('#Document_SIM-preview div').html('<img src="' + base_url + 'upload_vehicle/' + data.Document_SIM +
-						'" class="img-responsive">');
-
-					$('#Document_STN-preview div').append('<input type="checkbox" name="remove_dokumen_Document_STN" value="' + data
-						.Document_STN + '"/> Remove Document_STN when saving');
-					$('#Document_SIM-preview div').append('<input type="checkbox" name="remove_dokumen_Document_SIM" value="' + data
-						.Document_SIM + '"/> Remove Document_SIM when saving');
+					$('#Document_SIM_STNK-preview div').append('<input type="checkbox" name="remove_Document_SIM_STNK" value="' + data
+						.Document_SIM_STNK + '"/> Remove Document_SIM_STNK when saving');
 				} else {
-					$('#label-Document_SIM').text('Upload Document_SIM');
-					$('#label-Document_STN').text('Upload Document_STN');
-					$('#Document_SIM-preview div').text('(No Document_SIM)');
-					$('#Document_STN-preview div').text('(No Document_STN)');
+					$('#label-Document_SIM_STNK').text('Upload Document_SIM_STNK');
+					$('#Document_SIM_STNK-preview div').text('(No Document_SIM_STNK)');
 				}
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
@@ -275,7 +259,7 @@
 
 				<div class="form-group">
 			      <label>Id Vehicle</label>
-			      <input type="number" class="form-control" id="Id_Legality" name="Id_Vehicle" placeholder="Ditentukan Sistem" readonly>
+			      <input type="number" class="form-control" id="Id_Car" name="Id_Car" placeholder="Ditentukan Sistem" readonly>
 			    </div>
 				<div class="form-group">
 					<label>Number Sim</label>
@@ -283,43 +267,25 @@
 				</div>
 
 
-
-  				<div class="input-group" id="Document_STN-preview">
-					<label>Document STN</label>
+  				<div class="input-group" id="Document_SIM_STNK-preview">
+					<label>Document SIM & STNK</label>
 					<div>
-						(No dokumen)
+						(No dokumen SIM & STNK)
 						<span class="help-block"></span>
 					</div>
 				</div>
 
 				<div class="input-group" style="margin-top: 10px;">
-					<label id="label-Document_STN">Upload Document STN </label>
+					<label id="label-Document_SIM_STNK">Upload Document SIM & STNK </label>
 					<div>
-						<input name="Document_STN" type="file">
-						<span class="help-block"></span>
-					</div>
-				</div>
-        	
-  			
-  				<div class="input-group" id="Document_SIM-preview">
-					<label>Document SIM</label>
-					<div>
-						(No dokumen)
-						<span class="help-block"></span>
-					</div>
-				</div>
-
-				<div class="input-group" style="margin-top: 10px;">
-					<label id="label-Document_SIM">Upload Document SIM </label>
-					<div>
-						<input name="Document_SIM" type="file">
+						<input name="Document_SIM_STNK" type="file">
 						<span class="help-block"></span>
 					</div>
 				</div>
         	</div>
 
         	<div class="col-md-6">
-			    <div class="form-group">
+        		<div class="form-group">
 					<label>Number Police</label>
 					<input type="text" class="form-control" id="Number_Police" name="Number_Police" placeholder="Masukan Number_Police">
 				</div>	
@@ -327,6 +293,8 @@
 					<label>Name</label>
 					<input type="text" class="form-control" id="Name" name="Name" placeholder="Masukan Name">
 				</div>
+
+  			
         	</div>
         	</div>
         </form>

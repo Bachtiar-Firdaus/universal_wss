@@ -4,10 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_Vehicle extends CI_Model {
 
 	var $table = 'tbl_car';
-	var $column_order = array('Id_Car','Number_Sim','Number_Police','Name','Document_STN','Document_SIM','Id_User',null); 
-	var $column_search = array('Id_Car','Number_Sim','Number_Police','Name','Document_STN','Document_SIM','Id_User');
+	var $column_order = array('Id_Car','Number_Sim','Number_Police','Name','Document_SIM_STNK','Id_User',null); 
+	var $column_search = array('Id_Car','Number_Sim','Number_Police','Name','Document_SIM_STNK','Id_User');
 	var $order = array('Id_Car' => 'desc'); 
-
 	public function __construct()
 	{
 		parent::__construct();
