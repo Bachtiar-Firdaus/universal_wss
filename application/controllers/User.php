@@ -6,6 +6,7 @@ class User extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_Legality');
+		$this->load->model('M_Vehicle');
 	}
 	public function index()
 	{	
@@ -152,6 +153,177 @@ class User extends CI_Controller {
 		return $this->upload->data('file_name');
 	}
 
+
+
+
+
+	public function Vehicle()
+	{	
+		$data['contents'] = 'User/Vehicle';
+		$this->load->view('User/index',$data);
+	}
+
+	public function ajax_list1()
+	{
+		$list = $this->M_Vehicle->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $M_Vehicle) {
+			$row = array();
+			$row[] = $no++;
+			$row[] = $M_Vehicle->Id_Car;
+			$row[] = $M_Vehicle->Number_Sim;
+			$row[] = $M_Vehicle->Number_Police;
+			$row[] = $M_Vehicle->Name;
+			$row[] = $M_Vehicle->Document_STN;
+			$row[] = $M_Vehicle->Document_SIM;
+			$row[] = $M_Vehicle->Id_User;
+			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_legality('."'".$M_Vehicle->Id_Car."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+			$data[] = $row;
+		}
+		$output = array(
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->M_Vehicle->count_all(),
+						"recordsFiltered" => $this->M_Vehicle->count_filtered(),
+						"data" => $data,
+				);
+		echo json_encode($output);
+	}
+
+
+	public function ajax_add1()
+	{
+		$data = array(
+				'Number_Sim' => $this->input->post('Number_Sim'),
+				'Number_Police' => $this->input->post('Number_Police'),
+				'Name' => $this->input->post('Name'),
+				'Id_User' => "0",
+			);
+
+		if(!empty($_FILES['Document_STN']['name']))
+		{
+			$upload = $this->_do_upload1();
+			$data['Document_STN'] = $upload;
+		}
+		if(!empty($_FILES['Document_SIM']['name']))
+		{
+			$upload = $this->_do_upload2();
+			$data['Document_SIM'] = $upload;
+		}
+
+		$insert = $this->M_Vehicle->save($data);
+
+		echo json_encode(array("status" => TRUE));
+	}
+
+
+	public function ajax_edit1($id)
+	{
+		$data = $this->M_Vehicle->get_by_id($id);
+		echo json_encode($data);
+	}
+
+	public function ajax_update1()
+	{
+		$data = array(
+				'Number_Sim' => $this->input->post('Number_Sim'),
+				'Number_Police' => $this->input->post('Number_Police'),
+				'Name' => $this->input->post('Name'),
+				'Id_User' => "0",
+			);
+
+
+		if($this->input->post('remove_dokumen_Document_STN'))
+		{
+			if(file_exists('upload_vehicle/'.$this->input->post('remove_dokumen_Document_STN')) && $this->input->post('remove_dokumen_Document_STN'))
+				unlink('upload_vehicle/'.$this->input->post('remove_dokumen_Document_STN'));
+			$data['Document_STN'] = '';
+		}		
+		if(!empty($_FILES['Document_STN']['name']))
+		{
+			$upload = $this->_do_upload1();
+			$M_Vehicle = $this->M_Vehicle->get_by_id($this->input->post('Id_Car'));
+			if(file_exists('upload_vehicle/'.$M_Vehicle->Document_STN) && $M_Vehicle->Document_STN)
+				unlink('upload_vehicle/'.$M_Vehicle->Document_STN);
+
+			$data['Document_STN'] = $upload;
+		}
+
+
+
+		if($this->input->post('remove_dokumen_Document_SIM'))
+		{
+			if(file_exists('upload_vehicle/'.$this->input->post('remove_dokumen_Document_SIM')) && $this->input->post('remove_dokumen_Document_SIM'))
+				unlink('upload_vehicle/'.$this->input->post('remove_dokumen_Document_SIM'));
+			$data['Document_SIM'] = '';
+		}
+		if(!empty($_FILES['Document_SIM']['name']))
+		{
+			$upload = $this->_do_upload2();
+			$M_Vehicle = $this->M_Vehicle->get_by_id($this->input->post('Id_Car'));
+			if(file_exists('upload_vehicle/'.$M_Vehicle->Document_SIM) && $M_Vehicle->Document_SIM)
+				unlink('upload_vehicle/'.$M_Vehicle->Document_SIM);
+
+			$data['Document_SIM'] = $upload;
+		}
+
+		$this->M_Vehicle->update(array('Id_Car' => $this->input->post('Id_Car')), $data);
+		echo json_encode(array("status" => TRUE));
+	}
+
+	public function ajax_delete1($id)
+	{
+		$M_Vehicle = $this->M_Vehicle->get_by_id($id);
+		if(file_exists('upload_vehicle/'.$M_Vehicle->Document_STN) && $M_Vehicle->Document_STN)
+			unlink('upload_vehicle/'.$M_Vehicle->Document_STN);
+		if(file_exists('upload_vehicle/'.$M_Vehicle->Document_SIM) && $M_Vehicle->Document_SIM)
+			unlink('upload_vehicle/'.$M_Vehicle->Document_SIM);
+		$this->M_Vehicle->delete_by_id($id);
+		echo json_encode(array("status" => TRUE));
+	}
+
+	private function _do_upload1()
+	{
+		$config['upload_path']          = 'upload_vehicle/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 10000000; 
+        $config['max_width']            = 1000000; 
+        $config['max_height']           = 1000000; 
+        $config['file_name']            = round(microtime(true) * 1000); 
+
+        $this->load->library('upload', $config);
+
+        if(!$this->upload->do_upload('Document_STN')) 
+        {
+            $data['inputerror'][] = 'Document_STN';
+			$data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); 
+			$data['status'] = FALSE;
+			echo json_encode($data);
+			exit();
+		}
+		return $this->upload->data('file_name');
+	}
+	private function _do_upload2()
+	{
+		$config['upload_path']          = 'upload_vehicle/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 10000000; 
+        $config['max_width']            = 1000000; 
+        $config['max_height']           = 1000000; 
+        $config['file_name']            = round(microtime(true) * 1000); 
+
+        $this->load->library('upload', $config);
+
+        if(!$this->upload->do_upload('Document_SIM')) 
+        {
+            $data['inputerror'][] = 'Document_SIM';
+			$data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); 
+			$data['status'] = FALSE;
+			echo json_encode($data);
+			exit();
+		}
+		return $this->upload->data('file_name');
+	}
 
 }
 

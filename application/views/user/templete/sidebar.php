@@ -70,7 +70,7 @@ a,span:hover{
           Legality
         </a>
       
-        <a href="<?php echo site_url() ?>User/transportir" class="list-group-item list-group-item-action ahover">
+        <a href="<?php echo site_url() ?>User/Vehicle" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">commute</span>
           Vehicle
         </a>
