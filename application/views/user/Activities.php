@@ -78,52 +78,6 @@
 <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.min.js')?>"></script>
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
 
-<script>
-    function autofill1(){
-        var Id_Legality =document.getElementById('Id_Legality').value;
-        $.ajax({
-                       url:"<?php echo base_url();?>User/AC_Legality",
-                       data:'&Id_Legality='+Id_Legality,
-                       success:function(data){
-                           var hasil1 = JSON.parse(data);  
-          
-      $.each(hasil1, function(key,val){ 
-                           document.getElementById('Id_Legality').value=val.Id_Legality;
-                           document.getElementById('Number').value=val.Number;
-                           document.getElementById('Transportir').value=val.Transportir;  
-                           document.getElementById('Customer').value=val.Customer;
-                           document.getElementById('Party').value=val.Party;
-                           document.getElementById('Balance').value=val.Balance;
-                           document.getElementById('Commodity').value=val.Commodity; 
-                           document.getElementById('Purpose_of_Unloading').value=val.Purpose_of_Unloading; 
-                           document.getElementById('Date').value=val.Date; 
-                               
-               	
-        });
-      }
-                   });
-                  
-    }
-
-    function autofill2(){
-        var Id_Car =document.getElementById('Id_Car').value;
-        $.ajax({
-                       url:"<?php echo base_url();?>User/AC_Vehicle",
-                       data:'&Id_Car='+Id_Car,
-                       success:function(data){
-                           var hasil2 = JSON.parse(data);  
-          
-      $.each(hasil2, function(key,val){ 
-                           document.getElementById('Id_Car').value=val.Id_Car;
-                           document.getElementById('Number_Sim').value=val.Number_Sim;
-                           document.getElementById('Number_Police').value=val.Number_Police;  
-                           document.getElementById('Name').value=val.Name;             	
-        });
-      }
-                   });
-                  
-    }
-</script>
 <script type="text/javascript">
 	var save_method; 
 	var table;
@@ -174,9 +128,13 @@
 
 	function add() {
 		document.getElementById('Tonase').readOnly = false;
+		document.getElementById('Id_Legality').readOnly = false;
+		document.getElementById('Id_Car').readOnly = false;
 		document.getElementById('bag1').style.display = "block";
 		document.getElementById('bag2').style.display = "block";
 		document.getElementById('bag3').style.display = "block";
+		document.getElementById('ses1').style.display = "block";
+		document.getElementById('ses2').style.display = "block";
 		document.getElementById('bag4').style.display = "none";
 		save_method = 'add';
 		$('#form')[0].reset(); 
@@ -189,10 +147,14 @@
 	}
 
 	function edit_activities(id) {		
+		document.getElementById('Id_Legality').readOnly = true;
+		document.getElementById('Id_Car').readOnly = true;
 		document.getElementById('Tonase').readOnly = true;
 		document.getElementById('bag1').style.display = "block";
 		document.getElementById('bag2').style.display = "block";
 		document.getElementById('bag3').style.display = "block";
+		document.getElementById('ses1').style.display = "none";
+		document.getElementById('ses2').style.display = "none";
 		document.getElementById('bag4').style.display = "none";
 		save_method = 'update';
 		$('#form')[0].reset();
@@ -233,6 +195,8 @@
 	}
 
 	function edit_konfirmasi_activities(id) {
+		document.getElementById('Id_Legality').readOnly = false;
+		document.getElementById('Id_Car').readOnly = false;
 		document.getElementById('Tonase').readOnly = false;
 		document.getElementById('bag1').style.display = "none";
 		document.getElementById('bag2').style.display = "none";
@@ -250,7 +214,7 @@
 				$('[name="Id_Activities"]').val(data.Id_Activities);
 
 				$('#modal_form').modal('show'); 
-				$('.modal-title').text('Edit ACTIVITIES');
+				$('.modal-title').text('Konfirmasi');
 				$('#Document_Out-preview').show();
 				if (data.Document_Out) {
 					$('#label-Document_Out').text('Change Document_Out');
@@ -343,8 +307,50 @@
 		}
 	}
 
-</script>
+    function autofill1(){
+        var Id_Legality = document.getElementById('Id_Legality').value;
+        $.ajax({
+                       url:"<?php echo base_url();?>User/AC_Legality",
+                       data:'&Id_Legality='+Id_Legality,
+                       success:function(data){
+                           var hasil1 = JSON.parse(data);  
+          
+      $.each(hasil1, function(key,val){ 
+                           document.getElementById('Id_Legality').value=val.Id_Legality;
+                           document.getElementById('Number').value=val.Number;
+                           document.getElementById('Transportir').value=val.Transportir;  
+                           document.getElementById('Customer').value=val.Customer;
+                           document.getElementById('Party').value=val.Party;
+                           document.getElementById('Balance').value=val.Balance;
+                           document.getElementById('Commodity').value=val.Commodity; 
+                           document.getElementById('Purpose_of_Unloading').value=val.Purpose_of_Unloading; 
+                           document.getElementById('Date').value=val.Date; 
+                               	
+        });
+      }
+                   });
+                  
+    }
 
+    function autofill2(){
+        var Id_Car =document.getElementById('Id_Car').value;
+        $.ajax({
+                       url:"<?php echo base_url();?>User/AC_Vehicle",
+                       data:'&Id_Car='+Id_Car,
+                       success:function(data){
+                           var hasil2 = JSON.parse(data);  
+          
+      $.each(hasil2, function(key,val){ 
+                           document.getElementById('Id_Car').value=val.Id_Car;
+                           document.getElementById('Number_Sim').value=val.Number_Sim;
+                           document.getElementById('Number_Police').value=val.Number_Police;  
+                           document.getElementById('Name').value=val.Name;             	
+        });
+      }
+                   });
+                  
+    }
+</script>
 <!-- modal ane -->
 <div class="modal" id="modal_form" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -374,6 +380,7 @@
 	    			<label>Id Vehicle</label>
 	    			<input list="data2" class="form-control" id="Id_Car" name="Id_Car" placeholder="Masukan Id_Car" onchange="return autofill2();" autocomplete="off">
 				</div>
+				<div id="ses1">
 				<div class="form-group">
 					<label>Number Sim</label>
 					<input type="number" class="form-control" id="Number_Sim" name="Number_Sim" placeholder="Masukan Number_Sim" readonly>
@@ -385,6 +392,7 @@
 			    <div class="form-group">
 					<label>Name</label>
 					<input type="text" class="form-control" id="Name" name="Name" placeholder="Masukan Name" readonly>
+				</div>
 				</div>
 
   			<datalist id="data2">
@@ -405,6 +413,8 @@
 	    			<label>Id Legality</label>
 	    			<input list="data1" class="form-control" id="Id_Legality" name="Id_Legality" placeholder="Masukan Id_Legality" onchange="return autofill1();" autocomplete="off">
 				</div>
+
+				<div id="ses2">
 				<div class="form-group">
 					<label>Number</label>
 					<input type="number" class="form-control" id="Number" name="Number" placeholder="Masukan Number" readonly>
@@ -440,6 +450,8 @@
 					<input type="Date" class="form-control" id="Date" name="Date" placeholder="Masukan Date" readonly>
 				</div>
 
+				</div>
+
   			<datalist id="data1">
 			    <?php
 			    foreach ($record1->result() as $b)
@@ -454,12 +466,12 @@
         	<div class="col-md-12" id="bag3">
         		<div class="form-group">
 					<label>Tonase</label>
-					<input type="text" class="form-control" id="Tonase" name="Tonase" placeholder="Masukan Tonase">
+					<input type="text" class="form-control" id="Tonase" name="Tonase" placeholder="Masukan Tonase" autocomplete="off">
 				</div>	
 
         		<div class="form-group">
 					<label>Number BP</label>
-					<input type="text" class="form-control" name="Number_BP" placeholder="Masukan Number_BP">
+					<input type="text" class="form-control" name="Number_BP" placeholder="Masukan Number_BP" autocomplete="off">
 				</div>
 
   				<div class="input-group" id="Document_Delivery_Order-preview">
