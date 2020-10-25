@@ -7,6 +7,7 @@ class User extends CI_Controller {
 		parent::__construct();
 		$this->load->model('M_Legality');
 		$this->load->model('M_Vehicle');
+		$this->load->model('M_Activities');
 	}
 	public function index()
 	{	
@@ -277,6 +278,134 @@ class User extends CI_Controller {
 		return $this->upload->data('file_name');
 	}
 
+
+	public function Activities()
+	{	
+		$data['contents'] = 'User/Activities';
+		$this->load->view('User/index',$data);
+	}
+	public function ajax_list2()
+	{
+		$list = $this->M_Activities->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $M_Activities) {
+			$row = array();
+			$row[] = $no++;
+			$row[] = $M_Activities->Id_Activities;
+			$row[] = $M_Activities->Number_BP;
+			$row[] = $M_Activities->Tonase;
+			$row[] = $M_Activities->Time_In;
+			$row[] = $M_Activities->Time_Out;
+			$row[] = $M_Activities->Document_Delivery_Order;
+			$row[] = $M_Activities->Document_Out;
+			$row[] = $M_Activities->Id_User;
+			$row[] = $M_Activities->Id_Legality;
+			$row[] = $M_Activities->Id_Car;
+			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_activities('."'".$M_Activities->Id_Activities."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+			$data[] = $row;
+		}
+		$output = array(
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->M_Activities->count_all(),
+						"recordsFiltered" => $this->M_Activities->count_filtered(),
+						"data" => $data,
+				);
+		echo json_encode($output);
+	}
+	public function ajax_add2()
+	{
+		$data = array(
+				'Number_BP' => $this->input->post('Number_BP'),
+				'Tonase' => $this->input->post('Tonase'),
+				'Time_In' => date("Y-m-d H:i:s"),
+				'Time_Out' => " - ",
+				'Id_User' => "Otomatis",
+				'Id_Legality' => $this->input->post('Id_Legality'),
+				'Id_Car' => $this->input->post('Id_Car'),
+
+			);
+
+		if(!empty($_FILES['Document_Delivery_Order']['name']))
+		{
+			$upload = $this->_do_upload2();
+			$data['Document_Delivery_Order'] = $upload;
+		}
+
+		$insert = $this->M_Activities->save($data);
+
+		echo json_encode(array("status" => TRUE));
+	}
+
+	public function ajax_edit2($id)
+	{
+		$data = $this->M_Activities->get_by_id($id);
+		echo json_encode($data);
+	}
+	public function ajax_update2()
+	{
+		$data = array(
+				'Number_BP' => $this->input->post('Number_BP'),
+				'Tonase' => $this->input->post('Tonase'),
+				'Time_Out' => date("Y-m-d H:i:s"),
+				'Id_User' => "Otomatis",
+				'Id_Legality' => $this->input->post('Id_Legality'),
+				'Id_Car' => $this->input->post('Id_Car'),
+			);
+
+		if($this->input->post('remove_Document_Delivery_Order')) // if remove dokumen checked
+		{
+			if(file_exists('upload_activities/'.$this->input->post('remove_Document_Delivery_Order')) && $this->input->post('remove_Document_Delivery_Order'))
+				unlink('upload_activities/'.$this->input->post('remove_Document_Delivery_Order'));
+			$data['Document_Delivery_Order'] = '';
+		}
+
+		if(!empty($_FILES['Document_Delivery_Order']['name']))
+		{
+			$upload = $this->_do_upload2();
+			
+			//delete file
+			$M_Activities = $this->M_Activities->get_by_id($this->input->post('Id_Activities'));
+			if(file_exists('upload_activities/'.$M_Activities->Document_Delivery_Order) && $M_Activities->Document_Delivery_Order)
+				unlink('upload_activities/'.$M_Activities->Document_Delivery_Order);
+
+			$data['Document_Delivery_Order'] = $upload;
+		}
+
+		$this->M_Activities->update(array('Id_Activities' => $this->input->post('Id_Activities')), $data);
+		echo json_encode(array("status" => TRUE));
+	}
+
+	public function ajax_delete2($id)
+	{
+		$M_Activities = $this->M_Activities->get_by_id($id);
+		if(file_exists('upload_activities/'.$M_Activities->Document_Delivery_Order) && $M_Activities->Document_Delivery_Order)
+			unlink('upload_activities/'.$M_Activities->Document_Delivery_Order);
+		
+		$this->M_Activities->delete_by_id($id);
+		echo json_encode(array("status" => TRUE));
+	}
+	private function _do_upload2()
+	{
+		$config['upload_path']          = 'upload_activities/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 10000000; 
+        $config['max_width']            = 1000000; 
+        $config['max_height']           = 1000000; 
+        $config['file_name']            = round(microtime(true) * 1000); 
+
+        $this->load->library('upload', $config);
+
+        if(!$this->upload->do_upload('Document_Delivery_Order')) 
+        {
+            $data['inputerror'][] = 'Document_Delivery_Order';
+			$data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); 
+			$data['status'] = FALSE;
+			echo json_encode($data);
+			exit();
+		}
+		return $this->upload->data('file_name');
+	}
 }
 
 
