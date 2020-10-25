@@ -78,7 +78,33 @@
 <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.min.js')?>"></script>
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
 
-
+<script>
+    function autofill(){
+        var Id_Legality =document.getElementById('Id_Legality').value;
+        $.ajax({
+                       url:"<?php echo base_url();?>User/AC_Legality",
+                       data:'&Id_Legality='+Id_Legality,
+                       success:function(data){
+                           var hasil = JSON.parse(data);  
+          
+      $.each(hasil, function(key,val){ 
+                           document.getElementById('Id_Legality').value=val.Id_Legality;
+                           document.getElementById('Number').value=val.Number;
+                           document.getElementById('Transportir').value=val.Transportir;  
+                           document.getElementById('Customer').value=val.Customer;
+                           document.getElementById('Party').value=val.Party;
+                           document.getElementById('Balance').value=val.Balance;
+                           document.getElementById('Commodity').value=val.Commodity; 
+                           document.getElementById('Purpose_of_Unloading').value=val.Purpose_of_Unloading; 
+                           document.getElementById('Date').value=val.Date; 
+                               
+               	
+        });
+      }
+                   });
+                  
+    }
+</script>
 <script type="text/javascript">
 	var save_method; 
 	var table;
@@ -321,10 +347,75 @@
 	    			<label>Id Vehicle</label>
 	    			<input type="text" class="form-control" name="Id_Car" placeholder="Masukan Id_Car">
 				</div>
+
+        	</div>
+
+        	<div class="col-md-6" id="bag2">
+        		<form autocomplete="off">
+
+				<div class="form-group">
+	    			<label>Id Legality</label>
+	    			<input list="data" class="form-control" id="Id_Legality" name="Id_Legality" placeholder="Masukan Id_Legality" onchange="return autofill();">
+				</div>
+				<div class="form-group">
+					<label>Number</label>
+					<input type="number" class="form-control" id="Number" name="Number" placeholder="Masukan Number" readonly>
+				</div>	
+
+				<div class="form-group">
+	    			<label>Balance</label>
+	    			<input type="text" class="form-control" id="Balance" name="Balance" placeholder="Masukan Balance" readonly>
+				</div>
+				<div class="form-group">
+	    			<label>Commodity</label>
+	    			<input type="text" class="form-control" id="Commodity" name="Commodity" placeholder="Masukan Commodity" readonly>
+				</div>
+
+				<div class="form-group" >
+					<label>Purpose of Unloading</label>
+					<input type="text" class="form-control" id="Purpose_of_Unloading" name="Purpose_of_Unloading" placeholder="Masukan Purpose of Unloading" readonly>
+				</div>
+				<div class="form-group">
+					<label>Party</label>
+					<input type="number" class="form-control" id="Party" name="Party" placeholder="Masukan Party" readonly>
+				</div>
+
 			    <div class="form-group">
+					<label>Transportir</label>
+					<input type="text" class="form-control" id="Transportir" name="Transportir" placeholder="Masukan Transportir" readonly>
+				</div>	
+			    <div class="form-group">
+					<label>Customer</label>
+					<input type="Customer" class="form-control" id="Customer" name="Customer" placeholder="Masukan Customer" readonly>
+				</div>
+
+				<div class="form-group">
+					<label>Date</label>
+					<input type="Date" class="form-control" id="Date" name="Date" placeholder="Masukan Date" readonly>
+				</div>
+
+  			</form>
+  			<datalist id="data">
+			    <?php
+			    foreach ($record->result() as $b)
+			    {
+			        echo "<option value='$b->Id_Legality'>Number $b->Number & Balance $b->Balance</option>";
+			    }
+			    					    					    
+			    ?>
+			</datalist> 
+        	</div>
+
+        	<div class="col-md-12">
+        		<div class="form-group">
 					<label>Tonase</label>
 					<input type="text" class="form-control" id="Tonase" name="Tonase" placeholder="Masukan Tonase">
 				</div>	
+
+        		<div class="form-group">
+					<label>Number BP</label>
+					<input type="text" class="form-control" name="Number_BP" placeholder="Masukan Number_BP">
+				</div>
 
   				<div class="input-group" id="Document_Delivery_Order-preview">
 					<label>Dokumen Delivery Order</label>
@@ -341,21 +432,7 @@
 						<span class="help-block"></span>
 					</div>
 				</div>
-
-
-        	</div>
-
-        	<div class="col-md-6" id="bag2">
-				<div class="form-group">
-	    			<label>Id Legality</label>
-	    			<input type="text" class="form-control" name="Id_Legality" placeholder="Masukan Id_Legality">
-				</div>
-				<div class="form-group">
-					<label>Number BP</label>
-					<input type="text" class="form-control" name="Number_BP" placeholder="Masukan Number_BP">
-				</div>
-  			
-        	</div>
+			</div>
         	<div class="col-md-12" id="bag3">
         		<div class="input-group" id="Document_Out-preview">
 					<label>Dokumen Out</label>

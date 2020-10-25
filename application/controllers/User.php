@@ -8,6 +8,7 @@ class User extends CI_Controller {
 		$this->load->model('M_Legality');
 		$this->load->model('M_Vehicle');
 		$this->load->model('M_Activities');
+		$this->load->model('M_Search');
 	}
 	public function index()
 	{	
@@ -278,11 +279,12 @@ class User extends CI_Controller {
 		return $this->upload->data('file_name');
 	}
 
-
+	
 	public function Activities()
 	{	
-		$data['contents'] = 'User/Activities';
-		$this->load->view('User/index',$data);
+		$data['record']=  $this->M_Search->TD_Legality(); 
+		$data['contents'] = 'user/Activities';
+		$this->load->view('user/index',$data);
 	}
 	public function ajax_list2()
 	{
@@ -455,6 +457,11 @@ class User extends CI_Controller {
 		}
 		return $this->upload->data('file_name');
 	}
+	public function AC_Legality(){
+        $Id_Legality=$_GET['Id_Legality'];
+        $AC_Legality =$this->M_Search->AC_Legality($Id_Legality)->result();
+        echo json_encode($AC_Legality);
+    } 
 }
 
 
