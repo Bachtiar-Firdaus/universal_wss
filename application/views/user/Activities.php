@@ -79,15 +79,15 @@
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
 
 <script>
-    function autofill(){
+    function autofill1(){
         var Id_Legality =document.getElementById('Id_Legality').value;
         $.ajax({
                        url:"<?php echo base_url();?>User/AC_Legality",
                        data:'&Id_Legality='+Id_Legality,
                        success:function(data){
-                           var hasil = JSON.parse(data);  
+                           var hasil1 = JSON.parse(data);  
           
-      $.each(hasil, function(key,val){ 
+      $.each(hasil1, function(key,val){ 
                            document.getElementById('Id_Legality').value=val.Id_Legality;
                            document.getElementById('Number').value=val.Number;
                            document.getElementById('Transportir').value=val.Transportir;  
@@ -99,6 +99,25 @@
                            document.getElementById('Date').value=val.Date; 
                                
                	
+        });
+      }
+                   });
+                  
+    }
+
+    function autofill2(){
+        var Id_Car =document.getElementById('Id_Car').value;
+        $.ajax({
+                       url:"<?php echo base_url();?>User/AC_Vehicle",
+                       data:'&Id_Car='+Id_Car,
+                       success:function(data){
+                           var hasil2 = JSON.parse(data);  
+          
+      $.each(hasil2, function(key,val){ 
+                           document.getElementById('Id_Car').value=val.Id_Car;
+                           document.getElementById('Number_Sim').value=val.Number_Sim;
+                           document.getElementById('Number_Police').value=val.Number_Police;  
+                           document.getElementById('Name').value=val.Name;             	
         });
       }
                    });
@@ -343,19 +362,45 @@
 			      <label>Id Activities</label>
 			      <input type="number" class="form-control" id="Id_Activities" name="Id_Activities" placeholder="Ditentukan Sistem" readonly>
 			    </div>
+
+
+        	<form autocomplete="off">
 				<div class="form-group">
 	    			<label>Id Vehicle</label>
-	    			<input type="text" class="form-control" name="Id_Car" placeholder="Masukan Id_Car">
+	    			<input list="data2" class="form-control" id="Id_Car" name="Id_Car" placeholder="Masukan Id_Car" onchange="return autofill2();" autocomplete="off">
 				</div>
+				<div class="form-group">
+					<label>Number Sim</label>
+					<input type="number" class="form-control" id="Number_Sim" name="Number_Sim" placeholder="Masukan Number_Sim" readonly>
+				</div>
+        		<div class="form-group">
+					<label>Number Police</label>
+					<input type="text" class="form-control" id="Number_Police" name="Number_Police" placeholder="Masukan Number_Police" readonly>
+				</div>	
+			    <div class="form-group">
+					<label>Name</label>
+					<input type="text" class="form-control" id="Name" name="Name" placeholder="Masukan Name" readonly>
+				</div>
+			</form>
+
+  			<datalist id="data2">
+			    <?php
+			    foreach ($record2->result() as $c)
+			    {
+			        echo "<option value='$c->Id_Car'>Number Sim $c->Number_Sim & Number Police $c->Number_Police</option>";
+			    }
+			    					    					    
+			    ?>
+			</datalist> 
 
         	</div>
 
         	<div class="col-md-6" id="bag2">
-        		<form autocomplete="off">
 
+        	<form autocomplete="off">
 				<div class="form-group">
 	    			<label>Id Legality</label>
-	    			<input list="data" class="form-control" id="Id_Legality" name="Id_Legality" placeholder="Masukan Id_Legality" onchange="return autofill();">
+	    			<input list="data1" class="form-control" id="Id_Legality" name="Id_Legality" placeholder="Masukan Id_Legality" onchange="return autofill1();" autocomplete="off">
 				</div>
 				<div class="form-group">
 					<label>Number</label>
@@ -395,9 +440,9 @@
 				</div>
 
   			</form>
-  			<datalist id="data">
+  			<datalist id="data1">
 			    <?php
-			    foreach ($record->result() as $b)
+			    foreach ($record1->result() as $b)
 			    {
 			        echo "<option value='$b->Id_Legality'>Number $b->Number & Balance $b->Balance</option>";
 			    }

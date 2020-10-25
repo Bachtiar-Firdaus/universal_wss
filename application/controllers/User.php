@@ -282,10 +282,21 @@ class User extends CI_Controller {
 	
 	public function Activities()
 	{	
-		$data['record']=  $this->M_Search->TD_Legality(); 
+		$data['record1']=  $this->M_Search->TD_Legality(); 
+		$data['record2']=  $this->M_Search->TD_Vehicle(); 
 		$data['contents'] = 'user/Activities';
 		$this->load->view('user/index',$data);
-	}
+	}	
+	public function AC_Legality(){
+        $Id_Legality=$_GET['Id_Legality'];
+        $AC_Legality =$this->M_Search->AC_Legality($Id_Legality)->result();
+        echo json_encode($AC_Legality);
+    } 
+	public function AC_Vehicle(){
+        $Id_Car=$_GET['Id_Car'];
+        $AC_Vehicle =$this->M_Search->AC_Vehicle($Id_Car)->result();
+        echo json_encode($AC_Vehicle);
+    } 
 	public function ajax_list2()
 	{
 		$list = $this->M_Activities->get_datatables();
@@ -457,11 +468,7 @@ class User extends CI_Controller {
 		}
 		return $this->upload->data('file_name');
 	}
-	public function AC_Legality(){
-        $Id_Legality=$_GET['Id_Legality'];
-        $AC_Legality =$this->M_Search->AC_Legality($Id_Legality)->result();
-        echo json_encode($AC_Legality);
-    } 
+
 }
 
 
