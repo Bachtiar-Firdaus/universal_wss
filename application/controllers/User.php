@@ -336,7 +336,6 @@ class User extends CI_Controller {
 				'Id_User' => "Otomatis",
 				'Id_Legality' => $this->input->post('Id_Legality'),
 				'Id_Car' => $this->input->post('Id_Car'),
-
 			);
 
 		if(!empty($_FILES['Document_Delivery_Order']['name']))

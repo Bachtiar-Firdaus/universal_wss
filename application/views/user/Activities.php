@@ -170,10 +170,14 @@
 		});
 
 	});
+
+
 	function add() {
+		document.getElementById('Tonase').readOnly = false;
 		document.getElementById('bag1').style.display = "block";
 		document.getElementById('bag2').style.display = "block";
-		document.getElementById('bag3').style.display = "none";
+		document.getElementById('bag3').style.display = "block";
+		document.getElementById('bag4').style.display = "none";
 		save_method = 'add';
 		$('#form')[0].reset(); 
 		$('.form-group').removeClass('has-error'); 
@@ -184,10 +188,12 @@
 		$('#label-Document_Delivery_Order').text('Upload dokumen');
 	}
 
-	function edit_activities(id) {
+	function edit_activities(id) {		
+		document.getElementById('Tonase').readOnly = true;
 		document.getElementById('bag1').style.display = "block";
 		document.getElementById('bag2').style.display = "block";
-		document.getElementById('bag3').style.display = "none";
+		document.getElementById('bag3').style.display = "block";
+		document.getElementById('bag4').style.display = "none";
 		save_method = 'update';
 		$('#form')[0].reset();
 		$('.form-group').removeClass('has-error');
@@ -227,9 +233,11 @@
 	}
 
 	function edit_konfirmasi_activities(id) {
+		document.getElementById('Tonase').readOnly = false;
 		document.getElementById('bag1').style.display = "none";
 		document.getElementById('bag2').style.display = "none";
-		document.getElementById('bag3').style.display = "block";
+		document.getElementById('bag3').style.display = "none";
+		document.getElementById('bag4').style.display = "block";
 		save_method = 'update_konfirmasi';
 		$('#form')[0].reset();
 		$('.form-group').removeClass('has-error');
@@ -273,8 +281,8 @@
 
 		if (save_method == 'add') {
 			url = "<?php echo site_url('User/ajax_add2')?>";
-		}		
-		if (save_method == 'update_konfirmasi') {
+		}
+		else if (save_method == 'update_konfirmasi') {
 			url = "<?php echo site_url('User/ajax_update_konfirmasi2')?>";
 		} else {
 			url = "<?php echo site_url('User/ajax_update2')?>";
@@ -363,8 +371,6 @@
 			      <input type="number" class="form-control" id="Id_Activities" name="Id_Activities" placeholder="Ditentukan Sistem" readonly>
 			    </div>
 
-
-        	<form autocomplete="off">
 				<div class="form-group">
 	    			<label>Id Vehicle</label>
 	    			<input list="data2" class="form-control" id="Id_Car" name="Id_Car" placeholder="Masukan Id_Car" onchange="return autofill2();" autocomplete="off">
@@ -381,7 +387,6 @@
 					<label>Name</label>
 					<input type="text" class="form-control" id="Name" name="Name" placeholder="Masukan Name" readonly>
 				</div>
-			</form>
 
   			<datalist id="data2">
 			    <?php
@@ -397,7 +402,6 @@
 
         	<div class="col-md-6" id="bag2">
 
-        	<form autocomplete="off">
 				<div class="form-group">
 	    			<label>Id Legality</label>
 	    			<input list="data1" class="form-control" id="Id_Legality" name="Id_Legality" placeholder="Masukan Id_Legality" onchange="return autofill1();" autocomplete="off">
@@ -406,7 +410,10 @@
 					<label>Number</label>
 					<input type="number" class="form-control" id="Number" name="Number" placeholder="Masukan Number" readonly>
 				</div>	
-
+				<div class="form-group">
+					<label>Party</label>
+					<input type="number" class="form-control" id="Party" name="Party" placeholder="Masukan Party" readonly>
+				</div>
 				<div class="form-group">
 	    			<label>Balance</label>
 	    			<input type="text" class="form-control" id="Balance" name="Balance" placeholder="Masukan Balance" readonly>
@@ -420,11 +427,6 @@
 					<label>Purpose of Unloading</label>
 					<input type="text" class="form-control" id="Purpose_of_Unloading" name="Purpose_of_Unloading" placeholder="Masukan Purpose of Unloading" readonly>
 				</div>
-				<div class="form-group">
-					<label>Party</label>
-					<input type="number" class="form-control" id="Party" name="Party" placeholder="Masukan Party" readonly>
-				</div>
-
 			    <div class="form-group">
 					<label>Transportir</label>
 					<input type="text" class="form-control" id="Transportir" name="Transportir" placeholder="Masukan Transportir" readonly>
@@ -439,7 +441,6 @@
 					<input type="Date" class="form-control" id="Date" name="Date" placeholder="Masukan Date" readonly>
 				</div>
 
-  			</form>
   			<datalist id="data1">
 			    <?php
 			    foreach ($record1->result() as $b)
@@ -451,7 +452,7 @@
 			</datalist> 
         	</div>
 
-        	<div class="col-md-12">
+        	<div class="col-md-12" id="bag3">
         		<div class="form-group">
 					<label>Tonase</label>
 					<input type="text" class="form-control" id="Tonase" name="Tonase" placeholder="Masukan Tonase">
@@ -478,7 +479,7 @@
 					</div>
 				</div>
 			</div>
-        	<div class="col-md-12" id="bag3">
+        	<div class="col-md-12" id="bag4">
         		<div class="input-group" id="Document_Out-preview">
 					<label>Dokumen Out</label>
 					<div>
