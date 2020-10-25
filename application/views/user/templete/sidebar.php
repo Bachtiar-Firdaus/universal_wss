@@ -80,7 +80,7 @@ a,span:hover{
           <span class="material-icons" style="vertical-align: bottom;">commute</span>
           Activities
         </a>
-        <a href="<?php echo site_url() ?>User/realisasi" class="list-group-item list-group-item-action ahover">
+        <a href="<?php echo site_url() ?>User/Realization" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">commute</span>
           Realization
         </a>

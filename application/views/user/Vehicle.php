@@ -250,7 +250,6 @@
       <div class="modal-body form">
         <form action="#" id="form">
         	<div class="form-group">
-        		<input type="hidden" value="" name="Id_Legality"/>
         	</div>
 
         	<div class="row">

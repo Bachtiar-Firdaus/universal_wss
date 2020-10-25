@@ -12,9 +12,9 @@
 					<section class="container-fluid" style="overflow-y: auto; overflow-x: scroll;">
 						<div class="dropdown">
 							
-    						<h2 class="text-center"><b>LEGALITY</b></h2>
+    						<h2 class="text-center"><b>REALIZATION</b></h2>
 
-    						<button class="btn" onclick="add_legality()"><i class="glyphicon glyphicon-plus"></i>Tambah</button>
+    						<button class="btn" onclick="add()"><i class="glyphicon glyphicon-plus"></i>Tambah</button>
 							<button class="btn btn-custome1" id="btnn2" onclick="reload_table()"><i
 									class="glyphicon glyphicon-refresh"></i> REFRESH</button>
 						</div> <br />
@@ -27,17 +27,13 @@
 							<thead style="color: white;">
 								<tr>
 									<th>No <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Id Legality <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Number <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Transportir <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Customer <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Party <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Balance <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Commodity <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Purpose_of_Unloading <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>Id Realization <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>WSS Daily Tonnage <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>Warehouse Daily Tonnage <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>Information <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Date <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>Document Realization <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Id User <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Document Legality <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th style="width:125px;">Action</th>
 								</tr>
 							</thead>
@@ -47,10 +43,6 @@
 
 							<tfoot>
 								<tr>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
 									<th></th>
 									<th></th>
 									<th></th>
@@ -91,7 +83,7 @@
 			"serverSide": true,
 			"order": [], 
 			"ajax": {
-				"url": "<?php echo site_url('User/ajax_list')?>",
+				"url": "<?php echo site_url('User/ajax_list3')?>",
 				"type": "POST"
 			},
 			"columnDefs": [{
@@ -127,49 +119,47 @@
 		});
 
 	});
-	function add_legality() {
+	function add() {
 		save_method = 'add';
 		$('#form')[0].reset(); 
 		$('.form-group').removeClass('has-error'); 
 		$('.help-block').empty(); 
 		$('#modal_form').modal('show'); 
-		$('.modal-title').text('Add Transportir'); 
-		$('#Document_Legality-preview').hide();
-		$('#label-Document_Legality').text('Upload dokumen');
+		$('.modal-title').text('Add Realization'); 
+		$('#Document_Realization-preview').hide();
+		$('#label-Document_Realization').text('Upload dokumen');
 	}
 
-	function edit_legality(id) {
+	function edit(id) {
 		save_method = 'update';
 		$('#form')[0].reset();
 		$('.form-group').removeClass('has-error');
 		$('.help-block').empty();
 		$.ajax({
-			url: "<?php echo site_url('User/ajax_edit')?>/" + id,
+			url: "<?php echo site_url('User/ajax_edit3')?>/" + id,
 			type: "GET",
 			dataType: "JSON",
 			success: function (data) {
-				$('[name="Id_Legality"]').val(data.Id_Legality);
-				$('[name="Number"]').val(data.Number);
-				$('[name="Transportir"]').val(data.Transportir);
-				$('[name="Customer"]').val(data.Customer);
-				$('[name="Party"]').val(data.Party);
-				$('[name="Balance"]').val(data.Balance);
-				$('[name="Commodity"]').val(data.Commodity);
-				$('[name="Purpose_of_Unloading"]').val(data.Purpose_of_Unloading);
+				$('[name="Id_Realization"]').val(data.Id_Realization);
+				$('[name="WSS_Daily_Tonnage"]').val(data.WSS_Daily_Tonnage);
+				$('[name="Warehouse_Daily_Tonnage"]').val(data.Warehouse_Daily_Tonnage);
+				$('[name="Information"]').val(data.Information);
 				$('[name="Date"]').val(data.Date);
+				$('[name="Document_Realization"]').val(data.Document_Realization);
 				$('[name="Id_User"]').val(data.Id_User);
 				$('#modal_form').modal('show'); 
-				$('.modal-title').text('Edit Legality');
-				$('#Document_Legality-preview').show();
-				if (data.Document_Legality) {
-					$('#label-Document_Legality').text('Change Document_Legality');
-					$('#Document_Legality-preview div').html('<img src="' + base_url + 'upload_legality/' + data.Document_Legality +
+				$('.modal-title').text('Edit Realization');
+				$('#Document_Realization-preview').show();
+
+				if (data.Document_Realization) {
+					$('#label-Document_Realization').text('Change Document_Realization');
+					$('#Document_Realization-preview div').html('<img src="' + base_url + 'upload_realization/' + data.Document_Realization +
 						'" class="img-responsive">');
-					$('#Document_Legality-preview div').append('<input type="checkbox" name="remove_dokumen" value="' + data
-						.Document_Legality + '"/> Remove Document_Legality when saving');
+					$('#Document_Realization-preview div').append('<input type="checkbox" name="remove_Document_Realization" value="' + data
+						.Document_Realization + '"/> Remove Document_Realization when saving');
 				} else {
-					$('#label-Document_Legality').text('Upload Document_Legality');
-					$('#Document_Legality-preview div').text('(No Document_Legality)');
+					$('#label-Document_Realization').text('Upload Document_Realization');
+					$('#Document_Realization-preview div').text('(No Document_Realization)');
 				}
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
@@ -188,9 +178,9 @@
 		var url;
 
 		if (save_method == 'add') {
-			url = "<?php echo site_url('User/ajax_add')?>";
+			url = "<?php echo site_url('User/ajax_add3')?>";
 		} else {
-			url = "<?php echo site_url('User/ajax_update')?>";
+			url = "<?php echo site_url('User/ajax_update3')?>";
 		}
 		var formData = new FormData($('#form')[0]);
 		$.ajax({
@@ -228,11 +218,11 @@
 		});
 	}
 
-	function delete_legality(id) {
+	function delete_realization(id) {
 		if (confirm('Are you sure delete this data?')) {
 			// ajax delete data to database
 			$.ajax({
-				url: "<?php echo site_url('User/ajax_delete')?>/" + id,
+				url: "<?php echo site_url('User/ajax_delete3')?>/" + id,
 				type: "POST",
 				dataType: "JSON",
 				success: function (data) {
@@ -271,65 +261,45 @@
         	<div class="col-md-6">
 
 				<div class="form-group">
-			      <label>Id Legality</label>
-			      <input type="number" class="form-control" id="Id_Legality" name="Id_Legality" placeholder="Ditentukan Sistem" readonly>
+				    <label>Id Realization</label>
+				    <input type="number" class="form-control" id="Id_Realization" name="Id_Realization" placeholder="Ditentukan Sistem" readonly>
 			    </div>
 				<div class="form-group">
-					<label>Party</label>
-					<input type="number" class="form-control" name="Party" placeholder="Masukan Party">
+					<label>WSS Daily Tonnage</label>
+					<input type="number" class="form-control" id="WSS_Daily_Tonnage" name="WSS_Daily_Tonnage" placeholder="Masukan WSS_Daily_Tonnage">
 				</div>
-
-			    <div class="form-group">
-					<label>Transportir</label>
-					<input type="text" class="form-control" id="Transportir" name="Transportir" placeholder="Masukan Transportir">
-				</div>	
-			    <div class="form-group">
-					<label>Customer</label>
-					<input type="Customer" class="form-control" id="Customer" name="Customer" placeholder="Masukan Customer">
-				</div>
-
 				<div class="form-group">
 					<label>Date</label>
 					<input type="Date" class="form-control" id="Date" name="Date" placeholder="Masukan Date">
 				</div>
-  				<div class="input-group" id="Document_Legality-preview">
-					<label>Dokumen</label>
+
+
+  				<div class="input-group" id="Document_Realization-preview">
+					<label>Document Realization</label>
 					<div>
-						(No dokumen)
+						(No dokumen Realization)
 						<span class="help-block"></span>
 					</div>
 				</div>
 
 				<div class="input-group" style="margin-top: 10px;">
-					<label id="label-Document_Legality">Upload Dokumen </label>
+					<label id="label-Document_Realization">Upload Document Realization </label>
 					<div>
-						<input id="up" name="Document_Legality" type="file">
+						<input name="Document_Realization" type="file">
 						<span class="help-block"></span>
 					</div>
 				</div>
         	</div>
 
         	<div class="col-md-6">
-        	<div class="form-group">
-					<label>Number</label>
-					<input type="number" class="form-control" id="Number" name="Number" placeholder="Masukan Number">
+        		<div class="form-group">
+					<label>Warehouse Daily Tonnage</label>
+					<input type="text" class="form-control" id="Warehouse_Daily_Tonnage" name="Warehouse_Daily_Tonnage" placeholder="Masukan Warehouse_Daily_Tonnage">
 				</div>	
-
-				<div class="form-group">
-	    			<label>Balance</label>
-	    			<input type="text" class="form-control" name="Balance" placeholder="Masukan Balance">
+			    <div class="form-group">
+					<label>Information</label>
+					<input type="text" class="form-control" id="Information" name="Information" placeholder="Masukan Information">
 				</div>
-				<div class="form-group">
-	    			<label>Commodity</label>
-	    			<input type="text" class="form-control" name="Commodity" placeholder="Masukan Commodity">
-				</div>
-
-				<div class="form-group" >
-					<label>Purpose of Unloading</label>
-					<input type="text" class="form-control" id="Purpose_of_Unloading" name="Purpose_of_Unloading" placeholder="Masukan Purpose of Unloading">
-				</div>
-
-  			
         	</div>
         	</div>
         </form>
