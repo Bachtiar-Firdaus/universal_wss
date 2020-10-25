@@ -14,7 +14,7 @@
 							
     						<h2 class="text-center"><b>VEHICLE</b></h2>
 
-    						<button class="btn" onclick="add_legality()"><i class="glyphicon glyphicon-plus"></i>Tambah</button>
+    						<button class="btn" onclick="add()"><i class="glyphicon glyphicon-plus"></i>Tambah</button>
 							<button class="btn btn-custome1" id="btnn2" onclick="reload_table()"><i
 									class="glyphicon glyphicon-refresh"></i> REFRESH</button>
 						</div> <br />
@@ -117,7 +117,7 @@
 		});
 
 	});
-	function add_legality() {
+	function add() {
 		save_method = 'add';
 		$('#form')[0].reset(); 
 		$('.form-group').removeClass('has-error'); 
@@ -128,7 +128,7 @@
 		$('#label-Document_SIM_STNK').text('Upload dokumen');
 	}
 
-	function edit_legality(id) {
+	function edit_vehicle(id) {
 		save_method = 'update';
 		$('#form')[0].reset();
 		$('.form-group').removeClass('has-error');
@@ -214,7 +214,7 @@
 		});
 	}
 
-	function delete_legality(id) {
+	function delete_vehicle(id) {
 		if (confirm('Are you sure delete this data?')) {
 			// ajax delete data to database
 			$.ajax({

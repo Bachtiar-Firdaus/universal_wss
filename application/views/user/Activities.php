@@ -126,6 +126,9 @@
 
 	});
 	function add() {
+		document.getElementById('bag1').style.display = "block";
+		document.getElementById('bag2').style.display = "block";
+		document.getElementById('bag3').style.display = "none";
 		save_method = 'add';
 		$('#form')[0].reset(); 
 		$('.form-group').removeClass('has-error'); 
@@ -137,6 +140,9 @@
 	}
 
 	function edit_activities(id) {
+		document.getElementById('bag1').style.display = "block";
+		document.getElementById('bag2').style.display = "block";
+		document.getElementById('bag3').style.display = "none";
 		save_method = 'update';
 		$('#form')[0].reset();
 		$('.form-group').removeClass('has-error');
@@ -175,6 +181,42 @@
 		});
 	}
 
+	function edit_konfirmasi_activities(id) {
+		document.getElementById('bag1').style.display = "none";
+		document.getElementById('bag2').style.display = "none";
+		document.getElementById('bag3').style.display = "block";
+		save_method = 'update_konfirmasi';
+		$('#form')[0].reset();
+		$('.form-group').removeClass('has-error');
+		$('.help-block').empty();
+		$.ajax({
+			url: "<?php echo site_url('User/ajax_edit2')?>/" + id,
+			type: "GET",
+			dataType: "JSON",
+			success: function (data) {
+				$('[name="Id_Activities"]').val(data.Id_Activities);
+
+				$('#modal_form').modal('show'); 
+				$('.modal-title').text('Edit ACTIVITIES');
+				$('#Document_Out-preview').show();
+				if (data.Document_Out) {
+					$('#label-Document_Out').text('Change Document_Out');
+					$('#Document_Out-preview div').html('<img src="' + base_url + 'upload_activities/' + data.Document_Out +
+						'" class="img-responsive">');
+					$('#Document_Out-preview div').append('<input type="checkbox" name="remove_Document_Out" value="' + data
+						.Document_Out + '"/> Remove Document_Out when saving');
+				} else {
+					$('#label-Document_Out').text('Upload Document_Out');
+					$('#Document_Out-preview div').text('(No Document_Out)');
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				alert('Error get data from ajax');
+			}
+		});
+	}
+
+
 	function reload_table() {
 		table.ajax.reload(null, false); //reload datatable ajax 
 	}
@@ -186,6 +228,9 @@
 
 		if (save_method == 'add') {
 			url = "<?php echo site_url('User/ajax_add2')?>";
+		}		
+		if (save_method == 'update_konfirmasi') {
+			url = "<?php echo site_url('User/ajax_update_konfirmasi2')?>";
 		} else {
 			url = "<?php echo site_url('User/ajax_update2')?>";
 		}
@@ -266,7 +311,7 @@
 
         	<div class="row">
  
-        	<div class="col-md-6">
+        	<div class="col-md-6" id="bag1">
 
 				<div class="form-group">
 			      <label>Id Activities</label>
@@ -282,7 +327,7 @@
 				</div>	
 
   				<div class="input-group" id="Document_Delivery_Order-preview">
-					<label>Dokumen</label>
+					<label>Dokumen Delivery Order</label>
 					<div>
 						(No dokumen)
 						<span class="help-block"></span>
@@ -290,17 +335,17 @@
 				</div>
 
 				<div class="input-group" style="margin-top: 10px;">
-					<label id="label-Document_Delivery_Order">Upload Dokumen </label>
+					<label id="label-Document_Delivery_Order">Upload Dokumen Delivery Order </label>
 					<div>
-						<input id="up" name="Document_Delivery_Order" type="file">
+						<input name="Document_Delivery_Order" type="file">
 						<span class="help-block"></span>
 					</div>
 				</div>
+
+
         	</div>
 
-        	<div class="col-md-6">
-
-
+        	<div class="col-md-6" id="bag2">
 				<div class="form-group">
 	    			<label>Id Legality</label>
 	    			<input type="text" class="form-control" name="Id_Legality" placeholder="Masukan Id_Legality">
@@ -310,6 +355,23 @@
 					<input type="text" class="form-control" name="Number_BP" placeholder="Masukan Number_BP">
 				</div>
   			
+        	</div>
+        	<div class="col-md-12" id="bag3">
+        		<div class="input-group" id="Document_Out-preview">
+					<label>Dokumen Out</label>
+					<div>
+						(No dokumen)
+						<span class="help-block"></span>
+					</div>
+				</div>
+
+				<div class="input-group" style="margin-top: 10px;">
+					<label id="label-Document_Out">Upload Dokumen </label>
+					<div>
+						<input name="Document_Out" type="file">
+						<span class="help-block"></span>
+					</div>
+				</div>
         	</div>
         	</div>
         </form>

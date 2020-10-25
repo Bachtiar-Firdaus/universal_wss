@@ -178,7 +178,7 @@ class User extends CI_Controller {
 			$row[] = $M_Vehicle->Name;
 			$row[] = $M_Vehicle->Document_SIM_STNK;
 			$row[] = $M_Vehicle->Id_User;
-			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_legality('."'".$M_Vehicle->Id_Car."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_vehicle('."'".$M_Vehicle->Id_Car."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
 			$data[] = $row;
 		}
 		$output = array(
@@ -302,7 +302,7 @@ class User extends CI_Controller {
 			$row[] = $M_Activities->Id_User;
 			$row[] = $M_Activities->Id_Legality;
 			$row[] = $M_Activities->Id_Car;
-			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_activities('."'".$M_Activities->Id_Activities."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_activities('."'".$M_Activities->Id_Activities."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a></br><a class="btn btn-sm" href="javascript:void(0)" title="Konfirmasi" onclick="edit_konfirmasi_activities('."'".$M_Activities->Id_Activities."'".')"><i class="glyphicon glyphicon-pencil"></i> Konfirmasi</a>';
 			$data[] = $row;
 		}
 		$output = array(
@@ -347,7 +347,6 @@ class User extends CI_Controller {
 		$data = array(
 				'Number_BP' => $this->input->post('Number_BP'),
 				'Tonase' => $this->input->post('Tonase'),
-				'Time_Out' => date("Y-m-d H:i:s"),
 				'Id_User' => "Otomatis",
 				'Id_Legality' => $this->input->post('Id_Legality'),
 				'Id_Car' => $this->input->post('Id_Car'),
@@ -370,6 +369,35 @@ class User extends CI_Controller {
 				unlink('upload_activities/'.$M_Activities->Document_Delivery_Order);
 
 			$data['Document_Delivery_Order'] = $upload;
+		}
+
+		$this->M_Activities->update(array('Id_Activities' => $this->input->post('Id_Activities')), $data);
+		echo json_encode(array("status" => TRUE));
+	}	
+
+	public function ajax_update_konfirmasi2()
+	{
+		$data = array(
+				'Time_Out' => date("Y-m-d H:i:s"),
+			);
+
+		if($this->input->post('remove_Document_Out')) // if remove dokumen checked
+		{
+			if(file_exists('upload_activities/'.$this->input->post('remove_Document_Out')) && $this->input->post('remove_Document_Delivery_Order'))
+				unlink('upload_activities/'.$this->input->post('remove_Document_Out'));
+			$data['Document_Out'] = '';
+		}
+
+		if(!empty($_FILES['Document_Out']['name']))
+		{
+			$upload = $this->_do_upload_konfirmasi2();
+			
+			//delete file
+			$M_Activities = $this->M_Activities->get_by_id($this->input->post('Id_Activities'));
+			if(file_exists('upload_activities/'.$M_Activities->Document_Out) && $M_Activities->Document_Out)
+				unlink('upload_activities/'.$M_Activities->Document_Out);
+
+			$data['Document_Out'] = $upload;
 		}
 
 		$this->M_Activities->update(array('Id_Activities' => $this->input->post('Id_Activities')), $data);
@@ -399,6 +427,27 @@ class User extends CI_Controller {
         if(!$this->upload->do_upload('Document_Delivery_Order')) 
         {
             $data['inputerror'][] = 'Document_Delivery_Order';
+			$data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); 
+			$data['status'] = FALSE;
+			echo json_encode($data);
+			exit();
+		}
+		return $this->upload->data('file_name');
+	}	
+	private function _do_upload_konfirmasi2()
+	{
+		$config['upload_path']          = 'upload_activities/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 10000000; 
+        $config['max_width']            = 1000000; 
+        $config['max_height']           = 1000000; 
+        $config['file_name']            = round(microtime(true) * 1000); 
+
+        $this->load->library('upload', $config);
+
+        if(!$this->upload->do_upload('Document_Out')) 
+        {
+            $data['inputerror'][] = 'Document_Out';
 			$data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); 
 			$data['status'] = FALSE;
 			echo json_encode($data);
