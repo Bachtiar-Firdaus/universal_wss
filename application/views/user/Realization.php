@@ -130,7 +130,7 @@
 		$('#label-Document_Realization').text('Upload dokumen');
 	}
 
-	function edit(id) {
+	function edit_realization(id) {
 		save_method = 'update';
 		$('#form')[0].reset();
 		$('.form-group').removeClass('has-error');
@@ -145,7 +145,6 @@
 				$('[name="Warehouse_Daily_Tonnage"]').val(data.Warehouse_Daily_Tonnage);
 				$('[name="Information"]').val(data.Information);
 				$('[name="Date"]').val(data.Date);
-				$('[name="Document_Realization"]').val(data.Document_Realization);
 				$('[name="Id_User"]').val(data.Id_User);
 				$('#modal_form').modal('show'); 
 				$('.modal-title').text('Edit Realization');
