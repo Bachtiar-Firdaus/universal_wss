@@ -133,7 +133,7 @@
 		$('.form-group').removeClass('has-error'); 
 		$('.help-block').empty(); 
 		$('#modal_form').modal('show'); 
-		$('.modal-title').text('Add Transportir'); 
+		$('.modal-title').text('Add Legality'); 
 		$('#Document_Legality-preview').hide();
 		$('#label-Document_Legality').text('Upload dokumen');
 	}
@@ -248,6 +248,42 @@
 		}
 	}
 
+
+
+function cek(){
+		var cek_Party = document.getElementById("Party").value;
+		var cek_Transportir = document.getElementById("Transportir").value;
+		var cek_Customer = document.getElementById("Customer").value;
+		var cek_Date = document.getElementById("Date").value;
+		var cek_Number = document.getElementById("Number").value;
+		var cek_Balance = document.getElementById("Balance").value;
+		var cek_Commodity = document.getElementById("Commodity").value;
+		var cek_Purpose_of_Unloading = document.getElementById("Purpose_of_Unloading").value;
+		if(save_method == 'add')
+		{
+			if(cek_Party != "" && cek_Transportir != "" && cek_Customer != "" && cek_Date != "" && cek_Number != "" && cek_Balance != "" && cek_Commodity != "" && cek_Purpose_of_Unloading != "")
+			{			
+				save();		
+			}
+			else 
+			{
+	   		 	swal("LENGKAPI FIELD");
+			}
+		}		
+		else
+		{
+			if(cek_Party != "" && cek_Transportir != "" && cek_Customer != "" && cek_Date != "" && cek_Number != "" && cek_Balance != "" && cek_Commodity != "" && cek_Purpose_of_Unloading != "")
+			{
+			save();		
+			}
+			else 
+			{
+	   		 	swal("LENGKAPI FIELD");
+			}
+		}
+
+
+}
 </script>
 
 <!-- modal ane -->
@@ -276,7 +312,7 @@
 			    </div>
 				<div class="form-group">
 					<label>Party</label>
-					<input type="number" class="form-control" name="Party" placeholder="Masukan Party">
+					<input type="number" class="form-control" id="Party" name="Party" placeholder="Masukan Party">
 				</div>
 
 			    <div class="form-group">
@@ -317,11 +353,11 @@
 
 				<div class="form-group">
 	    			<label>Balance</label>
-	    			<input type="text" class="form-control" name="Balance" placeholder="Masukan Balance">
+	    			<input type="text" class="form-control" id="Balance" name="Balance" placeholder="Masukan Balance">
 				</div>
 				<div class="form-group">
 	    			<label>Commodity</label>
-	    			<input type="text" class="form-control" name="Commodity" placeholder="Masukan Commodity">
+	    			<input type="text" class="form-control" id="Commodity" name="Commodity" placeholder="Masukan Commodity">
 				</div>
 
 				<div class="form-group" >
@@ -336,7 +372,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reset()">Close</button>
-        <button type="button" class="btn btn-primary" id="btnSave" onclick="save()">Save changes</button>
+        <button type="button" class="btn btn-primary" id="btnSave" onclick="cek()">Save changes</button>
       </div>
     </div>
   </div>

@@ -360,7 +360,7 @@ function cek(){
 		{
 			if(cek_Tonase != "" && cek_Id_Car != "" && cek_Id_Legality != "")
 			{			
-				if(parseInt(cek_Tonase) < parseInt(cek_Id_Car))
+				if(parseInt(cek_Tonase) <= parseInt(cek_Id_Car))
 				{
 				save();		
 				}
@@ -510,7 +510,7 @@ function cek(){
 
         		<div class="form-group">
 					<label>Number BP</label>
-					<input type="text" class="form-control" name="Number_BP" placeholder="Masukan Number_BP" autocomplete="off">
+					<input type="text" class="form-control" id="Number_BP" name="Number_BP" placeholder="Masukan Number_BP" autocomplete="off">
 				</div>
 
   				<div class="input-group" id="Document_Delivery_Order-preview">
