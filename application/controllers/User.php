@@ -316,7 +316,12 @@ class User extends CI_Controller {
 			$row[] = $M_Activities->Id_User;
 			$row[] = $M_Activities->Id_Legality;
 			$row[] = $M_Activities->Id_Car;
-			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_activities('."'".$M_Activities->Id_Activities."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a></br><a class="btn btn-sm" href="javascript:void(0)" title="Konfirmasi" onclick="edit_konfirmasi_activities('."'".$M_Activities->Id_Activities."'".')"><i class="glyphicon glyphicon-pencil"></i> Konfirmasi</a>';
+
+			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_activities('."'".$M_Activities->Id_Activities."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a></br>
+
+				<a class="btn btn-sm" href="javascript:void(0)" title="Cetak Viat" onclick="Cetak_Viat('."'".$M_Activities->Id_Activities."'".')"><i class="glyphicon glyphicon-pencil"></i> Cetak Viat</a></br>
+
+				<a class="btn btn-sm" href="javascript:void(0)" title="Konfirmasi" onclick="edit_konfirmasi_activities('."'".$M_Activities->Id_Activities."'".')"><i class="glyphicon glyphicon-pencil"></i> Konfirmasi</a>';
 			$data[] = $row;
 		}
 		$output = array(
@@ -597,6 +602,50 @@ class User extends CI_Controller {
 		}
 		return $this->upload->data('file_name');
 	}
+
+    public function Cetak_Legality(){     
+        $First_Date = $this->input->post('First_Date'); 
+        $Last_Date = $this->input->post('Last_Date');  
+        $data['Cetak_Legality'] = $this->M_Search->Cetak_Legality($First_Date,$Last_Date);
+ 	    $this->load->library('pdf');
+	    $this->pdf->setPaper('F4', 'potrait');
+	    $this->pdf->filename = "laporan-PDF.pdf";
+	    $this->pdf->load_view('Report/Report_Legality', $data);
+    }
+    public function Cetak_Activities(){     
+        $First_Date = $this->input->post('First_Date'); 
+        $Last_Date = $this->input->post('Last_Date');  
+        $data['Cetak_Activities'] = $this->M_Search->Cetak_Activities($First_Date,$Last_Date);
+ 	    $this->load->library('pdf');
+	    $this->pdf->setPaper('F4', 'potrait');
+	    $this->pdf->filename = "laporan-PDF.pdf";
+	    $this->pdf->load_view('Report/Report_Activities', $data);
+    }
+    public function Cetak_Realization(){     
+        $First_Date = $this->input->post('First_Date'); 
+        $Last_Date = $this->input->post('Last_Date');  
+        $data['Cetak_Realization'] = $this->M_Search->Cetak_Realization($First_Date,$Last_Date);
+ 	    $this->load->library('pdf');
+	    $this->pdf->setPaper('F4', 'potrait');
+	    $this->pdf->filename = "laporan-PDF.pdf";
+	    $this->pdf->load_view('Report/Report_Realization', $data);
+    }
+    public function Cetak_Viat($id){     
+        $data['Cetak_Viat'] = $this->M_Search->Cetak_Viat($id);
+        $data1 = $this->M_Search->Cek_Vehicle($id);
+		$result = $data1->row();
+		$Id_Car = $result->Id_Car;
+        $data['Cetak_Car'] = $this->M_Search->Cetak_Car($Id_Car);
+        $data2 = $this->M_Search->Cek_Legality($id);
+		$result2 = $data2->row();
+		$Id_Legality = $result2->Id_Legality;
+        $data['Cetak_Legality'] = $this->M_Search->Cetak_Legality2($Id_Legality);
+
+ 	    $this->load->library('pdf');
+	    $this->pdf->setPaper('F4', 'potrait');
+	    $this->pdf->filename = "laporan-PDF.pdf";
+	    $this->pdf->load_view('Report/Cetak_Viat', $data);
+    }
 }
 
 

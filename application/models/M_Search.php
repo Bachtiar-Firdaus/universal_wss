@@ -24,5 +24,42 @@ class M_Search extends CI_Model{
         $query = $this->db->query("SELECT  Date_Activities , SUM(Tonase) AS Tonase FROM tbl_activities WHERE Date_Activities = '$Date_Realization'");
         return $query;
     } 
+
+
+    function Cetak_Legality($First_Date,$Last_Date){
+        $query = $this->db->query("SELECT * FROM tbl_legality WHERE Date_Legality between '$First_Date' AND '$Last_Date' ORDER BY Date_Legality DESC");
+        return $query->result();
+    } 
+
+    function Cetak_Activities($First_Date,$Last_Date){
+        $query = $this->db->query("SELECT * FROM tbl_activities WHERE Date_Activities between '$First_Date' AND '$Last_Date' ORDER BY Date_Activities DESC");
+        return $query->result();
+    } 
+
+    function Cetak_Realization($First_Date,$Last_Date){
+        $query = $this->db->query("SELECT * FROM tbl_realization WHERE Date_Realization between '$First_Date' AND '$Last_Date' ORDER BY Date_Realization DESC");
+        return $query->result();
+    } 
+    function Cetak_Viat($id){
+        $query = $this->db->query("SELECT * FROM tbl_activities WHERE Id_Activities = '$id'");
+        return $query->result();
+    } 
+    function Cek_Vehicle($id){
+        $query = $this->db->query("SELECT Id_Car FROM tbl_activities WHERE Id_Activities = '$id'");
+        return $query;
+    } 
+    function Cetak_Car($Id_Car){
+        $query = $this->db->query("SELECT * FROM tbl_car WHERE Id_Car = '$Id_Car'");
+        return $query->result();
+    } 
+    function Cek_Legality($id){
+        $query = $this->db->query("SELECT Id_Legality FROM tbl_activities WHERE Id_Activities = '$id'");
+        return $query;
+    } 
+    function Cetak_Legality2($Id_Legality){
+        $query = $this->db->query("SELECT * FROM tbl_legality WHERE Id_Legality = '$Id_Legality'");
+        return $query->result();
+    } 
+       
 }
 ?>

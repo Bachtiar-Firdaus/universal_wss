@@ -34,7 +34,7 @@
 									<th>Party <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Balance <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Commodity <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Purpose_of_Unloading <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>Purpose of Unloading <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Date Legality<img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Id User <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Document Legality <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
@@ -285,6 +285,23 @@ function cek(){
 
 }
 </script>
+
+
+<form method="post" accept-charset="utf-8" action="<?php echo base_url()?>User/Cetak_Legality">
+    <div class="form-group">
+        <div  style="width: 180px; float: left;">
+            <input required name="First_Date" placeholder="First_Date" value="masukan First_Date" type="date" style="  float: left; width: 167px; margin: 5px; border-radius: 5px; height: 35px;px;">
+        </div>
+        <div  style="width: 180px; float: left;">
+            <input required name="Last_Date" placeholder="Last_Date" value="masukan Last_Date" type="date" style="  float: left; width: 167px; margin: 5px; border-radius: 5px; height: 35px;px;">
+        </div>
+
+
+        <div  style="width: 170px;  float: left; ">
+            <button type="submit" style="width: 160px; margin: 5px;" id="btncetak" class="btn btn-primary">Cetak Laporan</button>
+        </div><br><br><br>
+    </div>
+</form>   
 
 <!-- modal ane -->
 <div class="modal" id="modal_form" tabindex="-1" role="dialog">
