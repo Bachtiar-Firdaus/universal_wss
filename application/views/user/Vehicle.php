@@ -233,7 +233,35 @@
 
 		}
 	}
+function cek(){
+		var cek_Number_Sim = document.getElementById("Number_Sim").value;
+		var cek_Number_Police = document.getElementById("Number_Police").value;
+		var cek_Name = document.getElementById("Name").value;
+		if(save_method == 'add')
+		{
+			if(cek_Number_Sim != "" && cek_Number_Police != "" && cek_Name != "")
+			{			
+				save();		
+			}
+			else 
+			{
+	   		 	swal("LENGKAPI FIELD");
+			}
+		}		
+		else
+		{
+			if(cek_Number_Sim != "" && cek_Number_Police != "" && cek_Name != "")
+			{
+			save();		
+			}
+			else 
+			{
+	   		 	swal("LENGKAPI FIELD");
+			}
+		}
 
+
+}
 </script>
 
 <!-- modal ane -->
@@ -262,7 +290,7 @@
 			    </div>
 				<div class="form-group">
 					<label>Number Sim</label>
-					<input type="number" class="form-control" name="Number_Sim" placeholder="Masukan Number_Sim">
+					<input type="number" class="form-control" id="Number_Sim" name="Number_Sim" placeholder="Masukan Number_Sim">
 				</div>
 
 
@@ -300,7 +328,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reset()">Close</button>
-        <button type="button" class="btn btn-primary" id="btnSave" onclick="save()">Save changes</button>
+        <button type="button" class="btn btn-primary" id="btnSave" onclick="cek()">Save changes</button>
       </div>
     </div>
   </div>
