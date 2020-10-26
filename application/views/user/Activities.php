@@ -130,6 +130,8 @@
 		document.getElementById('Tonase').readOnly = false;
 		document.getElementById('Id_Legality').readOnly = false;
 		document.getElementById('Id_Car').readOnly = false;
+		document.getElementById('btnSave_').style.display = "block";
+		document.getElementById('btnSave_1').style.display = "none";
 		document.getElementById('bag1').style.display = "block";
 		document.getElementById('bag2').style.display = "block";
 		document.getElementById('bag3').style.display = "block";
@@ -150,6 +152,8 @@
 		document.getElementById('Id_Legality').readOnly = true;
 		document.getElementById('Id_Car').readOnly = true;
 		document.getElementById('Tonase').readOnly = true;
+		document.getElementById('btnSave_').style.display = "block";
+		document.getElementById('btnSave_1').style.display = "none";
 		document.getElementById('bag1').style.display = "block";
 		document.getElementById('bag2').style.display = "block";
 		document.getElementById('bag3').style.display = "block";
@@ -198,6 +202,8 @@
 		document.getElementById('Id_Legality').readOnly = false;
 		document.getElementById('Id_Car').readOnly = false;
 		document.getElementById('Tonase').readOnly = false;
+		document.getElementById('btnSave_').style.display = "none";
+		document.getElementById('btnSave_1').style.display = "block";
 		document.getElementById('bag1').style.display = "none";
 		document.getElementById('bag2').style.display = "none";
 		document.getElementById('bag3').style.display = "none";
@@ -551,7 +557,12 @@ function cek(){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reset()">Close</button>
+        <div id="btnSave_">
         <button type="button" class="btn btn-primary" id="btnSave" onclick="cek()">Save changes</button>
+		</div>
+		<div id="btnSave_1">
+        <button type="button" class="btn btn-primary" id="btnSave" onclick="save()">Konfirmasi</button>
+    	</div>
       </div>
     </div>
   </div>

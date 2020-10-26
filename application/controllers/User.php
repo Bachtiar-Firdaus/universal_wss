@@ -392,6 +392,7 @@ class User extends CI_Controller {
 	{
 		$data = array(
 				'Time_Out' => date("Y-m-d H:i:s"),
+				'Date' => date("Y-m-d"),
 			);
 
 		if($this->input->post('remove_Document_Out')) // if remove dokumen checked

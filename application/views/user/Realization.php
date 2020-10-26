@@ -237,6 +237,37 @@
 		}
 	}
 
+
+function cek(){
+		var cek_Date = document.getElementById("Date").value;
+		var cek_WSS_Daily_Tonnage = document.getElementById("WSS_Daily_Tonnage").value;
+		var cek_Warehouse_Daily_Tonnage = document.getElementById("Warehouse_Daily_Tonnage").value;
+		var cek_Information = document.getElementById("Information").value;
+		if(save_method == 'add')
+		{
+			if(cek_Date != "" && cek_WSS_Daily_Tonnage != "" && cek_Warehouse_Daily_Tonnage != "" && cek_Information != "")
+			{			
+				save();		
+			}
+			else 
+			{
+	   		 	swal("LENGKAPI FIELD");
+			}
+		}		
+		else
+		{
+			if(cek_Date != "" && cek_WSS_Daily_Tonnage != "" && cek_Warehouse_Daily_Tonnage != "" && cek_Information != "")
+			{
+			save();		
+			}
+			else 
+			{
+	   		 	swal("LENGKAPI FIELD");
+			}
+		}
+
+
+}
 </script>
 
 <!-- modal ane -->
@@ -263,13 +294,14 @@
 				    <label>Id Realization</label>
 				    <input type="number" class="form-control" id="Id_Realization" name="Id_Realization" placeholder="Ditentukan Sistem" readonly>
 			    </div>
-				<div class="form-group">
-					<label>WSS Daily Tonnage</label>
-					<input type="number" class="form-control" id="WSS_Daily_Tonnage" name="WSS_Daily_Tonnage" placeholder="Masukan WSS_Daily_Tonnage">
-				</div>
+
 				<div class="form-group">
 					<label>Date</label>
 					<input type="Date" class="form-control" id="Date" name="Date" placeholder="Masukan Date">
+				</div>
+				<div class="form-group">
+					<label>WSS Daily Tonnage</label>
+					<input type="number" class="form-control" id="WSS_Daily_Tonnage" name="WSS_Daily_Tonnage" placeholder="Masukan WSS_Daily_Tonnage">
 				</div>
 
 
@@ -305,7 +337,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reset()">Close</button>
-        <button type="button" class="btn btn-primary" id="btnSave" onclick="save()">Save changes</button>
+        <button type="button" class="btn btn-primary" id="btnSave" onclick="cek()">Save changes</button>
       </div>
     </div>
   </div>

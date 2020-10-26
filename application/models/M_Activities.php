@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_Activities extends CI_Model {
 
 	var $table = 'tbl_activities';
-	var $column_order = array('Id_Activities','Number_BP','Tonase','Time_In','Time_Out','Document_Delivery_Order','Document_Out','Id_User','Id_Legality','Id_Car',null); 
-	var $column_search = array('Id_Activities','Number_BP','Tonase','Time_In','Time_Out','Document_Delivery_Order','Document_Out','Id_User','Id_Legality','Id_Car');
+	var $column_order = array('Id_Activities','Number_BP','Tonase','Date','Time_In','Time_Out','Document_Delivery_Order','Document_Out','Id_User','Id_Legality','Id_Car',null); 
+	var $column_search = array('Id_Activities','Number_BP','Tonase','Date','Time_In','Time_Out','Document_Delivery_Order','Document_Out','Id_User','Id_Legality','Id_Car');
 	var $order = array('Id_Activities' => 'desc'); 
 
 	public function __construct()
