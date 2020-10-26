@@ -141,7 +141,7 @@
 		$('.form-group').removeClass('has-error'); 
 		$('.help-block').empty(); 
 		$('#modal_form').modal('show'); 
-		$('.modal-title').text('Add Transportir'); 
+		$('.modal-title').text('Add Activities'); 
 		$('#Document_Delivery_Order-preview').hide();
 		$('#label-Document_Delivery_Order').text('Upload dokumen');
 	}
@@ -350,6 +350,45 @@
                    });
                   
     }
+
+function cek(){
+		var cek_Tonase = document.getElementById("Tonase").value;
+		var cek_Balance = document.getElementById("Balance").value;
+		var cek_Id_Car = document.getElementById("Id_Car").value;
+		var cek_Id_Legality = document.getElementById("Id_Legality").value;
+		if(save_method == 'add')
+		{
+			if(cek_Tonase != "" && cek_Id_Car != "" && cek_Id_Legality != "")
+			{			
+				if(parseInt(cek_Tonase) < parseInt(cek_Id_Car))
+				{
+				save();		
+				}
+				else 
+				{
+		   		 	swal("TONASE MELEBIHI PARTY YANG DITENTUKAN");
+				}	
+			}
+			else 
+			{
+	   		 	swal("LENGKAPI FIELD");
+			}
+		}		
+		else
+		{
+			if(cek_Tonase != "" && cek_Id_Car != "" && cek_Id_Legality != "")
+			{
+			save();		
+			}
+			else 
+			{
+	   		 	swal("LENGKAPI FIELD");
+			}
+		}
+
+
+}
+
 </script>
 <!-- modal ane -->
 <div class="modal" id="modal_form" tabindex="-1" role="dialog">
@@ -512,7 +551,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reset()">Close</button>
-        <button type="button" class="btn btn-primary" id="btnSave" onclick="save()">Save changes</button>
+        <button type="button" class="btn btn-primary" id="btnSave" onclick="cek()">Save changes</button>
       </div>
     </div>
   </div>
