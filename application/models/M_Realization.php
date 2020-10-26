@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_Realization extends CI_Model {
 
 	var $table = 'tbl_realization';
-	var $column_order = array('Id_Realization','WSS_Daily_Tonnage','Warehouse_Daily_Tonnage','Information','Date','Document_Realization','Id_User',null);
-	var $column_search = array('Id_Realization','WSS_Daily_Tonnage','Warehouse_Daily_Tonnage','Information','Date','Document_Realization','Id_User');
+	var $column_order = array('Id_Realization','WSS_Daily_Tonnage','Warehouse_Daily_Tonnage','Information','Date_Realization','Document_Realization','Id_User',null);
+	var $column_search = array('Id_Realization','WSS_Daily_Tonnage','Warehouse_Daily_Tonnage','Information','Date_Realization','Document_Realization','Id_User');
 	var $order = array('Id_Realization' => 'desc'); 
 	public function __construct()
 	{

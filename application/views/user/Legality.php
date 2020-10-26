@@ -35,7 +35,7 @@
 									<th>Balance <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Commodity <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Purpose_of_Unloading <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Date <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>Date Legality<img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Id User <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Document Legality <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th style="width:125px;">Action</th>
@@ -156,7 +156,7 @@
 				$('[name="Balance"]').val(data.Balance);
 				$('[name="Commodity"]').val(data.Commodity);
 				$('[name="Purpose_of_Unloading"]').val(data.Purpose_of_Unloading);
-				$('[name="Date"]').val(data.Date);
+				$('[name="Date_Legality"]').val(data.Date_Legality);
 				$('[name="Id_User"]').val(data.Id_User);
 				$('#modal_form').modal('show'); 
 				$('.modal-title').text('Edit Legality');
@@ -254,14 +254,14 @@ function cek(){
 		var cek_Party = document.getElementById("Party").value;
 		var cek_Transportir = document.getElementById("Transportir").value;
 		var cek_Customer = document.getElementById("Customer").value;
-		var cek_Date = document.getElementById("Date").value;
+		var cek_Date_Legality = document.getElementById("Date_Legality").value;
 		var cek_Number = document.getElementById("Number").value;
 		var cek_Balance = document.getElementById("Balance").value;
 		var cek_Commodity = document.getElementById("Commodity").value;
 		var cek_Purpose_of_Unloading = document.getElementById("Purpose_of_Unloading").value;
 		if(save_method == 'add')
 		{
-			if(cek_Party != "" && cek_Transportir != "" && cek_Customer != "" && cek_Date != "" && cek_Number != "" && cek_Balance != "" && cek_Commodity != "" && cek_Purpose_of_Unloading != "")
+			if(cek_Party != "" && cek_Transportir != "" && cek_Customer != "" && cek_Date_Legality != "" && cek_Number != "" && cek_Balance != "" && cek_Commodity != "" && cek_Purpose_of_Unloading != "")
 			{			
 				save();		
 			}
@@ -272,7 +272,7 @@ function cek(){
 		}		
 		else
 		{
-			if(cek_Party != "" && cek_Transportir != "" && cek_Customer != "" && cek_Date != "" && cek_Number != "" && cek_Balance != "" && cek_Commodity != "" && cek_Purpose_of_Unloading != "")
+			if(cek_Party != "" && cek_Transportir != "" && cek_Customer != "" && cek_Date_Legality != "" && cek_Number != "" && cek_Balance != "" && cek_Commodity != "" && cek_Purpose_of_Unloading != "")
 			{
 			save();		
 			}
@@ -325,8 +325,8 @@ function cek(){
 				</div>
 
 				<div class="form-group">
-					<label>Date</label>
-					<input type="Date" class="form-control" id="Date" name="Date" placeholder="Masukan Date">
+					<label>Date Legality</label>
+					<input type="Date" class="form-control" id="Date_Legality" name="Date_Legality" placeholder="Masukan Date_Legality">
 				</div>
   				<div class="input-group" id="Document_Legality-preview">
 					<label>Dokumen</label>

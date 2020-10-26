@@ -31,7 +31,7 @@
 									<th>WSS Daily Tonnage <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Warehouse Daily Tonnage <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Information <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Date <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>Date Realization<img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Document Realization <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Id User <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th style="width:125px;">Action</th>
@@ -144,7 +144,7 @@
 				$('[name="WSS_Daily_Tonnage"]').val(data.WSS_Daily_Tonnage);
 				$('[name="Warehouse_Daily_Tonnage"]').val(data.Warehouse_Daily_Tonnage);
 				$('[name="Information"]').val(data.Information);
-				$('[name="Date"]').val(data.Date);
+				$('[name="Date_Realization"]').val(data.Date_Realization);
 				$('[name="Id_User"]').val(data.Id_User);
 				$('#modal_form').modal('show'); 
 				$('.modal-title').text('Edit Realization');
@@ -238,14 +238,31 @@
 	}
 
 
+    function autofill(){
+        var Date_Realization = document.getElementById('Date_Realization').value;
+        $.ajax({
+                       url:"<?php echo base_url();?>User/AC_Realization",
+                       data:'&Date_Realization='+Date_Realization,
+                       success:function(data){
+                           var hasil1 = JSON.parse(data);  
+          
+      $.each(hasil1, function(key,val){ 
+                           document.getElementById('Date_Realization').value=val.Date_Activities;
+                           document.getElementById('WSS_Daily_Tonnage').value=val.Tonase;
+                               	
+        });
+      }
+                   });
+                  
+    }
 function cek(){
-		var cek_Date = document.getElementById("Date").value;
+		var cek_Date_Realization = document.getElementById("Date_Realization").value;
 		var cek_WSS_Daily_Tonnage = document.getElementById("WSS_Daily_Tonnage").value;
 		var cek_Warehouse_Daily_Tonnage = document.getElementById("Warehouse_Daily_Tonnage").value;
 		var cek_Information = document.getElementById("Information").value;
 		if(save_method == 'add')
 		{
-			if(cek_Date != "" && cek_WSS_Daily_Tonnage != "" && cek_Warehouse_Daily_Tonnage != "" && cek_Information != "")
+			if(cek_Date_Realization != "" && cek_WSS_Daily_Tonnage != "" && cek_Warehouse_Daily_Tonnage != "" && cek_Information != "")
 			{			
 				save();		
 			}
@@ -256,7 +273,7 @@ function cek(){
 		}		
 		else
 		{
-			if(cek_Date != "" && cek_WSS_Daily_Tonnage != "" && cek_Warehouse_Daily_Tonnage != "" && cek_Information != "")
+			if(cek_Date_Realization != "" && cek_WSS_Daily_Tonnage != "" && cek_Warehouse_Daily_Tonnage != "" && cek_Information != "")
 			{
 			save();		
 			}
@@ -296,13 +313,23 @@ function cek(){
 			    </div>
 
 				<div class="form-group">
-					<label>Date</label>
-					<input type="Date" class="form-control" id="Date" name="Date" placeholder="Masukan Date">
+					<label>Date Realization</label>
+	    			<input list="data2" class="form-control" id="Date_Realization" name="Date_Realization" placeholder="Masukan Date_Realization" onchange="return autofill();" autocomplete="off">
 				</div>
 				<div class="form-group">
 					<label>WSS Daily Tonnage</label>
-					<input type="number" class="form-control" id="WSS_Daily_Tonnage" name="WSS_Daily_Tonnage" placeholder="Masukan WSS_Daily_Tonnage">
+					<input type="number" class="form-control" id="WSS_Daily_Tonnage" name="WSS_Daily_Tonnage" placeholder="Ditentukan Sistem" readonly>
 				</div>
+
+	  			<datalist id="data2">
+				    <?php
+				    foreach ($record2->result() as $c)
+				    {
+				        echo "<option value='$c->Date_Activities'></option>";
+				    }
+				    					    					    
+				    ?>
+				</datalist> 
 
 
   				<div class="input-group" id="Document_Realization-preview">
@@ -320,6 +347,7 @@ function cek(){
 						<span class="help-block"></span>
 					</div>
 				</div>
+
         	</div>
 
         	<div class="col-md-6">

@@ -39,7 +39,7 @@ class User extends CI_Controller {
 			$row[] = $M_Legality->Balance;
 			$row[] = $M_Legality->Commodity;
 			$row[] = $M_Legality->Purpose_of_Unloading;
-			$row[] = $M_Legality->Date;
+			$row[] = $M_Legality->Date_Legality;
 			$row[] = $M_Legality->Id_User;
 			$row[] = $M_Legality->Document_Legality;
 			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_legality('."'".$M_Legality->Id_Legality."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
@@ -65,7 +65,7 @@ class User extends CI_Controller {
 				'Balance' => $this->input->post('Balance'),
 				'Commodity' => $this->input->post('Commodity'),
 				'Purpose_of_Unloading' => $this->input->post('Purpose_of_Unloading'),
-				'Date' => $this->input->post('Date'),
+				'Date_Legality' => $this->input->post('Date_Legality'),
 				'Id_User' => "0",
 			);
 
@@ -97,7 +97,7 @@ class User extends CI_Controller {
 				'Balance' => $this->input->post('Balance'),
 				'Commodity' => $this->input->post('Commodity'),
 				'Purpose_of_Unloading' => $this->input->post('Purpose_of_Unloading'),
-				'Date' => $this->input->post('Date'),
+				'Date_Legality' => $this->input->post('Date_Legality'),
 				'Id_User' => "0",
 			);
 
@@ -392,7 +392,7 @@ class User extends CI_Controller {
 	{
 		$data = array(
 				'Time_Out' => date("Y-m-d H:i:s"),
-				'Date' => date("Y-m-d"),
+				'Date_Activities' => date("Y-m-d"),
 			);
 
 		if($this->input->post('remove_Document_Out')) // if remove dokumen checked
@@ -472,9 +472,15 @@ class User extends CI_Controller {
 
 	public function Realization()
 	{	
+		$data['record2']=  $this->M_Search->TD_Realization();
 		$data['contents'] = 'User/Realization';
-		$this->load->view('User/index',$data);
-	}
+		$this->load->view('user/index',$data);
+	}	
+	public function AC_Realization(){
+        $Date_Realization=$_GET['Date_Realization'];
+        $AC_Realization =$this->M_Search->AC_Realization($Date_Realization)->result();
+        echo json_encode($AC_Realization);
+    } 
 
 	public function ajax_list3()
 	{
@@ -488,7 +494,7 @@ class User extends CI_Controller {
 			$row[] = $M_Realization->WSS_Daily_Tonnage;
 			$row[] = $M_Realization->Warehouse_Daily_Tonnage;
 			$row[] = $M_Realization->Information;
-			$row[] = $M_Realization->Date;
+			$row[] = $M_Realization->Date_Realization;
 			$row[] = $M_Realization->Document_Realization;
 			$row[] = $M_Realization->Id_User;
 			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_realization('."'".$M_Realization->Id_Realization."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
@@ -509,7 +515,7 @@ class User extends CI_Controller {
 				'WSS_Daily_Tonnage' => $this->input->post('WSS_Daily_Tonnage'),
 				'Warehouse_Daily_Tonnage' => $this->input->post('Warehouse_Daily_Tonnage'),
 				'Information' => $this->input->post('Information'),
-				'Date' => $this->input->post('Date'),
+				'Date_Realization' => $this->input->post('Date_Realization'),
 				'Id_User' => "0",
 			);
 
@@ -534,7 +540,7 @@ class User extends CI_Controller {
 				'WSS_Daily_Tonnage' => $this->input->post('WSS_Daily_Tonnage'),
 				'Warehouse_Daily_Tonnage' => $this->input->post('Warehouse_Daily_Tonnage'),
 				'Information' => $this->input->post('Information'),
-				'Date' => $this->input->post('Date'),
+				'Date_Realization' => $this->input->post('Date_Realization'),
 				'Id_User' => "0",
 			);
 

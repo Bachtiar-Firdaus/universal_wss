@@ -330,7 +330,7 @@
                            document.getElementById('Balance').value=val.Balance;
                            document.getElementById('Commodity').value=val.Commodity; 
                            document.getElementById('Purpose_of_Unloading').value=val.Purpose_of_Unloading; 
-                           document.getElementById('Date').value=val.Date; 
+                           document.getElementById('Date_Legality').value=val.Date_Legality; 
                                	
         });
       }
@@ -491,8 +491,8 @@ function cek(){
 				</div>
 
 				<div class="form-group">
-					<label>Date</label>
-					<input type="Date" class="form-control" id="Date" name="Date" placeholder="Masukan Date" readonly>
+					<label>Date Legality</label>
+					<input type="Date" class="form-control" id="Date_Legality" name="Date_Legality" placeholder="Masukan Date_Legality" readonly>
 				</div>
 
 				</div>
