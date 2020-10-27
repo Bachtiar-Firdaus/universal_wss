@@ -234,7 +234,7 @@
 
 
         <div  style="width: 170px;  float: left; ">
-            <button type="submit" style="width: 160px; margin: 5px;" id="btncetak" class="btn btn-primary">Cetak Laporan</button>
+            <button type="submit" style="width: 160px; margin: 5px;" id="btncetak" class="btn btn-primary">Report Accounts</button>
         </div><br><br><br>
     </div>
 </form>   

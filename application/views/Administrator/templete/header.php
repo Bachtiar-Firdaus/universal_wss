@@ -58,7 +58,7 @@ vertical_split
     top: -6px;
     font-weight: 500;">
                 <span class="material-icons" style="vertical-align: bottom; color: white;">account_circle</span>
-                <b style="color: white;">Admin</b>
+                <b style="color: white;">Administrator</b>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="<?php echo base_url().'login/logout'?>">Logout</a>
