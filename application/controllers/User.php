@@ -42,7 +42,7 @@ class User extends CI_Controller {
 			$row[] = $M_Legality->Date_Legality;
 			$row[] = $M_Legality->Id_User;
 			$row[] = $M_Legality->Document_Legality;
-			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_legality('."'".$M_Legality->Id_Legality."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="View" onclick="edit_legality('."'".$M_Legality->Id_Legality."'".')"><i class="glyphicon glyphicon-pencil"></i> View</a>';
 			$data[] = $row;
 		}
 		$output = array(
@@ -180,7 +180,7 @@ class User extends CI_Controller {
 			$row[] = $M_Vehicle->Name;
 			$row[] = $M_Vehicle->Document_SIM_STNK;
 			$row[] = $M_Vehicle->Id_User;
-			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_vehicle('."'".$M_Vehicle->Id_Car."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="View" onclick="edit_vehicle('."'".$M_Vehicle->Id_Car."'".')"><i class="glyphicon glyphicon-pencil"></i> View</a>';
 			$data[] = $row;
 		}
 		$output = array(
@@ -502,7 +502,7 @@ class User extends CI_Controller {
 			$row[] = $M_Realization->Date_Realization;
 			$row[] = $M_Realization->Document_Realization;
 			$row[] = $M_Realization->Id_User;
-			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_realization('."'".$M_Realization->Id_Realization."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="View" onclick="edit_realization('."'".$M_Realization->Id_Realization."'".')"><i class="glyphicon glyphicon-pencil"></i> View</a>';
 			$data[] = $row;
 		}
 		$output = array(

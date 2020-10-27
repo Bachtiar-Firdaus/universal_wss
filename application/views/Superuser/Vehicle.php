@@ -81,7 +81,7 @@
 			"serverSide": true,
 			"order": [], 
 			"ajax": {
-				"url": "<?php echo site_url('User/ajax_list1')?>",
+				"url": "<?php echo site_url('Superuser/ajax_list1')?>",
 				"type": "POST"
 			},
 			"columnDefs": [{
@@ -134,7 +134,7 @@
 		$('.form-group').removeClass('has-error');
 		$('.help-block').empty();
 		$.ajax({
-			url: "<?php echo site_url('User/ajax_edit1')?>/" + id,
+			url: "<?php echo site_url('Superuser/ajax_edit1')?>/" + id,
 			type: "GET",
 			dataType: "JSON",
 			success: function (data) {
@@ -174,9 +174,9 @@
 		var url;
 
 		if (save_method == 'add') {
-			url = "<?php echo site_url('User/ajax_add1')?>";
+			url = "<?php echo site_url('Superuser/ajax_add1')?>";
 		} else {
-			url = "<?php echo site_url('User/ajax_update1')?>";
+			url = "<?php echo site_url('Superuser/ajax_update1')?>";
 		}
 		var formData = new FormData($('#form')[0]);
 		$.ajax({
@@ -218,7 +218,7 @@
 		if (confirm('Are you sure delete this data?')) {
 			// ajax delete data to database
 			$.ajax({
-				url: "<?php echo site_url('User/ajax_delete1')?>/" + id,
+				url: "<?php echo site_url('Superuser/ajax_delete1')?>/" + id,
 				type: "POST",
 				dataType: "JSON",
 				success: function (data) {

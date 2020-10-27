@@ -120,6 +120,8 @@
 
 	});
 	function add() {
+		document.getElementById('btnSave_').style.display = "block";
+		document.getElementById('Dokumen_').style.display = "block";
 		save_method = 'add';
 		$('#form')[0].reset(); 
 		$('.form-group').removeClass('has-error'); 
@@ -131,6 +133,8 @@
 	}
 
 	function edit_realization(id) {
+		document.getElementById('btnSave_').style.display = "none";
+		document.getElementById('Dokumen_').style.display = "none";
 		save_method = 'update';
 		$('#form')[0].reset();
 		$('.form-group').removeClass('has-error');
@@ -355,7 +359,7 @@ function cek(){
 					</div>
 				</div>
 
-				<div class="input-group" style="margin-top: 10px;">
+				<div class="input-group" style="margin-top: 10px;" id="Dokumen_">
 					<label id="label-Document_Realization">Upload Document Realization </label>
 					<div>
 						<input name="Document_Realization" type="file">
@@ -380,7 +384,9 @@ function cek(){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reset()">Close</button>
+        <div id="btnSave_">
         <button type="button" class="btn btn-primary" id="btnSave" onclick="cek()">Save changes</button>
+   		</div>
       </div>
     </div>
   </div>

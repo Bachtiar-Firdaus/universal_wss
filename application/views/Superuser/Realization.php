@@ -83,7 +83,7 @@
 			"serverSide": true,
 			"order": [], 
 			"ajax": {
-				"url": "<?php echo site_url('User/ajax_list3')?>",
+				"url": "<?php echo site_url('Superuser/ajax_list3')?>",
 				"type": "POST"
 			},
 			"columnDefs": [{
@@ -136,7 +136,7 @@
 		$('.form-group').removeClass('has-error');
 		$('.help-block').empty();
 		$.ajax({
-			url: "<?php echo site_url('User/ajax_edit3')?>/" + id,
+			url: "<?php echo site_url('Superuser/ajax_edit3')?>/" + id,
 			type: "GET",
 			dataType: "JSON",
 			success: function (data) {
@@ -177,9 +177,9 @@
 		var url;
 
 		if (save_method == 'add') {
-			url = "<?php echo site_url('User/ajax_add3')?>";
+			url = "<?php echo site_url('Superuser/ajax_add3')?>";
 		} else {
-			url = "<?php echo site_url('User/ajax_update3')?>";
+			url = "<?php echo site_url('Superuser/ajax_update3')?>";
 		}
 		var formData = new FormData($('#form')[0]);
 		$.ajax({
@@ -221,7 +221,7 @@
 		if (confirm('Are you sure delete this data?')) {
 			// ajax delete data to database
 			$.ajax({
-				url: "<?php echo site_url('User/ajax_delete3')?>/" + id,
+				url: "<?php echo site_url('Superuser/ajax_delete3')?>/" + id,
 				type: "POST",
 				dataType: "JSON",
 				success: function (data) {
@@ -287,7 +287,7 @@ function cek(){
 }
 </script>
 
-<form method="post" accept-charset="utf-8" action="<?php echo base_url()?>User/Cetak_Realization">
+<form method="post" accept-charset="utf-8" action="<?php echo base_url()?>Superuser/Cetak_Realization">
     <div class="form-group">
         <div  style="width: 180px; float: left;">
             <input required name="First_Date" placeholder="First_Date" value="masukan First_Date" type="date" style="  float: left; width: 167px; margin: 5px; border-radius: 5px; height: 35px;px;">

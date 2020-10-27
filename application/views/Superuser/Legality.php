@@ -14,7 +14,6 @@
 							
     						<h2 class="text-center"><b>LEGALITY</b></h2>
 
-    						<button class="btn" onclick="add_legality()"><i class="glyphicon glyphicon-plus"></i>Tambah</button>
 							<button class="btn btn-custome1" id="btnn2" onclick="reload_table()"><i
 									class="glyphicon glyphicon-refresh"></i> REFRESH</button>
 						</div> <br />
@@ -91,7 +90,7 @@
 			"serverSide": true,
 			"order": [], 
 			"ajax": {
-				"url": "<?php echo site_url('User/ajax_list')?>",
+				"url": "<?php echo site_url('Superuser/ajax_list')?>",
 				"type": "POST"
 			},
 			"columnDefs": [{
@@ -144,7 +143,7 @@
 		$('.form-group').removeClass('has-error');
 		$('.help-block').empty();
 		$.ajax({
-			url: "<?php echo site_url('User/ajax_edit')?>/" + id,
+			url: "<?php echo site_url('Superuser/ajax_edit')?>/" + id,
 			type: "GET",
 			dataType: "JSON",
 			success: function (data) {
@@ -188,9 +187,9 @@
 		var url;
 
 		if (save_method == 'add') {
-			url = "<?php echo site_url('User/ajax_add')?>";
+			url = "<?php echo site_url('Superuser/ajax_add')?>";
 		} else {
-			url = "<?php echo site_url('User/ajax_update')?>";
+			url = "<?php echo site_url('Superuser/ajax_update')?>";
 		}
 		var formData = new FormData($('#form')[0]);
 		$.ajax({
@@ -232,7 +231,7 @@
 		if (confirm('Are you sure delete this data?')) {
 			// ajax delete data to database
 			$.ajax({
-				url: "<?php echo site_url('User/ajax_delete')?>/" + id,
+				url: "<?php echo site_url('Superuser/ajax_delete')?>/" + id,
 				type: "POST",
 				dataType: "JSON",
 				success: function (data) {
@@ -287,7 +286,7 @@ function cek(){
 </script>
 
 
-<form method="post" accept-charset="utf-8" action="<?php echo base_url()?>User/Cetak_Legality">
+<form method="post" accept-charset="utf-8" action="<?php echo base_url()?>Superuser/Cetak_Legality">
     <div class="form-group">
         <div  style="width: 180px; float: left;">
             <input required name="First_Date" placeholder="First_Date" value="masukan First_Date" type="date" style="  float: left; width: 167px; margin: 5px; border-radius: 5px; height: 35px;px;">
