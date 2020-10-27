@@ -372,7 +372,7 @@ function cek(){
 		{
 			if(cek_Tonase != "" && cek_Id_Car != "" && cek_Id_Legality != "")
 			{			
-				if(parseInt(cek_Tonase) <= parseInt(cek_Id_Car))
+				if(parseInt(cek_Tonase) <= parseInt(cek_Balance))
 				{
 				save();		
 				}
