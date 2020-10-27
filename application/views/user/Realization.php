@@ -14,7 +14,7 @@
 							
     						<h2 class="text-center"><b>REALIZATION</b></h2>
 
-    						<button class="btn" onclick="add()"><i class="glyphicon glyphicon-plus"></i>Tambah</button>
+    						<button class="btn" onclick="add()"><i class="glyphicon glyphicon-plus"></i>ADD</button>
 							<button class="btn btn-custome1" id="btnn2" onclick="reload_table()"><i
 									class="glyphicon glyphicon-refresh"></i> REFRESH</button>
 						</div> <br />
@@ -122,6 +122,9 @@
 	function add() {
 		document.getElementById('btnSave_').style.display = "block";
 		document.getElementById('Dokumen_').style.display = "block";
+		document.getElementById('Warehouse_Daily_Tonnage').readOnly = false;
+		document.getElementById('Information').readOnly = false;
+		document.getElementById('Date_Realization').readOnly = false;
 		save_method = 'add';
 		$('#form')[0].reset(); 
 		$('.form-group').removeClass('has-error'); 
@@ -135,6 +138,9 @@
 	function edit_realization(id) {
 		document.getElementById('btnSave_').style.display = "none";
 		document.getElementById('Dokumen_').style.display = "none";
+		document.getElementById('Warehouse_Daily_Tonnage').readOnly = true;
+		document.getElementById('Information').readOnly = true;
+		document.getElementById('Date_Realization').readOnly = true;
 		save_method = 'update';
 		$('#form')[0].reset();
 		$('.form-group').removeClass('has-error');
@@ -376,7 +382,7 @@ function cek(){
 				</div>	
 			    <div class="form-group">
 					<label>Information</label>
-					<input type="text" class="form-control" id="Information" name="Information" placeholder="Masukan Information">
+					<textarea class="form-control" id="Information" name="Information" placeholder="Masukan Information"></textarea> 
 				</div>
         	</div>
         	</div>

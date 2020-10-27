@@ -14,7 +14,7 @@
 							
     						<h2 class="text-center"><b>VEHICLE</b></h2>
 
-    						<button class="btn" onclick="add()"><i class="glyphicon glyphicon-plus"></i>Tambah</button>
+    						<button class="btn" onclick="add()"><i class="glyphicon glyphicon-plus"></i>ADD</button>
 							<button class="btn btn-custome1" id="btnn2" onclick="reload_table()"><i
 									class="glyphicon glyphicon-refresh"></i> REFRESH</button>
 						</div> <br />
@@ -121,6 +121,9 @@
 
 		document.getElementById('btnSave_').style.display = "block";
 		document.getElementById('Dokumen_').style.display = "block";
+		document.getElementById('Number_Sim').readOnly = false;
+		document.getElementById('Number_Police').readOnly = false;
+		document.getElementById('Name').readOnly = false;
 		save_method = 'add';
 		$('#form')[0].reset(); 
 		$('.form-group').removeClass('has-error'); 
@@ -134,6 +137,9 @@
 	function edit_vehicle(id) {
 		document.getElementById('btnSave_').style.display = "none";
 		document.getElementById('Dokumen_').style.display = "none";
+		document.getElementById('Number_Sim').readOnly = true;
+		document.getElementById('Number_Police').readOnly = true;
+		document.getElementById('Name').readOnly = true;
 		save_method = 'update';
 		$('#form')[0].reset();
 		$('.form-group').removeClass('has-error');

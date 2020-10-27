@@ -14,7 +14,7 @@
 							
     						<h2 class="text-center"><b>LEGALITY</b></h2>
 
-    						<button class="btn" onclick="add_legality()"><i class="glyphicon glyphicon-plus"></i>Tambah</button>
+    						<button class="btn" onclick="add_legality()"><i class="glyphicon glyphicon-plus"></i>ADD</button>
 							<button class="btn btn-custome1" id="btnn2" onclick="reload_table()"><i
 									class="glyphicon glyphicon-refresh"></i> REFRESH</button>
 						</div> <br />
@@ -130,6 +130,14 @@
 	function add_legality() {
 		document.getElementById('btnSave_').style.display = "block";
 		document.getElementById('Dokumen_').style.display = "block";
+		document.getElementById('Number').readOnly = false;
+		document.getElementById('Transportir').readOnly = false;
+		document.getElementById('Customer').readOnly = false;
+		document.getElementById('Party').readOnly = false;
+		document.getElementById('Balance').readOnly = false;
+		document.getElementById('Commodity').readOnly = false;
+		document.getElementById('Purpose_of_Unloading').readOnly = false;
+		document.getElementById('Date_Legality').readOnly = false;
 		save_method = 'add';
 		$('#form')[0].reset(); 
 		$('.form-group').removeClass('has-error'); 
@@ -143,6 +151,14 @@
 	function edit_legality(id) {
 		document.getElementById('btnSave_').style.display = "none";
 		document.getElementById('Dokumen_').style.display = "none";
+		document.getElementById('Number').readOnly = true;
+		document.getElementById('Transportir').readOnly = true;
+		document.getElementById('Customer').readOnly = true;
+		document.getElementById('Party').readOnly = true;
+		document.getElementById('Balance').readOnly = true;
+		document.getElementById('Commodity').readOnly = true;
+		document.getElementById('Purpose_of_Unloading').readOnly = true;
+		document.getElementById('Date_Legality').readOnly = true;
 		save_method = 'update';
 		$('#form')[0].reset();
 		$('.form-group').removeClass('has-error');
@@ -163,7 +179,7 @@
 				$('[name="Date_Legality"]').val(data.Date_Legality);
 				$('[name="Id_User"]').val(data.Id_User);
 				$('#modal_form').modal('show'); 
-				$('.modal-title').text('Edit Legality');
+				$('.modal-title').text('View Legality');
 				$('#Document_Legality-preview').show();
 				if (data.Document_Legality) {
 					$('#label-Document_Legality').text('Change Document_Legality');

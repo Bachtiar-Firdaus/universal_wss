@@ -13,7 +13,6 @@
 						<div class="dropdown">
 							
     						<h2 class="text-center"><b>LEGALITY</b></h2>
-
 							<button class="btn btn-custome1" id="btnn2" onclick="reload_table()"><i
 									class="glyphicon glyphicon-refresh"></i> REFRESH</button>
 						</div> <br />

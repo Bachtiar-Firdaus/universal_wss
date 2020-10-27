@@ -511,7 +511,7 @@ class Superuser extends CI_Controller {
 			$row[] = $M_Realization->Document_Realization;
 			$row[] = $M_Realization->Id_User;
 			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_realization('."'".$M_Realization->Id_Realization."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-				<a class="btn btn-sm" href="javascript:void(0)" title="Hapus" onclick="delete_activities('."'".$M_Realization->Id_Realization."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+				<a class="btn btn-sm" href="javascript:void(0)" title="Hapus" onclick="delete_realization('."'".$M_Realization->Id_Realization."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
 			$data[] = $row;
 		}
 		$output = array(
