@@ -13,7 +13,7 @@ class Superuser extends CI_Controller {
 	}
 	public function index()
 	{	
-		$data['contents'] = 'Superuser/Legality';
+		$data['contents'] = 'Superuser/Dashboard';
 		$this->load->view('Superuser/index',$data);
 	}
 
@@ -44,10 +44,10 @@ class Superuser extends CI_Controller {
 			$row[] = $M_Legality->Document_Legality;
 
 			if($M_Legality->Party <= $M_Legality->Balance){
-				$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="Edit" onclick="edit_legality('."'".$M_Legality->Id_Legality."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-		  				    <a class="btn btn-sm" href="javascript:void(0)" title="Hapus" onclick="delete_legality('."'".$M_Legality->Id_Legality."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+				$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_legality('."'".$M_Legality->Id_Legality."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+		  				    <a class="btn btn-sm " href="javascript:void(0)" title="Hapus" onclick="delete_legality('."'".$M_Legality->Id_Legality."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
 			} else{
-				$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="Edit" onclick="edit_legality('."'".$M_Legality->Id_Legality."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+				$row[] = '<a class="btn btn-smbtn btn-sm btn-custome" href="javascript:void(0)" title="Edit" onclick="edit_legality('."'".$M_Legality->Id_Legality."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
 			}
 
 			$data[] = $row;

@@ -52,6 +52,7 @@ a,span:hover{
 
 </style>
 
+
 <div class="border-right" id="sidebar-wrapper" style="background-color: #39C0CC;">
       <div class="sidebar-heading" style="background-color: white;"><img src="<?php echo base_url('assets/image/logo.png') ?>"></div>
       <div class="list-group list-group-flush" style="background-color: #39C0CC;     border-top: 2px solid #ffffff69;
@@ -63,47 +64,30 @@ a,span:hover{
           <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
           Dashboard
         </a>
+
+        <a href="<?php echo site_url() ?>Administrator/Manage_Accounts" class="list-group-item list-group-item-action ahover">
+          <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
+          Manage Accounts
+        </a>
+    
+
+        <a href="<?php echo site_url() ?>Administrator/Legality" class="list-group-item list-group-item-action ahover">
+          <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
+          Legality
+        </a>
       
-        <a href="<?php echo site_url() ?>Administrator/transportir" class="list-group-item list-group-item-action ahover">
+        <a href="<?php echo site_url() ?>Administrator/Vehicle" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">commute</span>
           Vehicle
         </a>
         
-        <a href="<?php echo site_url() ?>Administrator/car" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">arrow_forward</span>
-          Legality
-        </a>
-
-        <a href="<?php echo site_url() ?>Administrator/realisasi" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">arrow_forward</span>
+        <a href="<?php echo site_url() ?>Administrator/Activities" class="list-group-item list-group-item-action ahover">
+          <span class="material-icons" style="vertical-align: bottom;">commute</span>
           Activities
         </a>
-
-        
-
-       
-
-<li class="nav-item dropdown" style="list-style: none; margin-top: 32px; border-bottom: 1px solid #ffffff69;">
-
-<a class="nav-link dropdown-toggle ahover" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; margin-left: 7px;
-margin-top: -27px;">
-    <span class="material-icons" style="vertical-align: bottom;">speaker_notes</span>
-    Help
-</a>
-
-<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #39C0CC; color: white; border: none; left: 10">
-<a class="dropdown-item ahover-d" href="<?php echo site_url() ?>Administrator/help_transportir" style="color: white;">Help Transportir</a>
-<a class="dropdown-item ahover-d" href="<?php echo site_url() ?>Administrator/help_car" style="color: white;">Help Car</a>
-<a class="dropdown-item ahover-d" href="<?php echo site_url() ?>Administrator/help_realisasi" style="color: white;">Help Realisasi</a>
-
-
-
-</div>
-</li>
-
-
-
-
-
+        <a href="<?php echo site_url() ?>Administrator/Realization" class="list-group-item list-group-item-action ahover">
+          <span class="material-icons" style="vertical-align: bottom;">commute</span>
+          Realization
+        </a>
       </div>
     </div>
