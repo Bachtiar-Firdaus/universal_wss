@@ -117,25 +117,9 @@
 		});
 
 	});
-	function add() {
-		document.getElementById('btnSave_').style.display = "block";
-		document.getElementById('Dokumen_').style.display = "block";
-		document.getElementById('Warehouse_Daily_Tonnage').readOnly = false;
-		document.getElementById('Information').readOnly = false;
-		document.getElementById('Date_Realization').readOnly = false;
-		save_method = 'add';
-		$('#form')[0].reset(); 
-		$('.form-group').removeClass('has-error'); 
-		$('.help-block').empty(); 
-		$('#modal_form').modal('show'); 
-		$('.modal-title').text('Add Realization'); 
-		$('#Document_Realization-preview').hide();
-		$('#label-Document_Realization').text('Upload dokumen');
-	}
+
 
 	function edit_realization(id) {
-		document.getElementById('btnSave_').style.display = "none";
-		document.getElementById('Dokumen_').style.display = "none";
 		document.getElementById('Warehouse_Daily_Tonnage').readOnly = true;
 		document.getElementById('Information').readOnly = true;
 		document.getElementById('Date_Realization').readOnly = true;
@@ -179,120 +163,6 @@
 		table.ajax.reload(null, false); //reload datatable ajax 
 	}
 
-	function save() {
-		$('#btnSave').text('saving...'); //change button text
-		$('#btnSave').attr('disabled', true); //set button disable 
-		var url;
-
-		if (save_method == 'add') {
-			url = "<?php echo site_url('Administrator/ajax_add3')?>";
-		} else {
-			url = "<?php echo site_url('Administrator/ajax_update3')?>";
-		}
-		var formData = new FormData($('#form')[0]);
-		$.ajax({
-			url: url,
-			type: "POST",
-			data: formData,
-			contentType: false,
-			processData: false,
-			dataType: "JSON",
-			success: function (data) {
-
-				if (data.status) //if success close modal and reload ajax table
-				{
-					$('#modal_form').modal('hide');
-					reload_table();
-				} else {
-					for (var i = 0; i < data.inputerror.length; i++) {
-						$('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(
-						'has-error'); //select parent twice to select div form-group class and add has-error class
-						$('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[
-						i]); //select span help-block class set text error string
-					}
-				}
-				$('#btnSave').text('save'); //change button text
-				$('#btnSave').attr('disabled', false); //set button enable 
-
-
-			},
-			error: function (jqXHR, textStatus, errorThrown) {
-				alert('Error adding / update data');
-				$('#btnSave').text('save'); //change button text
-				$('#btnSave').attr('disabled', false); //set button enable 
-
-			}
-		});
-	}
-
-	function delete_realization(id) {
-		if (confirm('Are you sure delete this data?')) {
-			// ajax delete data to database
-			$.ajax({
-				url: "<?php echo site_url('Administrator/ajax_delete3')?>/" + id,
-				type: "POST",
-				dataType: "JSON",
-				success: function (data) {
-					//if success reload ajax table
-					$('#modal_form').modal('hide');
-					reload_table();
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					alert('Error deleting data');
-				}
-			});
-
-		}
-	}
-
-
-    function autofill(){
-        var Date_Realization = document.getElementById('Date_Realization').value;
-        $.ajax({
-                       url:"<?php echo base_url();?>User/AC_Realization",
-                       data:'&Date_Realization='+Date_Realization,
-                       success:function(data){
-                           var hasil1 = JSON.parse(data);  
-          
-      $.each(hasil1, function(key,val){ 
-                           document.getElementById('Date_Realization').value=val.Date_Activities;
-                           document.getElementById('WSS_Daily_Tonnage').value=val.Tonase;
-                               	
-        });
-      }
-                   });
-                  
-    }
-function cek(){
-		var cek_Date_Realization = document.getElementById("Date_Realization").value;
-		var cek_WSS_Daily_Tonnage = document.getElementById("WSS_Daily_Tonnage").value;
-		var cek_Warehouse_Daily_Tonnage = document.getElementById("Warehouse_Daily_Tonnage").value;
-		var cek_Information = document.getElementById("Information").value;
-		if(save_method == 'add')
-		{
-			if(cek_Date_Realization != "" && cek_WSS_Daily_Tonnage != "" && cek_Warehouse_Daily_Tonnage != "" && cek_Information != "")
-			{			
-				save();		
-			}
-			else 
-			{
-	   		 	swal("LENGKAPI FIELD");
-			}
-		}		
-		else
-		{
-			if(cek_Date_Realization != "" && cek_WSS_Daily_Tonnage != "" && cek_Warehouse_Daily_Tonnage != "" && cek_Information != "")
-			{
-			save();		
-			}
-			else 
-			{
-	   		 	swal("LENGKAPI FIELD");
-			}
-		}
-
-
-}
 </script>
 
 <form method="post" accept-charset="utf-8" action="<?php echo base_url()?>User/Cetak_Realization">
@@ -344,29 +214,10 @@ function cek(){
 					<input type="number" class="form-control" id="WSS_Daily_Tonnage" name="WSS_Daily_Tonnage" placeholder="Ditentukan Sistem" readonly>
 				</div>
 
-	  			<datalist id="data2">
-				    <?php
-				    foreach ($record2->result() as $c)
-				    {
-				        echo "<option value='$c->Date_Activities'></option>";
-				    }
-				    					    					    
-				    ?>
-				</datalist> 
-
-
   				<div class="input-group" id="Document_Realization-preview">
 					<label>Document Realization</label>
 					<div>
 						(No dokumen Realization)
-						<span class="help-block"></span>
-					</div>
-				</div>
-
-				<div class="input-group" style="margin-top: 10px;" id="Dokumen_">
-					<label id="label-Document_Realization">Upload Document Realization </label>
-					<div>
-						<input name="Document_Realization" type="file">
 						<span class="help-block"></span>
 					</div>
 				</div>
@@ -388,9 +239,6 @@ function cek(){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reset()">Close</button>
-        <div id="btnSave_">
-        <button type="button" class="btn btn-primary" id="btnSave" onclick="cek()">Save changes</button>
-   		</div>
       </div>
     </div>
   </div>

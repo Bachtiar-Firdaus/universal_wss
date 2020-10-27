@@ -115,25 +115,7 @@
 		});
 
 	});
-	function add() {
-
-		document.getElementById('btnSave_').style.display = "block";
-		document.getElementById('Dokumen_').style.display = "block";
-		document.getElementById('Number_Sim').readOnly = false;
-		document.getElementById('Number_Police').readOnly = false;
-		document.getElementById('Name').readOnly = false;
-		save_method = 'add';
-		$('#form')[0].reset(); 
-		$('.form-group').removeClass('has-error'); 
-		$('.help-block').empty(); 
-		$('#modal_form').modal('show'); 
-		$('.modal-title').text('Add Transportir'); 
-		$('#Document_SIM_STNK-preview').hide();
-		$('#label-Document_SIM_STNK').text('Upload dokumen');
-	}
-
-	function edit_vehicle(id) {
-		document.getElementById('btnSave_').style.display = "none";
+	function view_vehicle(id) {
 		document.getElementById('Dokumen_').style.display = "none";
 		document.getElementById('Number_Sim').readOnly = true;
 		document.getElementById('Number_Police').readOnly = true;
@@ -177,100 +159,6 @@
 		table.ajax.reload(null, false); //reload datatable ajax 
 	}
 
-	function save() {
-		$('#btnSave').text('saving...'); //change button text
-		$('#btnSave').attr('disabled', true); //set button disable 
-		var url;
-
-		if (save_method == 'add') {
-			url = "<?php echo site_url('Administrator/ajax_add1')?>";
-		} else {
-			url = "<?php echo site_url('Administrator/ajax_update1')?>";
-		}
-		var formData = new FormData($('#form')[0]);
-		$.ajax({
-			url: url,
-			type: "POST",
-			data: formData,
-			contentType: false,
-			processData: false,
-			dataType: "JSON",
-			success: function (data) {
-
-				if (data.status) //if success close modal and reload ajax table
-				{
-					$('#modal_form').modal('hide');
-					reload_table();
-				} else {
-					for (var i = 0; i < data.inputerror.length; i++) {
-						$('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(
-						'has-error'); //select parent twice to select div form-group class and add has-error class
-						$('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[
-						i]); //select span help-block class set text error string
-					}
-				}
-				$('#btnSave').text('save'); //change button text
-				$('#btnSave').attr('disabled', false); //set button enable 
-
-
-			},
-			error: function (jqXHR, textStatus, errorThrown) {
-				alert('Error adding / update data');
-				$('#btnSave').text('save'); //change button text
-				$('#btnSave').attr('disabled', false); //set button enable 
-
-			}
-		});
-	}
-
-	function delete_vehicle(id) {
-		if (confirm('Are you sure delete this data?')) {
-			// ajax delete data to database
-			$.ajax({
-				url: "<?php echo site_url('Administrator/ajax_delete1')?>/" + id,
-				type: "POST",
-				dataType: "JSON",
-				success: function (data) {
-					//if success reload ajax table
-					$('#modal_form').modal('hide');
-					reload_table();
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					alert('Error deleting data');
-				}
-			});
-
-		}
-	}
-function cek(){
-		var cek_Number_Sim = document.getElementById("Number_Sim").value;
-		var cek_Number_Police = document.getElementById("Number_Police").value;
-		var cek_Name = document.getElementById("Name").value;
-		if(save_method == 'add')
-		{
-			if(cek_Number_Sim != "" && cek_Number_Police != "" && cek_Name != "")
-			{			
-				save();		
-			}
-			else 
-			{
-	   		 	swal("LENGKAPI FIELD");
-			}
-		}		
-		else
-		{
-			if(cek_Number_Sim != "" && cek_Number_Police != "" && cek_Name != "")
-			{
-			save();		
-			}
-			else 
-			{
-	   		 	swal("LENGKAPI FIELD");
-			}
-		}
-
-
-}
 </script>
 
 <!-- modal ane -->
@@ -337,9 +225,6 @@ function cek(){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reset()">Close</button>
-        <div id="btnSave_">
-        <button type="button" class="btn btn-primary" id="btnSave" onclick="cek()">Save changes</button>
-  		</div>
       </div>
     </div>
   </div>

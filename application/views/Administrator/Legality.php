@@ -125,29 +125,8 @@
 		});
 
 	});
-	function add_legality() {
-		document.getElementById('btnSave_').style.display = "block";
-		document.getElementById('Dokumen_').style.display = "block";
-		document.getElementById('Number').readOnly = false;
-		document.getElementById('Transportir').readOnly = false;
-		document.getElementById('Customer').readOnly = false;
-		document.getElementById('Party').readOnly = false;
-		document.getElementById('Balance').readOnly = false;
-		document.getElementById('Commodity').readOnly = false;
-		document.getElementById('Purpose_of_Unloading').readOnly = false;
-		document.getElementById('Date_Legality').readOnly = false;
-		save_method = 'add';
-		$('#form')[0].reset(); 
-		$('.form-group').removeClass('has-error'); 
-		$('.help-block').empty(); 
-		$('#modal_form').modal('show'); 
-		$('.modal-title').text('Add Legality'); 
-		$('#Document_Legality-preview').hide();
-		$('#label-Document_Legality').text('Upload dokumen');
-	}
 
-	function edit_legality(id) {
-		document.getElementById('btnSave_').style.display = "none";
+	function view_legality(id) {
 		document.getElementById('Dokumen_').style.display = "none";
 		document.getElementById('Number').readOnly = true;
 		document.getElementById('Transportir').readOnly = true;
@@ -198,110 +177,7 @@
 
 	function reload_table() {
 		table.ajax.reload(null, false); //reload datatable ajax 
-	}
-
-	function save() {
-		$('#btnSave').text('saving...'); //change button text
-		$('#btnSave').attr('disabled', true); //set button disable 
-		var url;
-
-		if (save_method == 'add') {
-			url = "<?php echo site_url('Administrator/ajax_add')?>";
-		} else {
-			url = "<?php echo site_url('Administrator/ajax_update')?>";
-		}
-		var formData = new FormData($('#form')[0]);
-		$.ajax({
-			url: url,
-			type: "POST",
-			data: formData,
-			contentType: false,
-			processData: false,
-			dataType: "JSON",
-			success: function (data) {
-
-				if (data.status) //if success close modal and reload ajax table
-				{
-					$('#modal_form').modal('hide');
-					reload_table();
-				} else {
-					for (var i = 0; i < data.inputerror.length; i++) {
-						$('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(
-						'has-error'); //select parent twice to select div form-group class and add has-error class
-						$('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[
-						i]); //select span help-block class set text error string
-					}
-				}
-				$('#btnSave').text('save'); //change button text
-				$('#btnSave').attr('disabled', false); //set button enable 
-
-
-			},
-			error: function (jqXHR, textStatus, errorThrown) {
-				alert('Error adding / update data');
-				$('#btnSave').text('save'); //change button text
-				$('#btnSave').attr('disabled', false); //set button enable 
-
-			}
-		});
-	}
-
-	function delete_legality(id) {
-		if (confirm('Are you sure delete this data?')) {
-			// ajax delete data to database
-			$.ajax({
-				url: "<?php echo site_url('Administrator/ajax_delete')?>/" + id,
-				type: "POST",
-				dataType: "JSON",
-				success: function (data) {
-					//if success reload ajax table
-					$('#modal_form').modal('hide');
-					reload_table();
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					alert('Error deleting data');
-				}
-			});
-
-		}
-	}
-
-
-
-function cek(){
-		var cek_Party = document.getElementById("Party").value;
-		var cek_Transportir = document.getElementById("Transportir").value;
-		var cek_Customer = document.getElementById("Customer").value;
-		var cek_Date_Legality = document.getElementById("Date_Legality").value;
-		var cek_Number = document.getElementById("Number").value;
-		var cek_Balance = document.getElementById("Balance").value;
-		var cek_Commodity = document.getElementById("Commodity").value;
-		var cek_Purpose_of_Unloading = document.getElementById("Purpose_of_Unloading").value;
-		if(save_method == 'add')
-		{
-			if(cek_Party != "" && cek_Transportir != "" && cek_Customer != "" && cek_Date_Legality != "" && cek_Number != "" && cek_Balance != "" && cek_Commodity != "" && cek_Purpose_of_Unloading != "")
-			{			
-				save();		
-			}
-			else 
-			{
-	   		 	swal("LENGKAPI FIELD");
-			}
-		}		
-		else
-		{
-			if(cek_Party != "" && cek_Transportir != "" && cek_Customer != "" && cek_Date_Legality != "" && cek_Number != "" && cek_Balance != "" && cek_Commodity != "" && cek_Purpose_of_Unloading != "")
-			{
-			save();		
-			}
-			else 
-			{
-	   		 	swal("LENGKAPI FIELD");
-			}
-		}
-
-
-}
+	}	
 </script>
 
 
@@ -407,9 +283,6 @@ function cek(){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reset()">Close</button>
-        <div id="btnSave_">
-        <button type="button" class="btn btn-primary" id="btnSave" onclick="cek()">Save changes</button>
-    	</div>
       </div>
     </div>
   </div>

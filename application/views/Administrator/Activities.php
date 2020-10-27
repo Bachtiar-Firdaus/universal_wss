@@ -123,40 +123,13 @@
 
 	});
 
-
-	function add() {
-		document.getElementById('Tonase').readOnly = false;
-		document.getElementById('Id_Legality').readOnly = false;
-		document.getElementById('Id_Car').readOnly = false;
-		document.getElementById('btnSave_').style.display = "block";
-		document.getElementById('btnSave_1').style.display = "none";
-		document.getElementById('bag1').style.display = "block";
-		document.getElementById('bag2').style.display = "block";
-		document.getElementById('bag3').style.display = "block";
-		document.getElementById('ses1').style.display = "block";
-		document.getElementById('ses2').style.display = "block";
-		document.getElementById('bag4').style.display = "none";
-		save_method = 'add';
-		$('#form')[0].reset(); 
-		$('.form-group').removeClass('has-error'); 
-		$('.help-block').empty(); 
-		$('#modal_form').modal('show'); 
-		$('.modal-title').text('Add Activities'); 
-		$('#Document_Delivery_Order-preview').hide();
-		$('#label-Document_Delivery_Order').text('Upload dokumen');
-	}
-
-	function edit_activities(id) {		
+	function view_activities(id) {		
 		document.getElementById('Id_Legality').readOnly = true;
 		document.getElementById('Id_Car').readOnly = true;
 		document.getElementById('Tonase').readOnly = true;
-		document.getElementById('btnSave_').style.display = "block";
-		document.getElementById('btnSave_1').style.display = "none";
 		document.getElementById('bag1').style.display = "block";
 		document.getElementById('bag2').style.display = "block";
 		document.getElementById('bag3').style.display = "block";
-		document.getElementById('ses1').style.display = "none";
-		document.getElementById('ses2').style.display = "none";
 		document.getElementById('bag4').style.display = "none";
 		save_method = 'update';
 		$('#form')[0].reset();
@@ -177,7 +150,7 @@
 				$('[name="Id_Car"]').val(data.Id_Car);
 
 				$('#modal_form').modal('show'); 
-				$('.modal-title').text('Edit ACTIVITIES');
+				$('.modal-title').text('View Activities');
 				$('#Document_Delivery_Order-preview').show();
 				if (data.Document_Delivery_Order) {
 					$('#label-Document_Delivery_Order').text('Change Document_Delivery_Order');
@@ -200,8 +173,6 @@
 		document.getElementById('Id_Legality').readOnly = false;
 		document.getElementById('Id_Car').readOnly = false;
 		document.getElementById('Tonase').readOnly = false;
-		document.getElementById('btnSave_').style.display = "none";
-		document.getElementById('btnSave_1').style.display = "block";
 		document.getElementById('bag1').style.display = "none";
 		document.getElementById('bag2').style.display = "none";
 		document.getElementById('bag3').style.display = "none";
@@ -218,7 +189,7 @@
 				$('[name="Id_Activities"]').val(data.Id_Activities);
 
 				$('#modal_form').modal('show'); 
-				$('.modal-title').text('Konfirmasi');
+				$('.modal-title').text('View Konfirmasi');
 				$('#Document_Out-preview').show();
 				if (data.Document_Out) {
 					$('#label-Document_Out').text('Change Document_Out');
@@ -242,54 +213,6 @@
 		table.ajax.reload(null, false); //reload datatable ajax 
 	}
 
-	function save() {
-		$('#btnSave').text('saving...'); //change button text
-		$('#btnSave').attr('disabled', true); //set button disable 
-		var url;
-
-		if (save_method == 'add') {
-			url = "<?php echo site_url('Administrator/ajax_add2')?>";
-		}
-		else if (save_method == 'update_konfirmasi') {
-			url = "<?php echo site_url('Administrator/ajax_update_konfirmasi2')?>";
-		} else {
-			url = "<?php echo site_url('Administrator/ajax_update2')?>";
-		}
-		var formData = new FormData($('#form')[0]);
-		$.ajax({
-			url: url,
-			type: "POST",
-			data: formData,
-			contentType: false,
-			processData: false,
-			dataType: "JSON",
-			success: function (data) {
-
-				if (data.status) //if success close modal and reload ajax table
-				{
-					$('#modal_form').modal('hide');
-					reload_table();
-				} else {
-					for (var i = 0; i < data.inputerror.length; i++) {
-						$('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(
-						'has-error'); //select parent twice to select div form-group class and add has-error class
-						$('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[
-						i]); //select span help-block class set text error string
-					}
-				}
-				$('#btnSave').text('save'); //change button text
-				$('#btnSave').attr('disabled', false); //set button enable 
-
-
-			},
-			error: function (jqXHR, textStatus, errorThrown) {
-				alert('Error adding / update data');
-				$('#btnSave').text('save'); //change button text
-				$('#btnSave').attr('disabled', false); //set button enable 
-
-			}
-		});
-	}
 
 	function Cetak_Viat(id) {
 		if (confirm('Are you sure print this data?')) {
@@ -297,107 +220,6 @@
 		}
 	}
 
-	function delete_activities(id) {
-		if (confirm('Are you sure delete this data?')) {
-			// ajax delete data to database
-			$.ajax({
-				url: "<?php echo site_url('Administrator/ajax_delete2')?>/" + id,
-				type: "POST",
-				dataType: "JSON",
-				success: function (data) {
-					//if success reload ajax table
-					$('#modal_form').modal('hide');
-					reload_table();
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					alert('Error deleting data');
-				}
-			});
-
-		}
-	}
-
-    function autofill1(){
-        var Id_Legality = document.getElementById('Id_Legality').value;
-        $.ajax({
-                       url:"<?php echo base_url();?>User/AC_Legality",
-                       data:'&Id_Legality='+Id_Legality,
-                       success:function(data){
-                           var hasil1 = JSON.parse(data);  
-          
-      $.each(hasil1, function(key,val){ 
-                           document.getElementById('Id_Legality').value=val.Id_Legality;
-                           document.getElementById('Number').value=val.Number;
-                           document.getElementById('Transportir').value=val.Transportir;  
-                           document.getElementById('Customer').value=val.Customer;
-                           document.getElementById('Party').value=val.Party;
-                           document.getElementById('Balance').value=val.Balance;
-                           document.getElementById('Commodity').value=val.Commodity; 
-                           document.getElementById('Purpose_of_Unloading').value=val.Purpose_of_Unloading; 
-                           document.getElementById('Date_Legality').value=val.Date_Legality; 
-                               	
-        });
-      }
-                   });
-                  
-    }
-
-    function autofill2(){
-        var Id_Car =document.getElementById('Id_Car').value;
-        $.ajax({
-                       url:"<?php echo base_url();?>User/AC_Vehicle",
-                       data:'&Id_Car='+Id_Car,
-                       success:function(data){
-                           var hasil2 = JSON.parse(data);  
-          
-      $.each(hasil2, function(key,val){ 
-                           document.getElementById('Id_Car').value=val.Id_Car;
-                           document.getElementById('Number_Sim').value=val.Number_Sim;
-                           document.getElementById('Number_Police').value=val.Number_Police;  
-                           document.getElementById('Name').value=val.Name;             	
-        });
-      }
-                   });
-                  
-    }
-
-function cek(){
-		var cek_Tonase = document.getElementById("Tonase").value;
-		var cek_Balance = document.getElementById("Balance").value;
-		var cek_Id_Car = document.getElementById("Id_Car").value;
-		var cek_Id_Legality = document.getElementById("Id_Legality").value;
-		if(save_method == 'add')
-		{
-			if(cek_Tonase != "" && cek_Id_Car != "" && cek_Id_Legality != "")
-			{			
-				if(parseInt(cek_Tonase) <= parseInt(cek_Id_Car))
-				{
-				save();		
-				}
-				else 
-				{
-		   		 	swal("TONASE MELEBIHI PARTY YANG DITENTUKAN");
-				}	
-			}
-			else 
-			{
-	   		 	swal("LENGKAPI FIELD");
-			}
-		}		
-		else
-		{
-			if(cek_Tonase != "" && cek_Id_Car != "" && cek_Id_Legality != "")
-			{
-			save();		
-			}
-			else 
-			{
-	   		 	swal("LENGKAPI FIELD");
-			}
-		}
-
-
-}
 
 </script>
 
@@ -446,30 +268,6 @@ function cek(){
 	    			<label>Id Vehicle</label>
 	    			<input list="data2" class="form-control" id="Id_Car" name="Id_Car" placeholder="Masukan Id_Car" onchange="return autofill2();" autocomplete="off">
 				</div>
-				<div id="ses1">
-				<div class="form-group">
-					<label>Number Sim</label>
-					<input type="number" class="form-control" id="Number_Sim" name="Number_Sim" placeholder="Masukan Number_Sim" readonly>
-				</div>
-        		<div class="form-group">
-					<label>Number Police</label>
-					<input type="text" class="form-control" id="Number_Police" name="Number_Police" placeholder="Masukan Number_Police" readonly>
-				</div>	
-			    <div class="form-group">
-					<label>Name</label>
-					<input type="text" class="form-control" id="Name" name="Name" placeholder="Masukan Name" readonly>
-				</div>
-				</div>
-
-  			<datalist id="data2">
-			    <?php
-			    foreach ($record2->result() as $c)
-			    {
-			        echo "<option value='$c->Id_Car'>Number Sim $c->Number_Sim & Number Police $c->Number_Police</option>";
-			    }
-			    					    					    
-			    ?>
-			</datalist> 
 
         	</div>
 
@@ -480,53 +278,7 @@ function cek(){
 	    			<input list="data1" class="form-control" id="Id_Legality" name="Id_Legality" placeholder="Masukan Id_Legality" onchange="return autofill1();" autocomplete="off">
 				</div>
 
-				<div id="ses2">
-				<div class="form-group">
-					<label>Number</label>
-					<input type="number" class="form-control" id="Number" name="Number" placeholder="Masukan Number" readonly>
-				</div>	
-				<div class="form-group">
-					<label>Party</label>
-					<input type="number" class="form-control" id="Party" name="Party" placeholder="Masukan Party" readonly>
-				</div>
-				<div class="form-group">
-	    			<label>Balance</label>
-	    			<input type="text" class="form-control" id="Balance" name="Balance" placeholder="Masukan Balance" readonly>
-				</div>
-				<div class="form-group">
-	    			<label>Commodity</label>
-	    			<input type="text" class="form-control" id="Commodity" name="Commodity" placeholder="Masukan Commodity" readonly>
-				</div>
 
-				<div class="form-group" >
-					<label>Purpose of Unloading</label>
-					<input type="text" class="form-control" id="Purpose_of_Unloading" name="Purpose_of_Unloading" placeholder="Masukan Purpose of Unloading" readonly>
-				</div>
-			    <div class="form-group">
-					<label>Transportir</label>
-					<input type="text" class="form-control" id="Transportir" name="Transportir" placeholder="Masukan Transportir" readonly>
-				</div>	
-			    <div class="form-group">
-					<label>Customer</label>
-					<input type="Customer" class="form-control" id="Customer" name="Customer" placeholder="Masukan Customer" readonly>
-				</div>
-
-				<div class="form-group">
-					<label>Date Legality</label>
-					<input type="Date" class="form-control" id="Date_Legality" name="Date_Legality" placeholder="Masukan Date_Legality" readonly>
-				</div>
-
-				</div>
-
-  			<datalist id="data1">
-			    <?php
-			    foreach ($record1->result() as $b)
-			    {
-			        echo "<option value='$b->Id_Legality'>Number $b->Number & Balance $b->Balance</option>";
-			    }
-			    					    					    
-			    ?>
-			</datalist> 
         	</div>
 
         	<div class="col-md-12" id="bag3">
@@ -548,13 +300,6 @@ function cek(){
 					</div>
 				</div>
 
-				<div class="input-group" style="margin-top: 10px;">
-					<label id="label-Document_Delivery_Order">Upload Dokumen Delivery Order </label>
-					<div>
-						<input name="Document_Delivery_Order" type="file">
-						<span class="help-block"></span>
-					</div>
-				</div>
 			</div>
         	<div class="col-md-12" id="bag4">
         		<div class="input-group" id="Document_Out-preview">
@@ -565,25 +310,12 @@ function cek(){
 					</div>
 				</div>
 
-				<div class="input-group" style="margin-top: 10px;">
-					<label id="label-Document_Out">Upload Dokumen </label>
-					<div>
-						<input name="Document_Out" type="file">
-						<span class="help-block"></span>
-					</div>
-				</div>
         	</div>
         	</div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reset()">Close</button>
-        <div id="btnSave_">
-        <button type="button" class="btn btn-primary" id="btnSave" onclick="cek()">Save changes</button>
-		</div>
-		<div id="btnSave_1">
-        <button type="button" class="btn btn-primary" id="btnSave" onclick="save()">Konfirmasi</button>
-    	</div>
       </div>
     </div>
   </div>
