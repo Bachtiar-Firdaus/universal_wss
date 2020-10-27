@@ -64,18 +64,16 @@ a,span:hover{
           Dashboard
         </a>
 
-
         <a href="<?php echo site_url() ?>User/Legality" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
           Legality
         </a>
-      
+    
         <a href="<?php echo site_url() ?>User/Vehicle" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">commute</span>
           Vehicle
         </a>
         
-
         <a href="<?php echo site_url() ?>User/Activities" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">commute</span>
           Activities

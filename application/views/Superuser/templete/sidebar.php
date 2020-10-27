@@ -58,52 +58,31 @@ a,span:hover{
     border-bottom: 2px solid #ffffff69;">
 
 
+
       
         <a href="<?php echo site_url() ?>Superuser/index" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
           Dashboard
         </a>
+
+        <a href="<?php echo site_url() ?>Superuser/Legality" class="list-group-item list-group-item-action ahover">
+          <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
+          Legality
+        </a>
       
-        <a href="<?php echo site_url() ?>Superuser/transportir" class="list-group-item list-group-item-action ahover">
+        <a href="<?php echo site_url() ?>Superuser/Vehicle" class="list-group-item list-group-item-action ahover">
           <span class="material-icons" style="vertical-align: bottom;">commute</span>
-          Transportir
+          Vehicle
         </a>
         
-        <a href="<?php echo site_url() ?>Superuser/car" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">arrow_forward</span>
-          Car
+        <a href="<?php echo site_url() ?>Superuser/Activities" class="list-group-item list-group-item-action ahover">
+          <span class="material-icons" style="vertical-align: bottom;">commute</span>
+          Activities
         </a>
-
-        <a href="<?php echo site_url() ?>Superuser/realisasi" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">arrow_forward</span>
-          Realisasi
+        <a href="<?php echo site_url() ?>Superuser/Realization" class="list-group-item list-group-item-action ahover">
+          <span class="material-icons" style="vertical-align: bottom;">commute</span>
+          Realization
         </a>
-
-        
-
-       
-
-<li class="nav-item dropdown" style="list-style: none; margin-top: 32px; border-bottom: 1px solid #ffffff69;">
-
-<a class="nav-link dropdown-toggle ahover" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; margin-left: 7px;
-margin-top: -27px;">
-    <span class="material-icons" style="vertical-align: bottom;">speaker_notes</span>
-    Help
-</a>
-
-<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #39C0CC; color: white; border: none; left: 10">
-<a class="dropdown-item ahover-d" href="<?php echo site_url() ?>Superuser/help_transportir" style="color: white;">Help Transportir</a>
-<a class="dropdown-item ahover-d" href="<?php echo site_url() ?>Superuser/help_car" style="color: white;">Help Car</a>
-<a class="dropdown-item ahover-d" href="<?php echo site_url() ?>Superuser/help_realisasi" style="color: white;">Help Realisasi</a>
-
-
-
-</div>
-</li>
-
-
-
-
 
       </div>
     </div>
