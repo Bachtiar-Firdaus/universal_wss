@@ -10,6 +10,7 @@ class Administrator extends CI_Controller {
 		$this->load->model('M_Activities');
 		$this->load->model('M_Search');
 		$this->load->model('M_Realization');
+		$this->load->model('M_Manage_Accounts');
 	}
 	
 	public function index()
@@ -19,9 +20,40 @@ class Administrator extends CI_Controller {
 		}	
 	public function Manage_Accounts()
 		{	
-			$data['contents'] = 'Administrator/Dashboard';
+			$data['contents'] = 'Administrator/Manage_Accounts';
 			$this->load->view('Administrator/index',$data);
 		}
+
+	public function ajax_list_Manage_Accounts()
+	{
+		$list = $this->M_Manage_Accounts->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $M_Manage_Accounts) {
+			$row = array();
+			$row[] = $no++;
+			$row[] = $M_Manage_Accounts->Id_User;
+			$row[] = $M_Manage_Accounts->Username;
+			$row[] = $M_Manage_Accounts->Password;
+			$row[] = $M_Manage_Accounts->Account_Status;
+			$row[] = $M_Manage_Accounts->Level;
+			$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="Edit" onclick="edit_manage_accounts('."'".$M_Manage_Accounts->Id_User."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+			$data[] = $row;
+		}
+		$output = array(
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->M_Manage_Accounts->count_all(),
+						"recordsFiltered" => $this->M_Manage_Accounts->count_filtered(),
+						"data" => $data,
+				);
+		echo json_encode($output);
+	}
+
+	public function ajax_edit_Manage_Accounts($id)
+	{
+		$data = $this->M_Manage_Accounts->get_by_id($id);
+		echo json_encode($data);
+	}
 
 	public function Legality()
 	{	
