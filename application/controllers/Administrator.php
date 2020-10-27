@@ -265,4 +265,11 @@ class Administrator extends CI_Controller {
 	    $this->pdf->filename = "laporan-PDF.pdf";
 	    $this->pdf->load_view('Report/Cetak_Viat', $data);
     }
+    public function Cetak_Manage_Accounts(){     
+        $data['Cetak_Manage_Accounts'] = $this->M_Search->Cetak_Manage_Accounts();
+ 	    $this->load->library('pdf');
+	    $this->pdf->setPaper('F4', 'potrait');
+	    $this->pdf->filename = "laporan-PDF.pdf";
+	    $this->pdf->load_view('Report/Report_Manage_Accounts', $data);
+    }
 }

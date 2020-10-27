@@ -61,5 +61,9 @@ class M_Search extends CI_Model{
         return $query->result();
     } 
        
+    function Cetak_Manage_Accounts(){
+        $query = $this->db->query("SELECT * FROM tbl_user ORDER BY Id_User DESC");
+        return $query->result();
+    }
 }
 ?>
