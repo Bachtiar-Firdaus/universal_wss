@@ -1,6 +1,20 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 class M_Search extends CI_Model{
-          
+    public function __construct()
+    {
+        parent::__construct();      
+        if($this->session->userdata('Level') == "User"){
+        }       
+        elseif($this->session->userdata('Level') == "Superuser"){
+        }
+        elseif($this->session->userdata('Level') == "Administrator"){
+        }
+        else{
+            $url=base_url();
+            redirect($url);
+        }
+    }
     function TD_Legality(){
         return $this->db->get('tbl_legality');
     }          

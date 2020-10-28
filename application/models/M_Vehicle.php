@@ -9,7 +9,17 @@ class M_Vehicle extends CI_Model {
 	var $order = array('Id_Car' => 'desc'); 
 	public function __construct()
 	{
-		parent::__construct();
+		parent::__construct();		
+		if($this->session->userdata('Level') == "User"){
+		}		
+		elseif($this->session->userdata('Level') == "Superuser"){
+		}
+		elseif($this->session->userdata('Level') == "Administrator"){
+		}
+		else{
+			$url=base_url();
+			redirect($url);
+		}
 		$this->load->database();
 	}
 
