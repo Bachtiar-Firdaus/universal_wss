@@ -5,6 +5,12 @@ class Administrator extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		if($this->session->userdata('Level') == "Administrator"){
+		}
+		else{
+			$url=base_url();
+			redirect($url);
+		}
 		$this->load->model('M_Legality');
 		$this->load->model('M_Vehicle');
 		$this->load->model('M_Activities');
