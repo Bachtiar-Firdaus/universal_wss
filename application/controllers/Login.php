@@ -17,14 +17,14 @@ class Login extends CI_Controller {
 	{
         $Username=htmlspecialchars($this->input->post('Username',TRUE),ENT_QUOTES);
         $Password=htmlspecialchars($this->input->post('Password',TRUE),ENT_QUOTES);
-
-        $field = $this->M_Login->Auth($Username,$Password);
+        $MD5_Password = md5($Password);
+        $field = $this->M_Login->Auth($Username,$MD5_Password);
 
         if($field > 0)
         	{ 
         		$data = $field->row_array();
         		$this->session->set_userdata('masuk',TRUE);
-		        if($data['Username'] == $Username && $data['Password'] == $Password){
+		        if($data['Username'] == $Username && $data['Password'] == $MD5_Password){
 		            $this->session->set_userdata('Username',$data['Username']);
 		            $this->session->set_userdata('Account_Status',$data['Account_Status']);
 		            $this->session->set_userdata('Level',$data['Level']);

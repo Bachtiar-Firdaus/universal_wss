@@ -70,7 +70,7 @@ class Administrator extends CI_Controller {
 	{
 		$data = array(
 				'Username' => $this->input->post('Username'),
-				'Password' => $this->input->post('Password'),
+				'Password' => md5($this->input->post('Password')),
 				'Account_Status' => $this->input->post('Account_Status'),
 				'Level' => $this->input->post('Level'),
 			);
@@ -84,14 +84,10 @@ class Administrator extends CI_Controller {
 	public function ajax_update_Manage_Accounts()
 	{
 		$data = array(
-				'Number' => $this->input->post('Number'),
-				'Transportir' => $this->input->post('Transportir'),
-				'Customer' => $this->input->post('Customer'),
-				'Party' => $this->input->post('Party'),
-				'Balance' => $this->input->post('Balance'),
-				'Commodity' => $this->input->post('Commodity'),
-				'Purpose_of_Unloading' => $this->input->post('Purpose_of_Unloading'),
-				'Date_Legality' => $this->input->post('Date_Legality'),
+				'Username' => $this->input->post('Username'),
+				'Password' => md5($this->input->post('Password')),
+				'Account_Status' => $this->input->post('Account_Status'),
+				'Level' => $this->input->post('Level'),
 			);
 
 		$this->M_Manage_Accounts->update(array('Id_User' => $this->input->post('Id_User')), $data);
