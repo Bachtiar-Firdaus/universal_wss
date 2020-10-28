@@ -6,6 +6,7 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a81368914c.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <style type="text/css">
@@ -92,8 +93,11 @@
                     <h5>Password</h5>
                     <input type="Password" name="Password" class="input" autocomplete="off" required>
                  </div>
+
               </div>
               <input type="submit" class="btn" value="Login">
+
+              <div class="g-recaptcha" data-sitekey="6Lfml9wZAAAAAC-NdtrRfOrbsxw6eXRvHmKsv7Al"></div>
             </form>
             </div>
         </div>

@@ -18,8 +18,25 @@ class Login extends CI_Controller {
         $Username=htmlspecialchars($this->input->post('Username',TRUE),ENT_QUOTES);
         $Password=htmlspecialchars($this->input->post('Password',TRUE),ENT_QUOTES);
         $MD5_Password = md5($Password);
-        $field = $this->M_Login->Auth($Username,$MD5_Password);
 
+        $recaptchaResponse = trim($this->input->post('g-recaptcha-response'));
+        $secret='6Lfml9wZAAAAAO3XZcIn8w93VMGn2lychM8o891V'; 
+        $credential = array(
+              'secret' => $secret,
+              'response' => $this->input->post('g-recaptcha-response')
+          );
+        $verify = curl_init();
+        curl_setopt($verify, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+        curl_setopt($verify, CURLOPT_POST, true);
+        curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($credential));
+        curl_setopt($verify, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($verify);
+ 
+        $status= json_decode($response, true);
+ 
+        if($status['success']){ 
+        $field = $this->M_Login->Auth($Username,$MD5_Password);
         if($field > 0)
         	{ 
         		$data = $field->row_array();
@@ -43,6 +60,11 @@ class Login extends CI_Controller {
 					redirect('Login');				
 	    	    }
 	    	}
+        }else{
+ 			$this->session->set_flashdata('message', 'Anda Terdeteksi Bukan Manusia ?');
+        }
+        redirect('Login');
+
 	}
 
     function logout(){
@@ -52,3 +74,5 @@ class Login extends CI_Controller {
     }
 
 }
+    
+ 
