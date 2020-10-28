@@ -28,7 +28,10 @@ class M_Legality extends CI_Model {
 	{
 		
 		$this->db->from($this->table);
-
+		if($this->session->userdata('Account_Status') == "Administrator"){
+		}else{
+		$this->db->like('Account_Status', $this->session->userdata('Account_Status'));
+		}
 		$i = 0;
 	
 		foreach ($this->column_search as $item)

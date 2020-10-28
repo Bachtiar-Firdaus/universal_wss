@@ -26,7 +26,11 @@ class M_Realization extends CI_Model {
 	private function _get_datatables_query()
 	{
 		
-		$this->db->from($this->table);
+		$this->db->from($this->table);		
+		if($this->session->userdata('Account_Status') == "Administrator"){
+		}else{
+		$this->db->like('Account_Status', $this->session->userdata('Account_Status'));
+		}
 
 		$i = 0;
 	
