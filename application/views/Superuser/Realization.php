@@ -117,16 +117,7 @@
 		});
 
 	});
-	function add() {
-		save_method = 'add';
-		$('#form')[0].reset(); 
-		$('.form-group').removeClass('has-error'); 
-		$('.help-block').empty(); 
-		$('#modal_form').modal('show'); 
-		$('.modal-title').text('Add Realization'); 
-		$('#Document_Realization-preview').hide();
-		$('#label-Document_Realization').text('Upload dokumen');
-	}
+
 
 	function edit_realization(id) {
 		save_method = 'update';
@@ -327,7 +318,7 @@ function cek(){
 
 				<div class="form-group">
 					<label>Date Realization</label>
-	    			<input type="date" class="form-control" id="Date_Realization" name="Date_Realization" placeholder="Masukan Date_Realization" onchange="return autofill();" autocomplete="off">
+	    			<input type="date" class="form-control" id="Date_Realization" name="Date_Realization" placeholder="Masukan Date_Realization" onchange="return autofill();" autocomplete="off" readonly>
 				</div>
 				<div class="form-group">
 					<label>WSS Daily Tonnage</label>

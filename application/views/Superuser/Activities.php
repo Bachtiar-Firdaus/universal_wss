@@ -422,7 +422,7 @@ function cek(){
 
 				<div class="form-group">
 	    			<label>Id Vehicle</label>
-	    			<input list="data2" class="form-control" id="Id_Car" name="Id_Car" placeholder="Masukan Id_Car" onchange="return autofill2();" autocomplete="off">
+	    			<input type="number" class="form-control" id="Id_Car" name="Id_Car" placeholder="Masukan Id_Car" onchange="return autofill2();" autocomplete="off">
 				</div>
 				<div id="ses1">
 				<div class="form-group">
@@ -439,23 +439,13 @@ function cek(){
 				</div>
 				</div>
 
-  			<datalist id="data2">
-			    <?php
-			    foreach ($record2->result() as $c)
-			    {
-			        echo "<option value='$c->Id_Car'>Number Sim $c->Number_Sim & Number Police $c->Number_Police</option>";
-			    }
-			    					    					    
-			    ?>
-			</datalist> 
-
         	</div>
 
         	<div class="col-md-6" id="bag2">
 
 				<div class="form-group">
 	    			<label>Id Legality</label>
-	    			<input list="data1" class="form-control" id="Id_Legality" name="Id_Legality" placeholder="Masukan Id_Legality" onchange="return autofill1();" autocomplete="off">
+	    			<input type="number" class="form-control" id="Id_Legality" name="Id_Legality" placeholder="Masukan Id_Legality" onchange="return autofill1();" autocomplete="off">
 				</div>
 
 				<div id="ses2">
@@ -496,15 +486,7 @@ function cek(){
 
 				</div>
 
-  			<datalist id="data1">
-			    <?php
-			    foreach ($record1->result() as $b)
-			    {
-			        echo "<option value='$b->Id_Legality'>Number $b->Number & Balance $b->Balance</option>";
-			    }
-			    					    					    
-			    ?>
-			</datalist> 
+
         	</div>
 
         	<div class="col-md-12" id="bag3">

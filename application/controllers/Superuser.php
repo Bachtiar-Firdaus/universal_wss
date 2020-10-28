@@ -251,8 +251,6 @@ class Superuser extends CI_Controller {
 	
 	public function Activities()
 	{	
-		$data['record1']=  $this->M_Search->TD_Legality(); 
-		$data['record2']=  $this->M_Search->TD_Vehicle(); 
 		$data['contents'] = 'Superuser/Activities';
 		$this->load->view('Superuser/index',$data);
 	}	
@@ -456,24 +454,6 @@ class Superuser extends CI_Controller {
 		echo json_encode($output);
 	}
 
-	public function ajax_add3()
-	{
-		$data = array(
-				'WSS_Daily_Tonnage' => $this->input->post('WSS_Daily_Tonnage'),
-				'Warehouse_Daily_Tonnage' => $this->input->post('Warehouse_Daily_Tonnage'),
-				'Information' => $this->input->post('Information'),
-				'Date_Realization' => $this->input->post('Date_Realization'),
-				'Account_Status' => "0",
-			);
-
-		if(!empty($_FILES['Document_Realization']['name']))
-		{
-			$upload = $this->_do_upload3();
-			$data['Document_Realization'] = $upload;
-		}
-		$insert = $this->M_Realization->save($data);
-		echo json_encode(array("status" => TRUE));
-	}
 
 	public function ajax_edit3($id)
 	{
@@ -484,11 +464,8 @@ class Superuser extends CI_Controller {
 	public function ajax_update3()
 	{
 		$data = array(
-				'WSS_Daily_Tonnage' => $this->input->post('WSS_Daily_Tonnage'),
 				'Warehouse_Daily_Tonnage' => $this->input->post('Warehouse_Daily_Tonnage'),
 				'Information' => $this->input->post('Information'),
-				'Date_Realization' => $this->input->post('Date_Realization'),
-				'Account_Status' => "0",
 			);
 
 		if($this->input->post('remove_Document_Realization')) // if remove dokumen checked

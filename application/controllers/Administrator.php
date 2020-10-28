@@ -44,7 +44,11 @@ class Administrator extends CI_Controller {
 			$row[] = $M_Manage_Accounts->Password;
 			$row[] = $M_Manage_Accounts->Account_Status;
 			$row[] = $M_Manage_Accounts->Level;
-			$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="Edit" onclick="edit_manage_accounts('."'".$M_Manage_Accounts->Id_User."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+			if($M_Manage_Accounts->Account_Status == "Administrator"){
+				$row[] = "can't be changed";
+			}else{
+			$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="Edit" onclick="edit_manage_accounts('."'".$M_Manage_Accounts->Id_User."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a><a class="btn btn-sm " href="javascript:void(0)" title="Hapus" onclick="delete_Manage_Accounts('."'".$M_Manage_Accounts->Id_User."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+			}
 			$data[] = $row;
 		}
 		$output = array(
@@ -73,6 +77,30 @@ class Administrator extends CI_Controller {
 
 		$insert = $this->M_Manage_Accounts->save($data);
 
+		echo json_encode(array("status" => TRUE));
+	}
+
+
+	public function ajax_update_Manage_Accounts()
+	{
+		$data = array(
+				'Number' => $this->input->post('Number'),
+				'Transportir' => $this->input->post('Transportir'),
+				'Customer' => $this->input->post('Customer'),
+				'Party' => $this->input->post('Party'),
+				'Balance' => $this->input->post('Balance'),
+				'Commodity' => $this->input->post('Commodity'),
+				'Purpose_of_Unloading' => $this->input->post('Purpose_of_Unloading'),
+				'Date_Legality' => $this->input->post('Date_Legality'),
+			);
+
+		$this->M_Manage_Accounts->update(array('Id_User' => $this->input->post('Id_User')), $data);
+		echo json_encode(array("status" => TRUE));
+	}
+
+	public function ajax_delete_Manage_Accounts($id)
+	{
+		$this->M_Manage_Accounts->delete_by_id($id);
 		echo json_encode(array("status" => TRUE));
 	}
 
