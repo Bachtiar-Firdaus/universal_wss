@@ -48,7 +48,7 @@ class User extends CI_Controller {
 			$row[] = $M_Legality->Date_Legality;
 			$row[] = $M_Legality->Account_Status;
 			$row[] = $M_Legality->Document_Legality;
-			$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="View" onclick="edit_legality('."'".$M_Legality->Id_Legality."'".')"><i class="glyphicon glyphicon-pencil"></i> View</a>';
+			$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="View" onclick="View_legality('."'".$M_Legality->Id_Legality."'".')"><i class="glyphicon glyphicon-pencil"></i> View</a>';
 			$data[] = $row;
 		}
 		$output = array(
@@ -93,53 +93,6 @@ class User extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	public function ajax_update()
-	{
-		$data = array(
-				'Number' => $this->input->post('Number'),
-				'Transportir' => $this->input->post('Transportir'),
-				'Customer' => $this->input->post('Customer'),
-				'Party' => $this->input->post('Party'),
-				'Balance' => $this->input->post('Balance'),
-				'Commodity' => $this->input->post('Commodity'),
-				'Purpose_of_Unloading' => $this->input->post('Purpose_of_Unloading'),
-				'Date_Legality' => $this->input->post('Date_Legality'),
-				'Account_Status' => $this->session->userdata('Account_Status'),
-			);
-
-		if($this->input->post('remove_dokumen')) // if remove dokumen checked
-		{
-			if(file_exists('upload_legality/'.$this->input->post('remove_dokumen')) && $this->input->post('remove_dokumen'))
-				unlink('upload_legality/'.$this->input->post('remove_dokumen'));
-			$data['Document_Legality'] = '';
-		}
-
-		if(!empty($_FILES['Document_Legality']['name']))
-		{
-			$upload = $this->_do_upload();
-			
-			//delete file
-			$M_Legality = $this->M_Legality->get_by_id($this->input->post('Id_Legality'));
-			if(file_exists('upload_legality/'.$M_Legality->Document_Legality) && $M_Legality->Document_Legality)
-				unlink('upload_legality/'.$M_Legality->Document_Legality);
-
-			$data['Document_Legality'] = $upload;
-		}
-
-		$this->M_Legality->update(array('Id_Legality' => $this->input->post('Id_Legality')), $data);
-		echo json_encode(array("status" => TRUE));
-	}
-
-	public function ajax_delete($id)
-	{
-		$M_Legality = $this->M_Legality->get_by_id($id);
-		if(file_exists('upload_legality/'.$M_Legality->Document_Legality) && $M_Legality->Document_Legality)
-			unlink('upload_legality/'.$M_Legality->Document_Legality);
-		
-		$this->M_Legality->delete_by_id($id);
-		echo json_encode(array("status" => TRUE));
-	}
-
 	private function _do_upload()
 	{
 		$config['upload_path']          = 'upload_legality/';
@@ -163,9 +116,6 @@ class User extends CI_Controller {
 	}
 
 
-
-
-
 	public function Vehicle()
 	{	
 		$data['contents'] = 'User/Vehicle';
@@ -186,7 +136,7 @@ class User extends CI_Controller {
 			$row[] = $M_Vehicle->Name;
 			$row[] = $M_Vehicle->Document_SIM_STNK;
 			$row[] = $M_Vehicle->Account_Status;
-			$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="View" onclick="edit_vehicle('."'".$M_Vehicle->Id_Car."'".')"><i class="glyphicon glyphicon-pencil"></i> View</a>';
+			$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="View" onclick="View_vehicle('."'".$M_Vehicle->Id_Car."'".')"><i class="glyphicon glyphicon-pencil"></i> View</a>';
 			$data[] = $row;
 		}
 		$output = array(
@@ -203,6 +153,7 @@ class User extends CI_Controller {
 				'Number_Sim' => $this->input->post('Number_Sim'),
 				'Number_Police' => $this->input->post('Number_Police'),
 				'Name' => $this->input->post('Name'),
+				'Account_Status' => $this->session->userdata('Account_Status'),
 			);
 
 		if(!empty($_FILES['Document_SIM_STNK']['name']))
@@ -221,47 +172,6 @@ class User extends CI_Controller {
 	{
 		$data = $this->M_Vehicle->get_by_id($id);
 		echo json_encode($data);
-	}
-
-	public function ajax_update1()
-	{
-		$data = array(
-				'Number_Sim' => $this->input->post('Number_Sim'),
-				'Number_Police' => $this->input->post('Number_Police'),
-				'Name' => $this->input->post('Name'),
-			);
-
-		if($this->input->post('remove_Document_SIM_STNK')) // if remove dokumen checked
-		{
-			if(file_exists('upload_vehicle/'.$this->input->post('remove_Document_SIM_STNK')) && $this->input->post('remove_Document_SIM_STNK'))
-				unlink('upload_vehicle/'.$this->input->post('remove_Document_SIM_STNK'));
-			$data['Document_SIM_STNK'] = '';
-		}
-
-		if(!empty($_FILES['Document_SIM_STNK']['name']))
-		{
-			$upload = $this->_do_upload1();
-			
-			//delete file
-			$M_Vehicle = $this->M_Vehicle->get_by_id($this->input->post('Id_Car'));
-			if(file_exists('upload_vehicle/'.$M_Vehicle->Document_SIM_STNK) && $M_Vehicle->Document_SIM_STNK)
-				unlink('upload_vehicle/'.$M_Vehicle->Document_SIM_STNK);
-
-			$data['Document_SIM_STNK'] = $upload;
-		}
-
-		$this->M_Vehicle->update(array('Id_Car' => $this->input->post('Id_Car')), $data);
-		echo json_encode(array("status" => TRUE));
-	}
-
-	public function ajax_delete1($id)
-	{
-		$M_Vehicle = $this->M_Vehicle->get_by_id($id);
-		if(file_exists('upload_vehicle/'.$M_Vehicle->Document_SIM_STNK) && $M_Vehicle->Document_SIM_STNK)
-			unlink('upload_vehicle/'.$M_Vehicle->Document_SIM_STNK);
-		
-		$this->M_Vehicle->delete_by_id($id);
-		echo json_encode(array("status" => TRUE));
 	}
 
 	private function _do_upload1()
@@ -370,10 +280,6 @@ class User extends CI_Controller {
 	{
 		$data = array(
 				'Number_BP' => $this->input->post('Number_BP'),
-				'Tonase' => $this->input->post('Tonase'),
-				'Account_Status' => $this->session->userdata('Account_Status'),
-				'Id_Legality' => $this->input->post('Id_Legality'),
-				'Id_Car' => $this->input->post('Id_Car'),
 			);
 
 		if($this->input->post('remove_Document_Delivery_Order')) // if remove dokumen checked
@@ -429,15 +335,6 @@ class User extends CI_Controller {
 		echo json_encode(array("status" => TRUE));
 	}
 
-	public function ajax_delete2($id)
-	{
-		$M_Activities = $this->M_Activities->get_by_id($id);
-		if(file_exists('upload_activities/'.$M_Activities->Document_Delivery_Order) && $M_Activities->Document_Delivery_Order)
-			unlink('upload_activities/'.$M_Activities->Document_Delivery_Order);
-		
-		$this->M_Activities->delete_by_id($id);
-		echo json_encode(array("status" => TRUE));
-	}
 	private function _do_upload2()
 	{
 		$config['upload_path']          = 'upload_activities/';
@@ -508,7 +405,7 @@ class User extends CI_Controller {
 			$row[] = $M_Realization->Date_Realization;
 			$row[] = $M_Realization->Document_Realization;
 			$row[] = $M_Realization->Account_Status;
-			$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="View" onclick="edit_realization('."'".$M_Realization->Id_Realization."'".')"><i class="glyphicon glyphicon-pencil"></i> View</a>';
+			$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="View" onclick="View_realization('."'".$M_Realization->Id_Realization."'".')"><i class="glyphicon glyphicon-pencil"></i> View</a>';
 			$data[] = $row;
 		}
 		$output = array(
@@ -545,48 +442,6 @@ class User extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	public function ajax_update3()
-	{
-		$data = array(
-				'WSS_Daily_Tonnage' => $this->input->post('WSS_Daily_Tonnage'),
-				'Warehouse_Daily_Tonnage' => $this->input->post('Warehouse_Daily_Tonnage'),
-				'Information' => $this->input->post('Information'),
-				'Date_Realization' => $this->input->post('Date_Realization'),
-				'Account_Status' => $this->session->userdata('Account_Status'),
-			);
-
-		if($this->input->post('remove_Document_Realization')) // if remove dokumen checked
-		{
-			if(file_exists('upload_realization/'.$this->input->post('remove_Document_Realization')) && $this->input->post('remove_Document_Realization'))
-				unlink('upload_realization/'.$this->input->post('remove_Document_Realization'));
-			$data['Document_Realization'] = '';
-		}
-
-		if(!empty($_FILES['Document_Realization']['name']))
-		{
-			$upload = $this->_do_upload3();
-			
-			//delete file
-			$M_Realization = $this->M_Realization->get_by_id($this->input->post('Id_Realization'));
-			if(file_exists('upload_realization/'.$M_Realization->Document_Realization) && $M_Realization->Document_Realization)
-				unlink('upload_realization/'.$M_Realization->Document_Realization);
-
-			$data['Document_Realization'] = $upload;
-		}
-
-		$this->M_Realization->update(array('Id_Realization' => $this->input->post('Id_Realization')), $data);
-		echo json_encode(array("status" => TRUE));
-	}
-
-	public function ajax_delete3($id)
-	{
-		$M_Realization = $this->M_Realization->get_by_id($id);
-		if(file_exists('upload_realization/'.$M_Realization->Document_Realization) && $M_Realization->Document_Realization)
-			unlink('upload_realization/'.$M_Realization->Document_Realization);
-		
-		$this->M_Realization->delete_by_id($id);
-		echo json_encode(array("status" => TRUE));
-	}
 	private function _do_upload3()
 	{
 		$config['upload_path']          = 'upload_realization/';

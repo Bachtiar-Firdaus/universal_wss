@@ -135,7 +135,7 @@
 		$('#label-Document_Realization').text('Upload dokumen');
 	}
 
-	function edit_realization(id) {
+	function View_realization(id) {
 		document.getElementById('btnSave_').style.display = "none";
 		document.getElementById('Dokumen_').style.display = "none";
 		document.getElementById('Warehouse_Daily_Tonnage').readOnly = true;
@@ -227,25 +227,6 @@
 		});
 	}
 
-	function delete_realization(id) {
-		if (confirm('Are you sure delete this data?')) {
-			// ajax delete data to database
-			$.ajax({
-				url: "<?php echo site_url('User/ajax_delete3')?>/" + id,
-				type: "POST",
-				dataType: "JSON",
-				success: function (data) {
-					//if success reload ajax table
-					$('#modal_form').modal('hide');
-					reload_table();
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					alert('Error deleting data');
-				}
-			});
-
-		}
-	}
 
 
     function autofill(){
@@ -378,11 +359,11 @@ function cek(){
         	<div class="col-md-6">
         		<div class="form-group">
 					<label>Warehouse Daily Tonnage</label>
-					<input type="text" class="form-control" id="Warehouse_Daily_Tonnage" name="Warehouse_Daily_Tonnage" placeholder="Masukan Warehouse_Daily_Tonnage">
+					<input type="text" class="form-control" id="Warehouse_Daily_Tonnage" name="Warehouse_Daily_Tonnage" placeholder="Masukan Warehouse_Daily_Tonnage" autocomplete="off">
 				</div>	
 			    <div class="form-group">
 					<label>Information</label>
-					<textarea class="form-control" id="Information" name="Information" placeholder="Masukan Information"></textarea> 
+					<textarea class="form-control" id="Information" name="Information" placeholder="Masukan Information"  autocomplete="off"></textarea> 
 				</div>
         	</div>
         	</div>

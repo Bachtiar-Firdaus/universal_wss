@@ -299,25 +299,7 @@
 		}
 	}
 
-	function delete_activities(id) {
-		if (confirm('Are you sure delete this data?')) {
-			// ajax delete data to database
-			$.ajax({
-				url: "<?php echo site_url('User/ajax_delete2')?>/" + id,
-				type: "POST",
-				dataType: "JSON",
-				success: function (data) {
-					//if success reload ajax table
-					$('#modal_form').modal('hide');
-					reload_table();
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					alert('Error deleting data');
-				}
-			});
 
-		}
-	}
 
     function autofill1(){
         var Id_Legality = document.getElementById('Id_Legality').value;

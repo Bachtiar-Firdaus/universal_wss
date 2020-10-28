@@ -129,12 +129,12 @@
 		$('.form-group').removeClass('has-error'); 
 		$('.help-block').empty(); 
 		$('#modal_form').modal('show'); 
-		$('.modal-title').text('Add Transportir'); 
+		$('.modal-title').text('Add Vehicle'); 
 		$('#Document_SIM_STNK-preview').hide();
 		$('#label-Document_SIM_STNK').text('Upload dokumen');
 	}
 
-	function edit_vehicle(id) {
+	function View_vehicle(id) {
 		document.getElementById('btnSave_').style.display = "none";
 		document.getElementById('Dokumen_').style.display = "none";
 		document.getElementById('Number_Sim').readOnly = true;
@@ -225,25 +225,6 @@
 		});
 	}
 
-	function delete_vehicle(id) {
-		if (confirm('Are you sure delete this data?')) {
-			// ajax delete data to database
-			$.ajax({
-				url: "<?php echo site_url('User/ajax_delete1')?>/" + id,
-				type: "POST",
-				dataType: "JSON",
-				success: function (data) {
-					//if success reload ajax table
-					$('#modal_form').modal('hide');
-					reload_table();
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					alert('Error deleting data');
-				}
-			});
-
-		}
-	}
 function cek(){
 		var cek_Number_Sim = document.getElementById("Number_Sim").value;
 		var cek_Number_Police = document.getElementById("Number_Police").value;
@@ -301,7 +282,7 @@ function cek(){
 			    </div>
 				<div class="form-group">
 					<label>Number Sim</label>
-					<input type="number" class="form-control" id="Number_Sim" name="Number_Sim" placeholder="Masukan Number_Sim">
+					<input type="number" class="form-control" id="Number_Sim" name="Number_Sim" placeholder="Masukan Number_Sim" autocomplete="off">
 				</div>
 
 
@@ -325,11 +306,11 @@ function cek(){
         	<div class="col-md-6">
         		<div class="form-group">
 					<label>Number Police</label>
-					<input type="text" class="form-control" id="Number_Police" name="Number_Police" placeholder="Masukan Number_Police">
+					<input type="text" class="form-control" id="Number_Police" name="Number_Police" placeholder="Masukan Number_Police" autocomplete="off">
 				</div>	
 			    <div class="form-group">
 					<label>Name</label>
-					<input type="text" class="form-control" id="Name" name="Name" placeholder="Masukan Name">
+					<input type="text" class="form-control" id="Name" name="Name" placeholder="Masukan Name" autocomplete="off">
 				</div>
 
   			
