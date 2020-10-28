@@ -320,22 +320,13 @@ function cek(){
 
 				<div class="form-group">
 					<label>Date Realization</label>
-	    			<input list="data2" class="form-control" id="Date_Realization" name="Date_Realization" placeholder="Masukan Date_Realization" onchange="return autofill();" autocomplete="off">
+	    			<input type="date" class="form-control" id="Date_Realization" name="Date_Realization" placeholder="Masukan Date_Realization" onchange="return autofill();" autocomplete="off">
 				</div>
 				<div class="form-group">
 					<label>WSS Daily Tonnage</label>
 					<input type="number" class="form-control" id="WSS_Daily_Tonnage" name="WSS_Daily_Tonnage" placeholder="Ditentukan Sistem" readonly>
 				</div>
 
-	  			<datalist id="data2">
-				    <?php
-				    foreach ($record2->result() as $c)
-				    {
-				        echo "<option value='$c->Date_Activities'></option>";
-				    }
-				    					    					    
-				    ?>
-				</datalist> 
 
 
   				<div class="input-group" id="Document_Realization-preview">

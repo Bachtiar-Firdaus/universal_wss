@@ -125,8 +125,7 @@
         <th>Warehouse Daily Tonnage</th>
         <th>Information</th>
         <th>Date Realization</th>
-        <th>Document Realization</th>
-        <th>Id User</th>
+        <th>Account Status</th>
     </tr>
 
      <?php 
@@ -140,8 +139,7 @@
         <td><?php echo $r->Warehouse_Daily_Tonnage; ?></td>
         <td><?php echo $r->Information; ?></td>
         <td><?php echo $r->Date_Realization; ?></td>
-        <td><?php echo $r->Document_Realization; ?></td>
-        <td><?php echo $r->Id_User; ?></td>
+        <td><?php echo $r->Account_Status; ?></td>
 
     </tr>
     <?php }?> 
@@ -149,11 +147,6 @@
    
 
 </table>
-<!-- 
-
-    <script>
-        window.print();
-    </script> -->
 
 
 </body>

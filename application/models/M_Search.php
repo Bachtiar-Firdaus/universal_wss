@@ -16,44 +16,64 @@ class M_Search extends CI_Model{
         }
     }
     function TD_Legality(){
-        return $this->db->get('tbl_legality');
+        $Param = $this->session->userdata('Account_Status');
+        $query = $this->db->query("SELECT  *  FROM tbl_legality WHERE Account_Status = '$Param'");
+        return $query;
     }          
     function TD_Vehicle(){
-        return $this->db->get('tbl_car');
-    }     
-    function TD_Realization(){
-        $Faktor = $this->session->userdata('Account_Status');
-        $query = $this->db->query("SELECT Date_Activities FROM tbl_activities LEFT OUTER JOIN tbl_realization ON tbl_activities.Date_Activities = tbl_realization.Date_Realization WHERE tbl_realization.Date_Realization = tbl_activities.Date_Activities AND tbl_realization.Account_Status != '$Faktor' GROUP BY Date_Activities");
+        $Param = $this->session->userdata('Account_Status');
+        $query = $this->db->query("SELECT  *  FROM tbl_car WHERE Account_Status = '$Param'");
         return $query;
-    }
+    }     
 
     function AC_Legality($Id_Legality){
-        $query = $this->db->query("SELECT  *  FROM tbl_legality WHERE Id_Legality = '$Id_Legality'");
+        $Param = $this->session->userdata('Account_Status');
+        $query = $this->db->query("SELECT  *  FROM tbl_legality WHERE Id_Legality = '$Id_Legality' AND Account_Status = '$Param'");
         return $query;
     }    
     function AC_Vehicle($Id_Car){
-        $query = $this->db->query("SELECT  *  FROM tbl_car WHERE Id_Car = '$Id_Car'");
+        $Param = $this->session->userdata('Account_Status');
+        $query = $this->db->query("SELECT  *  FROM tbl_car WHERE Id_Car = '$Id_Car' AND Account_Status = '$Param'");
         return $query;
     }   
     function AC_Realization($Date_Realization){
-        $query = $this->db->query("SELECT  Date_Activities , SUM(Tonase) AS Tonase FROM tbl_activities WHERE Date_Activities = '$Date_Realization'");
+        $Param = $this->session->userdata('Account_Status');
+        $query = $this->db->query("SELECT  Date_Activities , SUM(Tonase) AS Tonase FROM tbl_activities WHERE Date_Activities = '$Date_Realization' AND Account_Status = '$Param'");
         return $query;
     } 
 
 
     function Cetak_Legality($First_Date,$Last_Date){
-        $query = $this->db->query("SELECT * FROM tbl_legality WHERE Date_Legality between '$First_Date' AND '$Last_Date' ORDER BY Date_Legality ASC");
-        return $query->result();
+        $Param = $this->session->userdata('Account_Status');
+        if($this->session->userdata('Account_Status') == "Administrator"){
+            $query = $this->db->query("SELECT * FROM tbl_legality WHERE Date_Legality between '$First_Date' AND '$Last_Date'ORDER BY Date_Legality ASC");
+            return $query->result();
+        }else{
+            $query = $this->db->query("SELECT * FROM tbl_legality WHERE (Date_Legality between '$First_Date' AND '$Last_Date')  AND Account_Status = '$Param' ORDER BY Date_Legality ASC");
+            return $query->result();
+        }
     } 
 
     function Cetak_Activities($First_Date,$Last_Date){
-        $query = $this->db->query("SELECT * FROM tbl_activities WHERE Date_Activities between '$First_Date' AND '$Last_Date' ORDER BY Date_Activities ASC");
-        return $query->result();
+        $Param = $this->session->userdata('Account_Status');
+        if($this->session->userdata('Account_Status') == "Administrator"){
+            $query = $this->db->query("SELECT * FROM tbl_activities WHERE Date_Activities between '$First_Date' AND '$Last_Date' ORDER BY Date_Activities ASC");
+            return $query->result();
+        }else{
+            $query = $this->db->query("SELECT * FROM tbl_activities WHERE (Date_Activities between '$First_Date' AND '$Last_Date') AND Account_Status = '$Param' ORDER BY Date_Activities ASC");
+            return $query->result();
+        }
     } 
 
     function Cetak_Realization($First_Date,$Last_Date){
-        $query = $this->db->query("SELECT * FROM tbl_realization WHERE Date_Realization between '$First_Date' AND '$Last_Date' ORDER BY Date_Realization ASC");
-        return $query->result();
+        $Param = $this->session->userdata('Account_Status');
+        if($this->session->userdata('Account_Status') == "Administrator"){
+            $query = $this->db->query("SELECT * FROM tbl_realization WHERE Date_Realization between '$First_Date' AND '$Last_Date' ORDER BY Date_Realization ASC");
+            return $query->result();
+        }else{
+            $query = $this->db->query("SELECT * FROM tbl_realization WHERE (Date_Realization between '$First_Date' AND '$Last_Date') AND Account_Status = '$Param' ORDER BY Date_Realization ASC");
+            return $query->result();
+        }
     } 
     function Cetak_Viat($id){
         $query = $this->db->query("SELECT * FROM tbl_activities WHERE Id_Activities = '$id'");
@@ -64,6 +84,7 @@ class M_Search extends CI_Model{
         return $query;
     } 
     function Cetak_Car($Id_Car){
+        $Param = $this->session->userdata('Account_Status');
         $query = $this->db->query("SELECT * FROM tbl_car WHERE Id_Car = '$Id_Car'");
         return $query->result();
     } 
@@ -72,8 +93,14 @@ class M_Search extends CI_Model{
         return $query;
     } 
     function Cetak_Legality2($Id_Legality){
-        $query = $this->db->query("SELECT * FROM tbl_legality WHERE Id_Legality = '$Id_Legality'");
-        return $query->result();
+        $Param = $this->session->userdata('Account_Status');
+        if($this->session->userdata('Account_Status') == "Administrator"){
+            $query = $this->db->query("SELECT * FROM tbl_legality WHERE Id_Legality = '$Id_Legality'");
+            return $query->result();
+        }else{
+            $query = $this->db->query("SELECT * FROM tbl_legality WHERE Id_Legality = '$Id_Legality' AND Account_Status = '$Param'");
+            return $query->result();
+        }
     } 
        
     function Cetak_Manage_Accounts(){

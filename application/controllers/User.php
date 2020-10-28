@@ -5,6 +5,7 @@ class User extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		date_default_timezone_set("Asia/Jakarta");
 		if($this->session->userdata('Level') == "User"){
 		}
 		else{
@@ -380,7 +381,6 @@ class User extends CI_Controller {
 
 	public function Realization()
 	{	
-		$data['record2']=  $this->M_Search->TD_Realization();
 		$data['contents'] = 'User/Realization';
 		$this->load->view('user/index',$data);
 	}	

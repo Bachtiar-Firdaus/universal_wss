@@ -125,9 +125,7 @@
         <th>Tonase</th>
         <th>Time In</th>
         <th>Time Out</th>
-        <th>Document Delivery Order</th>
-        <th>Document Out</th>
-        <th>Id User</th>
+        <th>Account Status</th>
         <th>Id Legality</th>
         <th>Id Vehicle</th>
     </tr>
@@ -143,9 +141,7 @@
         <td><?php echo $r->Tonase; ?></td>
         <td><?php echo $r->Time_In; ?></td>
         <td><?php echo $r->Time_Out; ?></td>
-        <td><?php echo $r->Document_Delivery_Order; ?></td>
-        <td><?php echo $r->Document_Out; ?></td>
-        <td><?php echo $r->Id_User; ?></td>
+        <td><?php echo $r->Account_Status; ?></td>
         <td><?php echo $r->Id_Legality; ?></td>
         <td><?php echo $r->Id_Car; ?></td>
 
@@ -155,11 +151,6 @@
    
 
 </table>
-<!-- 
-
-    <script>
-        window.print();
-    </script> -->
 
 
 </body>
