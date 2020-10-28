@@ -22,7 +22,8 @@ class M_Search extends CI_Model{
         return $this->db->get('tbl_car');
     }     
     function TD_Realization(){
-        $query = $this->db->query("SELECT Date_Activities FROM tbl_activities LEFT OUTER JOIN tbl_realization ON tbl_activities.Date_Activities = tbl_realization.Date_Realization WHERE tbl_realization.Date_Realization IS null GROUP BY Date_Activities");
+        $Faktor = $this->session->userdata('Account_Status');
+        $query = $this->db->query("SELECT Date_Activities FROM tbl_activities LEFT OUTER JOIN tbl_realization ON tbl_activities.Date_Activities = tbl_realization.Date_Realization WHERE tbl_realization.Date_Realization = tbl_activities.Date_Activities AND tbl_realization.Account_Status != '$Faktor' GROUP BY Date_Activities");
         return $query;
     }
 

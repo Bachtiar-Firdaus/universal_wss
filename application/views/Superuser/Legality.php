@@ -125,16 +125,6 @@
 		});
 
 	});
-	function add_legality() {
-		save_method = 'add';
-		$('#form')[0].reset(); 
-		$('.form-group').removeClass('has-error'); 
-		$('.help-block').empty(); 
-		$('#modal_form').modal('show'); 
-		$('.modal-title').text('Add Legality'); 
-		$('#Document_Legality-preview').hide();
-		$('#label-Document_Legality').text('Upload dokumen');
-	}
 
 	function edit_legality(id) {
 		save_method = 'update';
@@ -327,21 +317,21 @@ function cek(){
 			    </div>
 				<div class="form-group">
 					<label>Party</label>
-					<input type="number" class="form-control" id="Party" name="Party" placeholder="Masukan Party">
+					<input type="number" class="form-control" id="Party" name="Party" placeholder="Masukan Party" autocomplete="off">
 				</div>
 
 			    <div class="form-group">
 					<label>Transportir</label>
-					<input type="text" class="form-control" id="Transportir" name="Transportir" placeholder="Masukan Transportir">
+					<input type="text" class="form-control" id="Transportir" name="Transportir" placeholder="Masukan Transportir" autocomplete="off">
 				</div>	
 			    <div class="form-group">
 					<label>Customer</label>
-					<input type="Customer" class="form-control" id="Customer" name="Customer" placeholder="Masukan Customer">
+					<input type="Customer" class="form-control" id="Customer" name="Customer" placeholder="Masukan Customer" autocomplete="off">
 				</div>
 
 				<div class="form-group">
 					<label>Date Legality</label>
-					<input type="Date" class="form-control" id="Date_Legality" name="Date_Legality" placeholder="Masukan Date_Legality">
+					<input type="Date" class="form-control" id="Date_Legality" name="Date_Legality" placeholder="Masukan Date_Legality" autocomplete="off">
 				</div>
   				<div class="input-group" id="Document_Legality-preview">
 					<label>Dokumen</label>
@@ -363,21 +353,21 @@ function cek(){
         	<div class="col-md-6">
         	<div class="form-group">
 					<label>Number</label>
-					<input type="number" class="form-control" id="Number" name="Number" placeholder="Masukan Number">
+					<input type="number" class="form-control" id="Number" name="Number" placeholder="Masukan Number" autocomplete="off">
 				</div>	
 
 				<div class="form-group">
 	    			<label>Balance</label>
-	    			<input type="text" class="form-control" id="Balance" name="Balance" placeholder="Masukan Balance">
+	    			<input type="text" class="form-control" id="Balance" name="Balance" placeholder="Masukan Balance" autocomplete="off">
 				</div>
 				<div class="form-group">
 	    			<label>Commodity</label>
-	    			<input type="text" class="form-control" id="Commodity" name="Commodity" placeholder="Masukan Commodity">
+	    			<input type="text" class="form-control" id="Commodity" name="Commodity" placeholder="Masukan Commodity" autocomplete="off">
 				</div>
 
 				<div class="form-group" >
 					<label>Purpose of Unloading</label>
-					<input type="text" class="form-control" id="Purpose_of_Unloading" name="Purpose_of_Unloading" placeholder="Masukan Purpose of Unloading">
+					<input type="text" class="form-control" id="Purpose_of_Unloading" name="Purpose_of_Unloading" placeholder="Masukan Purpose of Unloading" autocomplete="off">
 				</div>
 
   			

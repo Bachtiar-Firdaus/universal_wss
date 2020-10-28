@@ -67,33 +67,6 @@ class Superuser extends CI_Controller {
 		echo json_encode($output);
 	}
 
-
-	public function ajax_add()
-	{
-		$data = array(
-				'Number' => $this->input->post('Number'),
-				'Transportir' => $this->input->post('Transportir'),
-				'Customer' => $this->input->post('Customer'),
-				'Party' => $this->input->post('Party'),
-				'Balance' => $this->input->post('Balance'),
-				'Commodity' => $this->input->post('Commodity'),
-				'Purpose_of_Unloading' => $this->input->post('Purpose_of_Unloading'),
-				'Date_Legality' => $this->input->post('Date_Legality'),
-				'Account_Status' => "0",
-			);
-
-		if(!empty($_FILES['Document_Legality']['name']))
-		{
-			$upload = $this->_do_upload();
-			$data['Document_Legality'] = $upload;
-		}
-
-		$insert = $this->M_Legality->save($data);
-
-		echo json_encode(array("status" => TRUE));
-	}
-
-
 	public function ajax_edit($id)
 	{
 		$data = $this->M_Legality->get_by_id($id);
@@ -111,10 +84,9 @@ class Superuser extends CI_Controller {
 				'Commodity' => $this->input->post('Commodity'),
 				'Purpose_of_Unloading' => $this->input->post('Purpose_of_Unloading'),
 				'Date_Legality' => $this->input->post('Date_Legality'),
-				'Account_Status' => "0",
 			);
 
-		if($this->input->post('remove_dokumen')) // if remove dokumen checked
+		if($this->input->post('remove_dokumen')) 
 		{
 			if(file_exists('upload_legality/'.$this->input->post('remove_dokumen')) && $this->input->post('remove_dokumen'))
 				unlink('upload_legality/'.$this->input->post('remove_dokumen'));
@@ -205,25 +177,6 @@ class Superuser extends CI_Controller {
 				);
 		echo json_encode($output);
 	}
-	public function ajax_add1()
-	{
-		$data = array(
-				'Number_Sim' => $this->input->post('Number_Sim'),
-				'Number_Police' => $this->input->post('Number_Police'),
-				'Name' => $this->input->post('Name'),
-			);
-
-		if(!empty($_FILES['Document_SIM_STNK']['name']))
-		{
-			$upload = $this->_do_upload1();
-			$data['Document_SIM_STNK'] = $upload;
-		}
-
-		$insert = $this->M_Vehicle->save($data);
-
-		echo json_encode(array("status" => TRUE));
-	}
-
 
 	public function ajax_edit1($id)
 	{
@@ -346,28 +299,6 @@ class Superuser extends CI_Controller {
 				);
 		echo json_encode($output);
 	}
-	public function ajax_add2()
-	{
-		$data = array(
-				'Number_BP' => $this->input->post('Number_BP'),
-				'Tonase' => $this->input->post('Tonase'),
-				'Time_In' => date("Y-m-d H:i:s"),
-				'Time_Out' => " - ",
-				'Account_Status' => "Otomatis",
-				'Id_Legality' => $this->input->post('Id_Legality'),
-				'Id_Car' => $this->input->post('Id_Car'),
-			);
-
-		if(!empty($_FILES['Document_Delivery_Order']['name']))
-		{
-			$upload = $this->_do_upload2();
-			$data['Document_Delivery_Order'] = $upload;
-		}
-
-		$insert = $this->M_Activities->save($data);
-
-		echo json_encode(array("status" => TRUE));
-	}
 
 	public function ajax_edit2($id)
 	{
@@ -378,10 +309,6 @@ class Superuser extends CI_Controller {
 	{
 		$data = array(
 				'Number_BP' => $this->input->post('Number_BP'),
-				'Tonase' => $this->input->post('Tonase'),
-				'Account_Status' => "Otomatis",
-				'Id_Legality' => $this->input->post('Id_Legality'),
-				'Id_Car' => $this->input->post('Id_Car'),
 			);
 
 		if($this->input->post('remove_Document_Delivery_Order')) // if remove dokumen checked

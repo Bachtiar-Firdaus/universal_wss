@@ -124,28 +124,6 @@
 	});
 
 
-	function add() {
-		document.getElementById('Tonase').readOnly = false;
-		document.getElementById('Id_Legality').readOnly = false;
-		document.getElementById('Id_Car').readOnly = false;
-		document.getElementById('btnSave_').style.display = "block";
-		document.getElementById('btnSave_1').style.display = "none";
-		document.getElementById('bag1').style.display = "block";
-		document.getElementById('bag2').style.display = "block";
-		document.getElementById('bag3').style.display = "block";
-		document.getElementById('ses1').style.display = "block";
-		document.getElementById('ses2').style.display = "block";
-		document.getElementById('bag4').style.display = "none";
-		save_method = 'add';
-		$('#form')[0].reset(); 
-		$('.form-group').removeClass('has-error'); 
-		$('.help-block').empty(); 
-		$('#modal_form').modal('show'); 
-		$('.modal-title').text('Add Activities'); 
-		$('#Document_Delivery_Order-preview').hide();
-		$('#label-Document_Delivery_Order').text('Upload dokumen');
-	}
-
 	function edit_activities(id) {		
 		document.getElementById('Id_Legality').readOnly = true;
 		document.getElementById('Id_Car').readOnly = true;
