@@ -181,7 +181,7 @@
 </script>
 
 
-<form method="post" accept-charset="utf-8" action="<?php echo base_url()?>User/Cetak_Legality">
+<form method="post" accept-charset="utf-8" action="<?php echo base_url()?>Administrator/Cetak_Legality">
     <div class="form-group">
         <div  style="width: 180px; float: left;">
             <input required name="First_Date" placeholder="First_Date" value="masukan First_Date" type="date" style="  float: left; width: 167px; margin: 5px; border-radius: 5px; height: 35px;px;">
