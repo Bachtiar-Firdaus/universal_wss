@@ -81,7 +81,7 @@
                  </div>
                  <div class="div">
                     <h5>Username</h5>
-                    <input type="text" name="Username" class="input">
+                    <input type="text" name="Username" class="input" autocomplete="off" required>
                  </div>
               </div>
               <div class="input-div pass">
@@ -90,7 +90,7 @@
                  </div>
                  <div class="div">
                     <h5>Password</h5>
-                    <input type="Password" name="Password" class="input">
+                    <input type="Password" name="Password" class="input" autocomplete="off" required>
                  </div>
               </div>
               <input type="submit" class="btn" value="Login">

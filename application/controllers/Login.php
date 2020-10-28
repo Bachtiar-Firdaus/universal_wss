@@ -18,22 +18,25 @@ class Login extends CI_Controller {
         $Username=htmlspecialchars($this->input->post('Username',TRUE),ENT_QUOTES);
         $Password=htmlspecialchars($this->input->post('Password',TRUE),ENT_QUOTES);
 
-        $dat=$this->m_login->Auth($Username,$Password);
+        $field = $this->M_Login->Auth($Username,$Password);
 
-        if($dat > 0)
+        if($field > 0)
         	{ 
-        		$data=$dat->row_array();
+        		$data = $field->row_array();
         		$this->session->set_userdata('masuk',TRUE);
-		        if($data['level']=='1'){
-		            $this->session->set_userdata('akses','1');
-		            $this->session->set_userdata('ses_id',$data['id']);
-		            $this->session->set_userdata('ses_nama',$data['Username']);
-		            redirect('Login');
-       			}if($data['level']=='2'){
-		            $this->session->set_userdata('akses','2');
-		            $this->session->set_userdata('ses_id',$data['id']);
-		            $this->session->set_userdata('ses_nama',$data['Username']);
-		            redirect('Login');
+		        if($data['Username'] == $Username && $data['Password'] == $Password){
+		            $this->session->set_userdata('Username',$data['Username']);
+		            $this->session->set_userdata('Account_Status',$data['Account_Status']);
+		            $this->session->set_userdata('Level',$data['Level']);
+		            if($data['Level'] == "User"){
+		            	redirect('User');
+		            }elseif ($data['Level'] == "Superuser") {
+		            	redirect('Superuser');
+		            }elseif ($data['Level'] == "Administrator") {
+		            	redirect('Administrator');
+		            }else{
+		            	redirect('Login');
+		            }
        			}else{ 
 					$url=base_url();
 					echo $this->session->set_flashdata('msg','Username Atau Password Salah !!!');

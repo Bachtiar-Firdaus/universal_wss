@@ -218,7 +218,36 @@
 
 		}
 	}
+function cek(){
+		var cek_Username = document.getElementById("Username").value;
+		var cek_Password = document.getElementById("Password").value;
+		var cek_Account_Status = document.getElementById("Account_Status").value;
+		var cek_Level = document.getElementById("Level").value;
+		if(save_method == 'add')
+		{
+			if(cek_Username != "" && cek_Password != "" && cek_Account_Status != "" && cek_Level != "")
+			{			
+				save();		
+			}
+			else 
+			{
+	   		 	swal("LENGKAPI FIELD");
+			}
+		}		
+		else
+		{
+			if(cek_Username != "" && cek_Password != "" && cek_Account_Status != "" && cek_Level != "")
+			{
+			save();		
+			}
+			else 
+			{
+	   		 	swal("LENGKAPI FIELD");
+			}
+		}
 
+
+}
 
 </script>
 
@@ -262,22 +291,46 @@
 			    </div>
 				<div class="form-group">
 					<label>Username</label>
-					<input type="text" class="form-control" id="Username" name="Username" placeholder="Masukan Username">
+					<input type="text" class="form-control" id="Username" name="Username" placeholder="Masukan Username" autocomplete="off">
 				</div>
 
 			    <div class="form-group">
 					<label>Password</label>
-					<input type="Password" class="form-control" id="Password" name="Password" placeholder="Masukan Password">
+					<input type="text" class="form-control" id="Password" name="Password" placeholder="Masukan Password" autocomplete="off">
 				</div>	
 			    <div class="form-group">
 					<label>Account Status</label>
-					<input type="text" class="form-control" id="Account_Status" name="Account_Status" placeholder="Masukan Account_Status">
+					<select id="Account_Status" name="Account_Status" class="form-control" >
+						<option value="">Pilih Salah Satu Divre</option>
+						<option value="Divre_I_Medan">Divre_I_Medan</option>
+						<option value="Divre_II_Padang">Divre_II_Padang</option>
+						<option value="Divre_III_Dumai">Divre_III_Dumai</option>
+						<option value="Divre_IV_Palembang">Divre_IV_Palembang</option>
+						<option value="Divre_V_Pangkal_Pinang">Divre_V_Pangkal_Pinang</option>
+						<option value="Divre_VI_Lampung">Divre_VI_Lampung</option>
+						<option value="Divre_VII_DKI_Jakarta">Divre_VII_DKI_Jakarta</option>
+						<option value="Divre_VIII_Bandung">Divre_VIII_Bandung</option>
+						<option value="Divre_IX_Semarang">Divre_IX_Semarang</option>
+						<option value="Divre_X_Surabaya">Divre_X_Surabaya</option>
+						<option value="Divre_XI_Pontianak">Divre_XI_Pontianak</option>
+						<option value="Divre_XII_Banjarmasin">Divre_XII_Banjarmasin</option>
+						<option value="Divre_XIII_Balikpapan">Divre_XIII_Balikpapan</option>
+						<option value="Divre_XIV_Denpasar">Divre_XIV_Denpasar</option>
+						<option value="Divre_XV_Mataram">Divre_XV_Mataram</option>
+						<option value="Divre_XVI_Kupang">Divre_XVI_Kupang</option>
+						<option value="Divre_XVII_Makassar">Divre_XVII_Makassar</option>
+						<option value="Divre_XVIII_Palu">Divre_XVIII_Palu</option>
+						<option value="Divre_XIX_Bitung">Divre_XIX_Bitung</option>
+						<option value="Divre_XX_Sorong">Divre_XX_Sorong</option>
+					</select>
 				</div>
-
-
         		<div class="form-group">
 					<label>Level</label>
-					<input type="text" class="form-control" id="Level" name="Level" placeholder="Masukan Level">
+					<select id="Level" name="Level" class="form-control" >
+						<option value="">Pilih Salah Satu Jenis User</option>
+						<option value="User">User</option>
+						<option value="Superuser">Superuser</option>
+					</select>
 				</div>	
 
         	</div>
@@ -286,6 +339,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reset()">Close</button>
+        <button type="button" class="btn btn-primary" id="btnSave" onclick="cek()">Save changes</button>	
       </div>
     </div>
   </div>

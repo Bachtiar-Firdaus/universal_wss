@@ -55,6 +55,20 @@ class Administrator extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function ajax_add_Manage_Accounts()
+	{
+		$data = array(
+				'Username' => $this->input->post('Username'),
+				'Password' => $this->input->post('Password'),
+				'Account_Status' => $this->input->post('Account_Status'),
+				'Level' => $this->input->post('Level'),
+			);
+
+		$insert = $this->M_Manage_Accounts->save($data);
+
+		echo json_encode(array("status" => TRUE));
+	}
+
 	public function Legality()
 	{	
 		$data['contents'] = 'Administrator/Legality';
