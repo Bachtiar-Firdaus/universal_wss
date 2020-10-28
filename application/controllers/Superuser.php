@@ -46,7 +46,7 @@ class Superuser extends CI_Controller {
 			$row[] = $M_Legality->Commodity;
 			$row[] = $M_Legality->Purpose_of_Unloading;
 			$row[] = $M_Legality->Date_Legality;
-			$row[] = $M_Legality->Id_User;
+			$row[] = $M_Legality->Account_Status;
 			$row[] = $M_Legality->Document_Legality;
 
 			if($M_Legality->Party <= $M_Legality->Balance){
@@ -79,7 +79,7 @@ class Superuser extends CI_Controller {
 				'Commodity' => $this->input->post('Commodity'),
 				'Purpose_of_Unloading' => $this->input->post('Purpose_of_Unloading'),
 				'Date_Legality' => $this->input->post('Date_Legality'),
-				'Id_User' => "0",
+				'Account_Status' => "0",
 			);
 
 		if(!empty($_FILES['Document_Legality']['name']))
@@ -111,7 +111,7 @@ class Superuser extends CI_Controller {
 				'Commodity' => $this->input->post('Commodity'),
 				'Purpose_of_Unloading' => $this->input->post('Purpose_of_Unloading'),
 				'Date_Legality' => $this->input->post('Date_Legality'),
-				'Id_User' => "0",
+				'Account_Status' => "0",
 			);
 
 		if($this->input->post('remove_dokumen')) // if remove dokumen checked
@@ -192,7 +192,7 @@ class Superuser extends CI_Controller {
 			$row[] = $M_Vehicle->Number_Police;
 			$row[] = $M_Vehicle->Name;
 			$row[] = $M_Vehicle->Document_SIM_STNK;
-			$row[] = $M_Vehicle->Id_User;
+			$row[] = $M_Vehicle->Account_Status;
 			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_vehicle('."'".$M_Vehicle->Id_Car."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
 		  			  <a class="btn btn-sm" href="javascript:void(0)" title="Hapus" onclick="delete_vehicle('."'".$M_Vehicle->Id_Car."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
 			$data[] = $row;
@@ -327,7 +327,7 @@ class Superuser extends CI_Controller {
 			$row[] = $M_Activities->Time_Out;
 			$row[] = $M_Activities->Document_Delivery_Order;
 			$row[] = $M_Activities->Document_Out;
-			$row[] = $M_Activities->Id_User;
+			$row[] = $M_Activities->Account_Status;
 			$row[] = $M_Activities->Id_Legality;
 			$row[] = $M_Activities->Id_Car;
 
@@ -353,7 +353,7 @@ class Superuser extends CI_Controller {
 				'Tonase' => $this->input->post('Tonase'),
 				'Time_In' => date("Y-m-d H:i:s"),
 				'Time_Out' => " - ",
-				'Id_User' => "Otomatis",
+				'Account_Status' => "Otomatis",
 				'Id_Legality' => $this->input->post('Id_Legality'),
 				'Id_Car' => $this->input->post('Id_Car'),
 			);
@@ -379,7 +379,7 @@ class Superuser extends CI_Controller {
 		$data = array(
 				'Number_BP' => $this->input->post('Number_BP'),
 				'Tonase' => $this->input->post('Tonase'),
-				'Id_User' => "Otomatis",
+				'Account_Status' => "Otomatis",
 				'Id_Legality' => $this->input->post('Id_Legality'),
 				'Id_Car' => $this->input->post('Id_Car'),
 			);
@@ -515,7 +515,7 @@ class Superuser extends CI_Controller {
 			$row[] = $M_Realization->Information;
 			$row[] = $M_Realization->Date_Realization;
 			$row[] = $M_Realization->Document_Realization;
-			$row[] = $M_Realization->Id_User;
+			$row[] = $M_Realization->Account_Status;
 			$row[] = '<a class="btn btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_realization('."'".$M_Realization->Id_Realization."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
 				<a class="btn btn-sm" href="javascript:void(0)" title="Hapus" onclick="delete_realization('."'".$M_Realization->Id_Realization."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
 			$data[] = $row;
@@ -536,7 +536,7 @@ class Superuser extends CI_Controller {
 				'Warehouse_Daily_Tonnage' => $this->input->post('Warehouse_Daily_Tonnage'),
 				'Information' => $this->input->post('Information'),
 				'Date_Realization' => $this->input->post('Date_Realization'),
-				'Id_User' => "0",
+				'Account_Status' => "0",
 			);
 
 		if(!empty($_FILES['Document_Realization']['name']))
@@ -561,7 +561,7 @@ class Superuser extends CI_Controller {
 				'Warehouse_Daily_Tonnage' => $this->input->post('Warehouse_Daily_Tonnage'),
 				'Information' => $this->input->post('Information'),
 				'Date_Realization' => $this->input->post('Date_Realization'),
-				'Id_User' => "0",
+				'Account_Status' => "0",
 			);
 
 		if($this->input->post('remove_Document_Realization')) // if remove dokumen checked

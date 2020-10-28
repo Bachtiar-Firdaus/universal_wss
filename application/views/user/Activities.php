@@ -34,7 +34,7 @@
 									<th>Time Out <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Document Delivery Order <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Document Out <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Id User <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>Account Status <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Id Legality <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Id Vehicle <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th style="width:125px;">Action</th>
@@ -174,7 +174,7 @@
 				$('[name="Tonase"]').val(data.Tonase);
 				$('[name="Time_In"]').val(data.Time_In);
 				$('[name="Time_Out"]').val(data.Time_Out);
-				$('[name="Id_User"]').val(data.Id_User);
+				$('[name="Account_Status"]').val(data.Account_Status);
 				$('[name="Id_Legality"]').val(data.Id_Legality);
 				$('[name="Id_Car"]').val(data.Id_Car);
 

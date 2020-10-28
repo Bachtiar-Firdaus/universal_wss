@@ -98,7 +98,7 @@ class Administrator extends CI_Controller {
 			$row[] = $M_Legality->Commodity;
 			$row[] = $M_Legality->Purpose_of_Unloading;
 			$row[] = $M_Legality->Date_Legality;
-			$row[] = $M_Legality->Id_User;
+			$row[] = $M_Legality->Account_Status;
 			$row[] = $M_Legality->Document_Legality;
 			$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="View" onclick="view_legality('."'".$M_Legality->Id_Legality."'".')"><i class="glyphicon glyphicon-pencil"></i> View</a>';
 			$data[] = $row;
@@ -138,7 +138,7 @@ class Administrator extends CI_Controller {
 			$row[] = $M_Vehicle->Number_Police;
 			$row[] = $M_Vehicle->Name;
 			$row[] = $M_Vehicle->Document_SIM_STNK;
-			$row[] = $M_Vehicle->Id_User;
+			$row[] = $M_Vehicle->Account_Status;
 			$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="View" onclick="view_vehicle('."'".$M_Vehicle->Id_Car."'".')"><i class="glyphicon glyphicon-pencil"></i> View</a>';
 			$data[] = $row;
 		}
@@ -177,7 +177,7 @@ class Administrator extends CI_Controller {
 			$row[] = $M_Activities->Time_Out;
 			$row[] = $M_Activities->Document_Delivery_Order;
 			$row[] = $M_Activities->Document_Out;
-			$row[] = $M_Activities->Id_User;
+			$row[] = $M_Activities->Account_Status;
 			$row[] = $M_Activities->Id_Legality;
 			$row[] = $M_Activities->Id_Car;
 
@@ -222,7 +222,7 @@ class Administrator extends CI_Controller {
 			$row[] = $M_Realization->Information;
 			$row[] = $M_Realization->Date_Realization;
 			$row[] = $M_Realization->Document_Realization;
-			$row[] = $M_Realization->Id_User;
+			$row[] = $M_Realization->Account_Status;
 			$row[] = '<a class="btn btn-sm btn-custome1" href="javascript:void(0)" title="View" onclick="edit_realization('."'".$M_Realization->Id_Realization."'".')"><i class="glyphicon glyphicon-pencil"></i> View</a>';
 			$data[] = $row;
 		}

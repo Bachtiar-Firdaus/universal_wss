@@ -36,7 +36,7 @@
 									<th>Commodity <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Purpose of Unloading <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Date Legality<img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Id User <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>Account Status <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Document Legality <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th style="width:125px;">Action</th>
 								</tr>
@@ -177,7 +177,7 @@
 				$('[name="Commodity"]').val(data.Commodity);
 				$('[name="Purpose_of_Unloading"]').val(data.Purpose_of_Unloading);
 				$('[name="Date_Legality"]').val(data.Date_Legality);
-				$('[name="Id_User"]').val(data.Id_User);
+				$('[name="Account_Status"]').val(data.Account_Status);
 				$('#modal_form').modal('show'); 
 				$('.modal-title').text('View Legality');
 				$('#Document_Legality-preview').show();

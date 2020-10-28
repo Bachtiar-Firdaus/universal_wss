@@ -31,7 +31,7 @@
 									<th>Information <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Date Realization<img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Document Realization <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Id User <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>Account Status <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th style="width:125px;">Action</th>
 								</tr>
 							</thead>
@@ -137,7 +137,7 @@
 				$('[name="Warehouse_Daily_Tonnage"]').val(data.Warehouse_Daily_Tonnage);
 				$('[name="Information"]').val(data.Information);
 				$('[name="Date_Realization"]').val(data.Date_Realization);
-				$('[name="Id_User"]').val(data.Id_User);
+				$('[name="Account_Status"]').val(data.Account_Status);
 				$('#modal_form').modal('show'); 
 				$('.modal-title').text('Edit Realization');
 				$('#Document_Realization-preview').show();

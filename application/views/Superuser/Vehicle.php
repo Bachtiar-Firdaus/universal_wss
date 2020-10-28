@@ -30,7 +30,7 @@
 									<th>Number Police <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Name <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th>Document SIM & STNK <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
-									<th>Id User <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
+									<th>Account Status <img src="<?php echo base_url('assets/css_wss/sort.png'); ?>" width="10"></th>
 									<th style="width:125px;">Action</th>
 								</tr>
 							</thead>
@@ -140,7 +140,7 @@
 				$('[name="Number_Sim"]').val(data.Number_Sim);
 				$('[name="Number_Police"]').val(data.Number_Police);
 				$('[name="Name"]').val(data.Name);
-				$('[name="Id_User"]').val(data.Id_User);
+				$('[name="Account_Status"]').val(data.Account_Status);
 				$('#modal_form').modal('show'); 
 				$('.modal-title').text('Edit Vehicle');
 				$('#Document_SIM_STNK-preview').show();

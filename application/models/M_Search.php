@@ -27,17 +27,17 @@ class M_Search extends CI_Model{
 
 
     function Cetak_Legality($First_Date,$Last_Date){
-        $query = $this->db->query("SELECT * FROM tbl_legality WHERE Date_Legality between '$First_Date' AND '$Last_Date' ORDER BY Date_Legality DESC");
+        $query = $this->db->query("SELECT * FROM tbl_legality WHERE Date_Legality between '$First_Date' AND '$Last_Date' ORDER BY Date_Legality ASC");
         return $query->result();
     } 
 
     function Cetak_Activities($First_Date,$Last_Date){
-        $query = $this->db->query("SELECT * FROM tbl_activities WHERE Date_Activities between '$First_Date' AND '$Last_Date' ORDER BY Date_Activities DESC");
+        $query = $this->db->query("SELECT * FROM tbl_activities WHERE Date_Activities between '$First_Date' AND '$Last_Date' ORDER BY Date_Activities ASC");
         return $query->result();
     } 
 
     function Cetak_Realization($First_Date,$Last_Date){
-        $query = $this->db->query("SELECT * FROM tbl_realization WHERE Date_Realization between '$First_Date' AND '$Last_Date' ORDER BY Date_Realization DESC");
+        $query = $this->db->query("SELECT * FROM tbl_realization WHERE Date_Realization between '$First_Date' AND '$Last_Date' ORDER BY Date_Realization ASC");
         return $query->result();
     } 
     function Cetak_Viat($id){
@@ -62,7 +62,7 @@ class M_Search extends CI_Model{
     } 
        
     function Cetak_Manage_Accounts(){
-        $query = $this->db->query("SELECT * FROM tbl_user ORDER BY Id_User DESC");
+        $query = $this->db->query("SELECT * FROM tbl_user ORDER BY Id_User ASC");
         return $query->result();
     }
 }

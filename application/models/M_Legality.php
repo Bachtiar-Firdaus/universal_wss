@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_Legality extends CI_Model {
 
 	var $table = 'tbl_legality';
-	var $column_order = array('Id_Legality','Number','Transportir','Customer','Party','Balance','Commodity','Purpose_of_Unloading','Date_Legality','Id_User','Document_Legality',null); 
-	var $column_search = array('Id_Legality','Number','Transportir','Customer','Party','Balance','Commodity','Purpose_of_Unloading','Document_Legality','Date_Legality','Id_User');
+	var $column_order = array('Id_Legality','Number','Transportir','Customer','Party','Balance','Commodity','Purpose_of_Unloading','Date_Legality','Account_Status','Document_Legality',null); 
+	var $column_search = array('Id_Legality','Number','Transportir','Customer','Party','Balance','Commodity','Purpose_of_Unloading','Document_Legality','Date_Legality','Account_Status');
 	var $order = array('Id_Legality' => 'desc'); 
 
 	public function __construct()
