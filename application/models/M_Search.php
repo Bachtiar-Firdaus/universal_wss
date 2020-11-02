@@ -106,6 +106,19 @@ class M_Search extends CI_Model{
     function Cetak_Manage_Accounts(){
         $query = $this->db->query("SELECT * FROM tbl_user ORDER BY Id_User ASC");
         return $query->result();
+    }       
+
+    function Get_Global_Tonase(){
+        $query = $this->db->query("SELECT SUM(TONASE) AS GLOBAL_TONASE FROM tbl_activities WHERE Date_Activities = ''");
+        return $query->result();
+    }    
+    function Get_WSS_Global_Tonage(){
+        $query = $this->db->query("SELECT SUM(WSS_Daily_Tonnage) as WSS_global_Tonnage FROM tbl_realization");
+        return $query->result();
+    }   
+    function Get_Global_Daily(){
+        $query = $this->db->query("SELECT SUM(WSS_Daily_Tonnage) as WSS_global_Tonnage, SUM(Warehouse_Daily_Tonnage) as Warehouse_Global_Tonnage FROM tbl_realization");
+        return $query->result();
     }
 }
 ?>

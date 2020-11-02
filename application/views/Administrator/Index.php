@@ -156,6 +156,9 @@
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
 <script src="<?php echo base_url ('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 
+
+
+
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
