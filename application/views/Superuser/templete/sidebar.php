@@ -59,14 +59,18 @@ a,span:hover{
 
 
 
+
+
+
+
       
         <a href="<?php echo site_url() ?>Superuser/index" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
+          <span class="material-icons" style="vertical-align: bottom;">dashboard</span>
           Dashboard
         </a>
 
         <a href="<?php echo site_url() ?>Superuser/Legality" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
+          <span class="material-icons" style="vertical-align: bottom;">assignment</span>
           Legality
         </a>
       
@@ -76,11 +80,11 @@ a,span:hover{
         </a>
         
         <a href="<?php echo site_url() ?>Superuser/Activities" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">commute</span>
+          <span class="material-icons" style="vertical-align: bottom;">electric_car</span>
           Activities
         </a>
         <a href="<?php echo site_url() ?>Superuser/Realization" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">commute</span>
+          <span class="material-icons" style="vertical-align: bottom;">emoji_transportation</span>
           Realization
         </a>
 

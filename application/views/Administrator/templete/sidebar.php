@@ -61,18 +61,18 @@ a,span:hover{
 
       
         <a href="<?php echo site_url() ?>Administrator/index" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
+          <span class="material-icons" style="vertical-align: bottom;">dashboard</span>
           Dashboard
         </a>
 
         <a href="<?php echo site_url() ?>Administrator/Manage_Accounts" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
+          <span class="material-icons" style="vertical-align: bottom;">account_box</span>
           Manage Accounts
         </a>
     
 
         <a href="<?php echo site_url() ?>Administrator/Legality" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">account_balance</span>
+          <span class="material-icons" style="vertical-align: bottom;">assignment</span>
           Legality
         </a>
       
@@ -82,11 +82,11 @@ a,span:hover{
         </a>
         
         <a href="<?php echo site_url() ?>Administrator/Activities" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">commute</span>
+          <span class="material-icons" style="vertical-align: bottom;">electric_car</span>
           Activities
         </a>
         <a href="<?php echo site_url() ?>Administrator/Realization" class="list-group-item list-group-item-action ahover">
-          <span class="material-icons" style="vertical-align: bottom;">commute</span>
+          <span class="material-icons" style="vertical-align: bottom;">emoji_transportation</span>
           Realization
         </a>
       </div>
