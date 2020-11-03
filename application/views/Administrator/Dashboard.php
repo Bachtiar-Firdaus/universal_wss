@@ -3,31 +3,21 @@
 
 <head>
 <title>Warehouse Security System</title>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
-
 <script type="text/javascript" src="<?php echo base_url('assets/dist/sweetalert.min.js') ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/dist/sweetalert-dev.js') ?>"></script>
-
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/dist/sweetalert.css') ?>">
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <link href="<?php echo base_url('assets/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-
-    <link href="<?php echo base_url('assets/css/simple-sidebar.css') ?>" rel="stylesheet">
-
-    <link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
-    
-    <link href="<?php echo base_url('assets/css_wss/style.css')?>" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="<?php echo base_url('assets/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+<link href="<?php echo base_url('assets/css/simple-sidebar.css') ?>" rel="stylesheet">
+<link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
+<link href="<?php echo base_url('assets/css_wss/style.css')?>" rel="stylesheet">
 <style type="text/css">
     table.dataTable thead>tr>th.sorting_asc,
     table.dataTable thead>tr>th.sorting_desc,
@@ -231,7 +221,6 @@ $(function () {
 });
 
 
-
  
 </script> 
 
@@ -274,8 +263,6 @@ $(function () {
                                  </div>
                                 </div>
                               </div>
-
-
 
                             </div>
                           </div>

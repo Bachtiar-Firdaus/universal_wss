@@ -141,5 +141,7 @@ class M_Search extends CI_Model{
         }
 
     }
+
+  }
 }
 ?>

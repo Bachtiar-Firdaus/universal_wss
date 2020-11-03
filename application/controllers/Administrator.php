@@ -21,7 +21,7 @@ class Administrator extends CI_Controller {
 	}
 	
 	public function index()
-		{	
+		{	      
 		$data['Global_Daily']=  $this->M_Search->Get_Global_Daily(); 
 		$data['Global_Tonase']=  $this->M_Search->Get_Global_Tonase(); 
 		$data['WSS_global_Tonnage']=  $this->M_Search->Get_WSS_Global_Tonage(); 
