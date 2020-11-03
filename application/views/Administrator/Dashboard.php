@@ -99,7 +99,53 @@
 
 
 
-    
+    <?php
+                          foreach ($Global_Tonase as $data) 
+                          {
+                            $w = $data->GLOBAL_TONASE;
+                            if($w == null)
+                            {
+                              $a = "0";
+                            }else{
+                              $a = $w;
+                            }
+                          }
+
+                          foreach ($WSS_global_Tonnage as $data1) 
+                          {
+                            $x = $data1->WSS_global_Tonnage;
+                            if($x == null)
+                            {
+                              $b = "0";
+                            }else{
+                              $b = $x;
+                            }
+                          }
+                          foreach ($Global_Daily as $data) 
+                          {
+                            $y = $data->WSS_global_Tonnage;
+                            $z = $data->Warehouse_Global_Tonnage;
+                            if($y == null && $z == null)
+                            {
+                              $c = "0";
+                              $d = "0";
+                            }elseif($y != null && $z == null)
+                            {
+                              $c = $y;
+                              $d = "0";
+                            }elseif($y == null && $z != null)
+                            {
+                              $c = "0";
+                              $d = $z;
+                            }
+                            else{
+                            $c = $y;
+                            $d = $z;
+                            }
+                          }
+ 
+
+                    ?>
 
 <script type="text/javascript">
 
@@ -133,19 +179,11 @@ $(function () {
             type: 'pie',
             name: 'Comparison Between Realization and Activity',
             data: [
-                     <?php 
-                    if(count($Global_Tonase)>0 && count($WSS_global_Tonnage)>0)
-                    {
-                        foreach ($Global_Tonase as $data) {
-                        $Global_Tonase = $data->GLOBAL_TONASE;
-                      }
-                        foreach ($WSS_global_Tonnage as $data1) {
-                        $WSS_global_Tonnage = $data1->WSS_global_Tonnage;
-                      }
-                    }
-                       echo "['" . "Global <br> Realization" . "'," . $WSS_global_Tonnage ."],\n";
-                       echo "['" . "Pending <br> Realization" . "'," . $Global_Tonase ."],\n";
-                    ?>
+                      <?php
+                       echo "['" . "Pending <br> Realization" . "'," . $a ."],\n";
+                       echo "['" . "Global <br> Realization" . "'," . $b ."],\n";
+                      ?>
+
             ]
         }]
     });
@@ -183,17 +221,10 @@ $(function () {
             type: 'pie',
             name: 'Comparison Between Realization and Activity',
             data: [
-                     <?php 
-                    if(count($Global_Daily)>0)
-                    {
-                        foreach ($Global_Daily as $data) {
-                        $WSS_global_Tonnage = $data->WSS_global_Tonnage;
-                        $Warehouse_Global_Tonnage = $data->Warehouse_Global_Tonnage;
-                      }
-                    }
-                       echo "['" . "WSS <br> Global <br> Tonnage" . "'," . $WSS_global_Tonnage ."],\n";
-                       echo "['" . "Warehouse <br> Global <br> Tonnage" . "'," . $Warehouse_Global_Tonnage ."],\n";
-                    ?>
+                         <?php
+                       echo "['" . "WSS <br> Global <br> Tonnage" . "'," . $c ."],\n";
+                       echo "['" . "Warehouse <br> Global <br> Tonnage" . "'," . $d ."],\n";
+                       ?>
             ]
         }]
     });

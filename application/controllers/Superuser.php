@@ -20,8 +20,11 @@ class Superuser extends CI_Controller {
 	}
 	public function index()
 	{	
-		$data['contents'] = 'Superuser/Dashboard';
-		$this->load->view('Superuser/index',$data);
+
+		$data['Global_Daily']=  $this->M_Search->Get_Global_Daily(); 
+		$data['Global_Tonase']=  $this->M_Search->Get_Global_Tonase(); 
+		$data['WSS_global_Tonnage']=  $this->M_Search->Get_WSS_Global_Tonage(); 
+		$this->load->view('Superuser/Dashboard',$data);
 	}
 
 	public function Legality()
