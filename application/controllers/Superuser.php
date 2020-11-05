@@ -370,7 +370,9 @@ class Superuser extends CI_Controller {
 	{
 		$M_Activities = $this->M_Activities->get_by_id($id);
 		if(file_exists('upload_activities/'.$M_Activities->Document_Delivery_Order) && $M_Activities->Document_Delivery_Order)
-			unlink('upload_activities/'.$M_Activities->Document_Delivery_Order);
+			unlink('upload_activities/'.$M_Activities->Document_Delivery_Order);		
+		if(file_exists('upload_activities/'.$M_Activities->Document_Out) && $M_Activities->Document_Out)
+			unlink('upload_activities/'.$M_Activities->Document_Out);
 		
 		$this->M_Activities->delete_by_id($id);
 		echo json_encode(array("status" => TRUE));
